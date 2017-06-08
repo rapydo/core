@@ -18,13 +18,3 @@ variables:
         default: normal_user
   frontend:
     enable: true
-  containers: 
-    users:
-      backend: "root"
-    authentication:
-      service: "neo4j"
-      # service: "relationaldb"
-      username: "user@nomail.org"
-      password: "test"
-
-    authentication_service: "neo4j"

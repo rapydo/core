@@ -2,13 +2,22 @@
 project:
   title: My project
   description: Title of my project
+
+controller:
+  commands:
+    initialization:
+      description: Try to init your project. Fails if already done once?
+      command: initialize
+      service: backend
+      user: root
+
 variables:
   env:
     COMPOSE_PROJECT_NAME: rapydodemo
     PROJECT_DOMAIN: localhost
     GRAPHDB_PASSWORD: chooseapassword
-  backend: 
-    credentials: 
+  backend:
+    credentials:
       username: "user@nomail.org"
       password: "test"
       roles:

@@ -1,4 +1,9 @@
 ########################
+##  Host configuration  ##
+########################
+.projectrc
+
+########################
 ##  Your custom data  ##
 ########################
 
@@ -13,6 +18,7 @@ tmp_files
 /backend
 /frontend
 /builds_base
+/utilities
 
 ############################################
 ##  Dynamically created file and folders  ##
@@ -24,6 +30,8 @@ libs/bower_components
 ###################################
 ##  Temporary and miscellaneous  ##
 ###################################
+
+scripts/rapydo
 
 *.log
 

@@ -4,6 +4,7 @@ version: '3'
 
 services:
   backend:
+    # command: sleep infinity
     environment:
       APP_MODE: debug
       DEBUG_LEVEL: VERBOSE

@@ -1,4 +1,9 @@
 ########################
+##  Host configuration  ##
+########################
+.projectrc
+
+########################
 ##  Your custom data  ##
 ########################
 
@@ -25,6 +30,8 @@ libs/bower_components
 ###################################
 ##  Temporary and miscellaneous  ##
 ###################################
+
+scripts/rapydo
 
 *.log
 

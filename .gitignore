@@ -13,6 +13,7 @@ tmp_files
 /backend
 /frontend
 /builds_base
+/utilities
 
 ############################################
 ##  Dynamically created file and folders  ##

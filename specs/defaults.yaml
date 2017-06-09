@@ -93,3 +93,10 @@ tags:
   profiles: set and view profile for current credentials
   open_sessions: manage authorized sessions
 
+controller:
+  commands:
+    initialization:
+      description: Try to init your project. Fails if already done once?
+      command: initialize
+      service: backend
+      user: root

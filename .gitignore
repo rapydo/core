@@ -1,15 +1,15 @@
 ########################
-##  Host configuration  ##
-########################
-.projectrc
-
-########################
 ##  Your custom data  ##
 ########################
 
 # data
 uploads
 tmp_files
+
+########################
+##  Host configuration  ##
+########################
+.projectrc
 
 #################
 ##  Submodules ##

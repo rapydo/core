@@ -5,7 +5,7 @@ project:
 
 variables:
   env:
-    COMPOSE_PROJECT_NAME: rapydodemo
+    COMPOSE_PROJECT_NAME: template 
     PROJECT_DOMAIN: localhost
     GRAPHDB_PASSWORD: chooseapassword
   backend:

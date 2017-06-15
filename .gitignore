@@ -15,10 +15,7 @@ tmp_files
 ##  Submodules ##
 #################
 
-/backend
-/frontend
-/builds_base
-/utilities
+/submodules
 
 ############################################
 ##  Dynamically created file and folders  ##

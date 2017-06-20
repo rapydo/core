@@ -19,3 +19,4 @@ variables:
         default: normal_user
   frontend:
     enable: true
+

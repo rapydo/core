@@ -22,7 +22,7 @@ tmp_files
 ############################################
 
 .env
-libs/bower_components
+/bower_components
 
 ###################################
 ##  Temporary and miscellaneous  ##

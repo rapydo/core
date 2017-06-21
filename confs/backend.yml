@@ -185,7 +185,7 @@ services:
       worker_net:
     depends_on:
       - rabbit
-      # - flower
+      # - celeryui 
 
   rabbit:
     image: rabbitmq:latest

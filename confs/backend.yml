@@ -220,8 +220,6 @@ services:
       JWT_APP_SECRETS: ${JWT_APP_SECRETS}
     volumes:
       - ..:/code/${COMPOSE_PROJECT_NAME}
-      - ../tmp_irods_certificates:/opt/certificates
-      - ../tmp_files:/uploads
     networks:
       db_net:
       worker_net:

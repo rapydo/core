@@ -25,6 +25,7 @@ services:
       - ../projects/${COMPOSE_PROJECT_NAME}/frontend/js:/data/submodules/frontend/felask/static/app/custom
       - ../projects/${COMPOSE_PROJECT_NAME}/frontend/templates:/data/submodules/frontend/felask/static/app/templates/custom
       - ../projects/${COMPOSE_PROJECT_NAME}/frontend/css:/data/submodules/frontend/felask/static/css/custom
+      - ../projects/${COMPOSE_PROJECT_NAME}/frontend/assets:/data/submodules/frontend/felask/static/assets
 
   ###############################
   # Make automatic to install libraries
@@ -49,6 +50,7 @@ services:
       - ../projects/${COMPOSE_PROJECT_NAME}/frontend/js:/data/submodules/frontend/felask/static/app/custom
       - ../projects/${COMPOSE_PROJECT_NAME}/frontend/templates:/data/submodules/frontend/felask/static/app/templates/custom
       - ../projects/${COMPOSE_PROJECT_NAME}/frontend/css:/data/submodules/frontend/felask/static/css/custom
+      - ../projects/${COMPOSE_PROJECT_NAME}/frontend/assets:/data/submodules/frontend/felask/static/assets
 
   ###############################
   # Make automatic to install libraries

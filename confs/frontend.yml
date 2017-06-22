@@ -20,7 +20,7 @@ services:
       - ../submodules/frontend/fonts:/data/submodules/frontend/felask/static/fonts
       - ../submodules/frontend/templates:/data/submodules/frontend/felask/static/app/templates/common
       # js/css libraries installed via bower
-      - ../bower_components:/data/submodules/frontend/felask/static/bower
+      - ../data/bower_components:/data/submodules/frontend/felask/static/bower
       # js/css custom
       - ../projects/${COMPOSE_PROJECT_NAME}/frontend/js:/data/submodules/frontend/felask/static/app/custom
       - ../projects/${COMPOSE_PROJECT_NAME}/frontend/templates:/data/submodules/frontend/felask/static/app/templates/custom
@@ -45,7 +45,7 @@ services:
       - ../submodules/frontend/fonts:/data/submodules/frontend/felask/static/fonts
       - ../submodules/frontend/templates:/data/submodules/frontend/felask/static/app/templates/common
       # js/css libraries installed via bower
-      - ../bower_components:/data/submodules/frontend/felask/static/bower
+      - ../data/bower_components:/data/submodules/frontend/felask/static/bower
       # Custom css/js
       - ../projects/${COMPOSE_PROJECT_NAME}/frontend/js:/data/submodules/frontend/felask/static/app/custom
       - ../projects/${COMPOSE_PROJECT_NAME}/frontend/templates:/data/submodules/frontend/felask/static/app/templates/custom
@@ -58,5 +58,5 @@ services:
   #     image: pdonorio/jsdev
   #     working_dir: /data
   #     volumes:
-  #         - ../libs/bower_components:/data/bower_components
+  #         - ../data/bower_components:/data/bower_components
   #         - ../jscode:/data

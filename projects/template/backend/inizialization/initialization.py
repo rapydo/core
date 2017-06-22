@@ -1,4 +1,5 @@
 
 class Initializer(object):
-    pass
 
+    def __init__(self, services):
+        pass

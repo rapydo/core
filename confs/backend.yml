@@ -173,9 +173,8 @@ services:
       VANILLA_PACKAGE: ${COMPOSE_PROJECT_NAME}
       JWT_APP_SECRETS: ${JWT_APP_SECRETS}
     volumes:
-      # FIXME: UHM, what is this?
-      # Base code
-      - ../submodules/backend:/code
+      # Custom configuration
+      - ../projects/${COMPOSE_PROJECT_NAME}/project_configuration.yaml:/code/${COMPOSE_PROJECT_NAME}/confs/project_configuration.yaml
       # Vanilla code
       - ../projects/${COMPOSE_PROJECT_NAME}/backend:/code/${COMPOSE_PROJECT_NAME}
       # JWT tokens secret
@@ -219,7 +218,12 @@ services:
       VANILLA_PACKAGE: ${COMPOSE_PROJECT_NAME}
       JWT_APP_SECRETS: ${JWT_APP_SECRETS}
     volumes:
-      - ..:/code/${COMPOSE_PROJECT_NAME}
+      # Custom configuration
+      - ../projects/${COMPOSE_PROJECT_NAME}/project_configuration.yaml:/code/${COMPOSE_PROJECT_NAME}/confs/project_configuration.yaml
+      # Vanilla code
+      - ../projects/${COMPOSE_PROJECT_NAME}/backend:/code/${COMPOSE_PROJECT_NAME}
+      # JWT tokens secret
+      - jwt_tokens:${JWT_APP_SECRETS}
     networks:
       db_net:
       worker_net:

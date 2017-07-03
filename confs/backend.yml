@@ -33,7 +33,7 @@ networks:
   # default:
   i_net:
   app_net:
-  proxy_netsprecific :
+  proxy_net:
   worker_net:
   ftp_net:
   db_net:

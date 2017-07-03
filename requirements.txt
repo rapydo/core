@@ -4,7 +4,7 @@ python-coveralls
 pip
 requests==2.11.1
 docker-compose>=1.11
-docker>=2.4.2
+docker==2.4.2
 
 #rapydo-controller
 #rapydo-utils

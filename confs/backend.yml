@@ -33,7 +33,7 @@ networks:
   # default:
   i_net:
   app_net:
-  proxy_net:
+  proxy_netsprecific :
   worker_net:
   ftp_net:
   db_net:
@@ -70,7 +70,7 @@ services:
       # AUTH_SERVICE: ${AUTH_SERVICE}
     volumes:
       # Custom configuration
-      - ../projects/${COMPOSE_PROJECT_NAME}/project_configuration.yaml:/code/${COMPOSE_PROJECT_NAME}/confs/project_configuration.yaml
+      - ../projects/${COMPOSE_PROJECT_NAME}/project_configuration.yaml:/code/confs/project_configuration.yaml
       # Vanilla code
       - ../projects/${COMPOSE_PROJECT_NAME}/backend:/code/${COMPOSE_PROJECT_NAME}
       # JWT tokens secret
@@ -174,7 +174,7 @@ services:
       JWT_APP_SECRETS: ${JWT_APP_SECRETS}
     volumes:
       # Custom configuration
-      - ../projects/${COMPOSE_PROJECT_NAME}/project_configuration.yaml:/code/${COMPOSE_PROJECT_NAME}/confs/project_configuration.yaml
+      - ../projects/${COMPOSE_PROJECT_NAME}/project_configuration.yaml:/code/confs/project_configuration.yaml
       # Vanilla code
       - ../projects/${COMPOSE_PROJECT_NAME}/backend:/code/${COMPOSE_PROJECT_NAME}
       # JWT tokens secret
@@ -219,7 +219,7 @@ services:
       JWT_APP_SECRETS: ${JWT_APP_SECRETS}
     volumes:
       # Custom configuration
-      - ../projects/${COMPOSE_PROJECT_NAME}/project_configuration.yaml:/code/${COMPOSE_PROJECT_NAME}/confs/project_configuration.yaml
+      - ../projects/${COMPOSE_PROJECT_NAME}/project_configuration.yaml:/code/confs/project_configuration.yaml
       # Vanilla code
       - ../projects/${COMPOSE_PROJECT_NAME}/backend:/code/${COMPOSE_PROJECT_NAME}
       # JWT tokens secret

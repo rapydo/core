@@ -14,6 +14,7 @@ services:
     ports:
       - 8081:5000
     volumes:
+      - ../submodules/backend/rapydo:/usr/local/lib/python3.6/dist-packages/rapydo
       - ../submodules/utilities/rapydo/utils:/usr/local/lib/python3.6/dist-packages/rapydo/utils
 
   frontend:

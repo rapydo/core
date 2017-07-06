@@ -9,8 +9,6 @@ services:
       APP_MODE: debug
       DEBUG_LEVEL: VERBOSE
       ACTIVATE: 1
-      # TEMPORARY FIX...
-      PYTHONPATH: /code
     ports:
       - 8081:5000
     volumes:

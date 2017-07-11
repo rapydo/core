@@ -36,6 +36,7 @@ networks:
   proxy_net:
   worker_net:
   ftp_net:
+  smtp_net:
   db_net:
     # driver: bridge
     ipam:
@@ -329,16 +330,12 @@ services:
 
   #################################
   # SMTP server
-  # smtp:
-  #   image: namshi/smtp
-  #   environment:
-  #     # GMAIL_USER: -
-  #     # GMAIL_PASSWORD: -
-  #     - SMARTHOST_ADDRESS=mail.cineca.it
-  #     - SMARTHOST_PORT=587
-  #     - SMARTHOST_USER=m.dantonio
-  #     - SMARTHOST_PASSWORD=-
-  #     - SMARTHOST_ALIASES=*.cineca.it
+  smtp:
+    image: namshi/smtp
+    networks:
+      smtp_net:
+        aliases:
+          - smtp.dockerized.io
 
   #################################
   # REDIS key/value store

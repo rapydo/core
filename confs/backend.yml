@@ -335,7 +335,7 @@ services:
     networks:
       smtp_net:
         aliases:
-          - smtp.dockerized.io
+          - ${SMTP_HOST}
 
   #################################
   # REDIS key/value store

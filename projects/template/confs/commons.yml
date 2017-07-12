@@ -39,14 +39,16 @@ services:
 
   # smtp:
   #   environment:
-  #     - ACTIVATE=1
-  #     - GMAIL_USER=abc@gmail.com
-  #     - GMAIL_PASSWORD=XYZ
-  #     - SMARTHOST_ADDRESS=mail.cineca.it
-  #     - SMARTHOST_PORT=465
-  #     - SMARTHOST_USER=n.surname
-  #     - SMARTHOST_PASSWORD=XYZ
-  #     - SMARTHOST_ALIASES=*.cineca.it
+  #     ACTIVATE: 1
+
+  #     GMAIL_USER: xxx@gmail.com
+  #     GMAIL_PASSWORD: abc
+
+  #     # SMARTHOST_ADDRESS: mail.yourdomain.com
+  #     # SMARTHOST_PORT: 465
+  #     # SMARTHOST_USER: n.surname@yourdomain.com
+  #     # SMARTHOST_PASSWORD: XYZ
+  #     # SMARTHOST_ALIASES: *.yourdomain.com
 
 # volumes:
 #   ...

@@ -26,29 +26,31 @@ services:
       GRAPHDB_PORT: ${GRAPHDB_BOLT_PORT}
       GRAPHDB_PASSWORD: ${GRAPHDB_PASSWORD}
 
-    # networks:
-    #   smtp_net:
+    networks:
+      smtp_net:
 
     depends_on:
       - neo4j
-      # - smtp
+      - smtp
 
   neo4j:
     environment:
       NEO4J_AUTH: neo4j/${GRAPHDB_PASSWORD}
 
-  # smtp:
-  #   environment:
-  #     ACTIVATE: 1
+  smtp:
+    environment:
+      ACTIVATE: 1
 
-  #     GMAIL_USER: xxx@gmail.com
-  #     GMAIL_PASSWORD: abc
+      # GMAIL_USER: xxx@gmail.com
+      # GMAIL_PASSWORD: abc
 
-  #     # SMARTHOST_ADDRESS: mail.yourdomain.com
-  #     # SMARTHOST_PORT: 465
-  #     # SMARTHOST_USER: n.surname@yourdomain.com
-  #     # SMARTHOST_PASSWORD: XYZ
-  #     # SMARTHOST_ALIASES: *.yourdomain.com
+      SMARTHOST_ADDRESS: mail.cineca.it
+      # SMARTHOST_PORT: 465
+      SMARTHOST_PORT: 587
+      SMARTHOST_USER: m.dantonio@cineca.it
+      SMARTHOST_PASSWORD: m42T1481
+      SMARTHOST_ALIASES: "*.cineca.it"
+
 
 # volumes:
 #   ...

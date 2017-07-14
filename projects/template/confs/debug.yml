@@ -11,9 +11,9 @@ services:
       ACTIVATE: 1
     ports:
       - 8081:5000
-    volumes:
-      - ../submodules/backend/rapydo:/usr/local/lib/python3.6/dist-packages/rapydo
-      - ../submodules/utilities/rapydo/utils:/usr/local/lib/python3.6/dist-packages/rapydo/utils
+    # volumes:
+    #   - ../submodules/backend/rapydo:/usr/local/lib/python3.6/dist-packages/rapydo
+    #   - ../submodules/utilities/rapydo/utils:/usr/local/lib/python3.6/dist-packages/rapydo/utils
 
   frontend:
     ports:

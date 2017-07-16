@@ -2,7 +2,7 @@
 
 """ CUSTOM Models for the relational database """
 
-from rapydo.models.sql import db, User
+from restapi.models.sql import db, User
 
 import logging
 

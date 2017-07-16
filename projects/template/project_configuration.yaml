@@ -2,8 +2,16 @@
 project:
   title: My project
   description: Title of my project
+  version: "RAPyDo framework v0.5.1-beta"
 
 variables:
+  repos:
+    build-templates:
+      branch: 0.5.1
+      # FIXME: avoid to define also this just to change one element
+      online_url: https://github.com/rapydo/build-templates.git
+      path: builds_base
+      if: true
   env:
     GRAPHDB_PASSWORD: chooseapassword
   backend:

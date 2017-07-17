@@ -91,7 +91,7 @@ target/
 
 htmlcov/
 .tox/
-#.coverage  # create it for permissions problems
+.coverage
 .coverage.*
 .cache
 nosetests.xml

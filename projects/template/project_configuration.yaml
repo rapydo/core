@@ -6,9 +6,14 @@ project:
 
 variables:
   repos:
-    build-templates:
+    backend:
       branch: 0.5.1
       # FIXME: avoid to define also this just to change one element
+      online_url: https://github.com/rapydo/http-api.git
+      path: backend
+      if: true
+    build-templates:
+      branch: 0.5.1
       online_url: https://github.com/rapydo/build-templates.git
       path: builds_base
       if: true

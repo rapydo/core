@@ -2,21 +2,14 @@
 project:
   title: My project
   description: Title of my project
-  version: "RAPyDo framework v0.5.1-beta"
+  version: "RAPyDo framework v0.5.2-beta"
 
 variables:
   repos:
     backend:
-      branch: 0.5.1
-      # FIXME: avoid to define also this just to change one element
-      online_url: https://github.com/rapydo/http-api.git
-      path: backend
-      if: true
+      branch: 0.5.2
     build-templates:
-      branch: 0.5.1
-      online_url: https://github.com/rapydo/build-templates.git
-      path: builds_base
-      if: true
+      branch: 0.5.2
   env:
     GRAPHDB_PASSWORD: chooseapassword
     IRODS_CHUNKSIZE: 1048576

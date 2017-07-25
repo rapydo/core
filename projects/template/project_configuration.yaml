@@ -6,6 +6,8 @@ project:
 
 variables:
   repos:
+    utils:
+      branch: 0.5.2
     backend:
       branch: 0.5.2
     build-templates:

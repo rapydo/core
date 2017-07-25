@@ -38,13 +38,13 @@ networks:
   ftp_net:
   smtp_net:
   db_net:
-    # driver: bridge
-    ipam:
-      driver: default
-      config:
-        # Note: use this configuration to match inside internal rules
-        # TOFIX: make this an env variable
-        - subnet: ${DB_SUBNET}/16
+    # # driver: bridge
+    # ipam:
+    #   driver: default
+    #   config:
+    #     # Note: use this configuration to match inside internal rules
+    #     # TOFIX: make this an env variable
+    #     - subnet: ${DB_SUBNET}/16
 
 # #####################
 # SERVICES
@@ -185,7 +185,7 @@ services:
       worker_net:
     depends_on:
       - rabbit
-      # - celeryui 
+      # - celeryui
 
   rabbit:
     image: rabbitmq:latest

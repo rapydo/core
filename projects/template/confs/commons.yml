@@ -44,12 +44,12 @@ services:
       # GMAIL_USER: xxx@gmail.com
       # GMAIL_PASSWORD: abc
 
-      SMARTHOST_ADDRESS: mail.cineca.it
+      # SMARTHOST_ADDRESS: mail.cineca.it
       # SMARTHOST_PORT: 465
-      SMARTHOST_PORT: 587
-      SMARTHOST_USER: m.dantonio@cineca.it
-      SMARTHOST_PASSWORD: m42T1481
-      SMARTHOST_ALIASES: "*.cineca.it"
+      # SMARTHOST_PORT: 587
+      # SMARTHOST_USER: m.dantonio@cineca.it
+      # SMARTHOST_PASSWORD: -
+      # SMARTHOST_ALIASES: "*.cineca.it"
 
 
 # volumes:

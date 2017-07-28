@@ -2,10 +2,19 @@
 project:
   title: My project
   description: Title of my project
+  version: "RAPyDo framework v0.5.2-beta"
 
 variables:
+  repos:
+    utils:
+      branch: 0.5.2
+    backend:
+      branch: 0.5.2
+    build-templates:
+      branch: 0.5.2
   env:
     GRAPHDB_PASSWORD: chooseapassword
+    IRODS_CHUNKSIZE: 1048576
   backend:
     credentials:
       username: "user@nomail.org"

@@ -15,8 +15,11 @@ variables:
     build-templates:
       branch: 0.6.0
   env:
-    GRAPHDB_PASSWORD: chooseapassword
-    IRODS_CHUNKSIZE: 1048576
+    ALCHEMY_USER: sqluser
+    ALCHEMY_PASSWORD: chooseapasswordwisely
+    ALCHEMY_API_DB: SQL_API
+    ALCHEMY_ENGINE: postgresql
+    ALCHEMY_DBS: SQL_API
   backend:
     credentials:
       username: "user@nomail.org"

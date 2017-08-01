@@ -9,7 +9,7 @@ services:
       # base the user/role mechanism on some database
       AUTH_ENABLE: 1
       # putting this here because it should not be configurable in .env
-      AUTH_SERVICE: neo4j
+      AUTH_SERVICE: sqlalchemy
 
       AUTH_REGISTER_FAILED_LOGIN: ${AUTH_REGISTER_FAILED_LOGIN}
       AUTH_FORCE_FIRST_PASSWORD_CHANGE: ${AUTH_FORCE_FIRST_PASSWORD_CHANGE}
@@ -19,23 +19,26 @@ services:
       AUTH_MAX_LOGIN_ATTEMPTS: ${AUTH_MAX_LOGIN_ATTEMPTS}
       AUTH_SECOND_FACTOR_AUTHENTICATION: ${AUTH_SECOND_FACTOR_AUTHENTICATION}
 
-      # # neo connection
-      GRAPHDB_ENABLE: 1
-      GRAPHDB_EXTERNAL: ${GRAPHDB_EXTERNAL}
-      GRAPHDB_HOST: ${GRAPHDB_HOST}
-      GRAPHDB_PORT: ${GRAPHDB_BOLT_PORT}
-      GRAPHDB_PASSWORD: ${GRAPHDB_PASSWORD}
+      # db access
+      ALCHEMY_ENABLE: 1
+      ALCHEMY_HOST: ${ALCHEMY_HOST}
+      ALCHEMY_PORT: ${ALCHEMY_PORT}
+      ALCHEMY_USER: ${ALCHEMY_USER}
+      ALCHEMY_PASSWORD: ${ALCHEMY_PASSWORD}
+      ALCHEMY_DB: ${ALCHEMY_API_DB}
 
     networks:
       smtp_net:
 
     depends_on:
-      - neo4j
+      - postgres
       - smtp
 
-  neo4j:
+  postgres:
     environment:
-      NEO4J_AUTH: neo4j/${GRAPHDB_PASSWORD}
+      POSTGRES_USER: "${ALCHEMY_USER}"
+      POSTGRES_PASSWORD: "${ALCHEMY_PASSWORD}"
+      POSTGRES_DBS: ${ALCHEMY_DBS}
 
   smtp:
     environment:

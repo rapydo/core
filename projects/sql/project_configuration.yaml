@@ -1,7 +1,7 @@
 ---
 project:
-  title: My project
-  description: Title of my project
+  title: My SQL project
+  description: Title of my sql project
   version: "RAPyDo framework v0.5.2-beta"
 
 variables:

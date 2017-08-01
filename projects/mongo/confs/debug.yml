@@ -1,0 +1,33 @@
+version: '3'
+#######################
+# Link services inside API
+
+services:
+  backend:
+    # command: sleep infinity
+    environment:
+      APP_MODE: debug
+      DEBUG_LEVEL: VERBOSE
+      ACTIVATE: 1
+    ports:
+      - 8080:5000
+    # volumes:
+    #   - ../submodules/backend/rapydo:/usr/local/lib/python3.6/dist-packages/restapi
+    #   - ../submodules/utilities/rapydo/utils:/usr/local/lib/python3.6/dist-packages/utilities
+
+  frontend:
+    ports:
+      - 80:5000
+    environment:
+      APP_MODE: debug
+      BACKEND_PORT: 8080
+      ACTIVATE: 1
+
+  neo4j:
+    ports:
+      - 9090:7474
+      - 7687:7687
+
+  swaggerui:
+    ports:
+      - 7777:80

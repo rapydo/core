@@ -1,0 +1,60 @@
+# Customize this file to include compose configurations common to bluprints
+version: '3'
+
+services:
+  backend:
+    environment:
+      VANILLA_PACKAGE: ${COMPOSE_PROJECT_NAME}
+
+      # base the user/role mechanism on some database
+      AUTH_ENABLE: 1
+      # putting this here because it should not be configurable in .env
+      AUTH_SERVICE: neo4j
+
+      AUTH_REGISTER_FAILED_LOGIN: ${AUTH_REGISTER_FAILED_LOGIN}
+      AUTH_FORCE_FIRST_PASSWORD_CHANGE: ${AUTH_FORCE_FIRST_PASSWORD_CHANGE}
+      AUTH_VERIFY_PASSWORD_STRENGTH: ${AUTH_VERIFY_PASSWORD_STRENGTH}
+      AUTH_MAX_PASSWORD_VALIDITY: ${AUTH_MAX_PASSWORD_VALIDITY}
+      AUTH_DISABLE_UNUSED_CREDENTIALS_AFTER: ${AUTH_DISABLE_UNUSED_CREDENTIALS_AFTER}
+      AUTH_MAX_LOGIN_ATTEMPTS: ${AUTH_MAX_LOGIN_ATTEMPTS}
+      AUTH_SECOND_FACTOR_AUTHENTICATION: ${AUTH_SECOND_FACTOR_AUTHENTICATION}
+
+      # # neo connection
+      GRAPHDB_ENABLE: 1
+      GRAPHDB_EXTERNAL: ${GRAPHDB_EXTERNAL}
+      GRAPHDB_HOST: ${GRAPHDB_HOST}
+      GRAPHDB_PORT: ${GRAPHDB_BOLT_PORT}
+      GRAPHDB_PASSWORD: ${GRAPHDB_PASSWORD}
+
+    networks:
+      smtp_net:
+
+    depends_on:
+      - neo4j
+      - smtp
+
+  neo4j:
+    environment:
+      NEO4J_AUTH: neo4j/${GRAPHDB_PASSWORD}
+
+  smtp:
+    environment:
+      ACTIVATE: 1
+
+      # GMAIL_USER: xxx@gmail.com
+      # GMAIL_PASSWORD: abc
+
+      # SMARTHOST_ADDRESS: mail.cineca.it
+      # SMARTHOST_PORT: 465
+      # SMARTHOST_PORT: 587
+      # SMARTHOST_USER: m.dantonio@cineca.it
+      # SMARTHOST_PASSWORD: -
+      # SMARTHOST_ALIASES: "*.cineca.it"
+
+
+# volumes:
+#   ...
+
+# networks:
+#   ...
+

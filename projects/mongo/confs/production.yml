@@ -1,0 +1,36 @@
+version: '3'
+#######################
+# Link services inside API
+
+services:
+  proxy:
+    environment:
+      ACTIVATE: 1
+    volumes:
+      - ../confs/nginx/production.conf:/etc/nginx/sites-enabled/production
+    depends_on:
+      - backend
+      - frontend
+
+  backend:
+    environment:
+      - APP_MODE=production
+      - DEBUG_LEVEL=INFO
+      - NGINX_ACTIVE=true
+
+    networks:
+      worker_net:
+      proxy_net:
+        aliases:
+          - ${FLASK_HOST}
+    depends_on:
+      - neo4j
+
+
+  frontend:
+    environment:
+      APP_MODE: production
+    networks:
+      proxy_net:
+        aliases:
+          - html

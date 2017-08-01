@@ -1,0 +1,5 @@
+
+ExampleSchema:
+  properties:
+    example:
+      type: string

@@ -23,10 +23,9 @@ services:
       BACKEND_PORT: 8080
       ACTIVATE: 1
 
-  neo4j:
+  mongoui:
     ports:
-      - 9090:7474
-      - 7687:7687
+      - 80:8081
 
   swaggerui:
     ports:

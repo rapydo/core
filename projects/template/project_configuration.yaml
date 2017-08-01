@@ -6,12 +6,14 @@ project:
 
 variables:
   repos:
+    rapydo:
+      branch: 0.6.0
     utils:
-      branch: 0.5.2
+      branch: 0.6.0
     backend:
-      branch: 0.5.2
+      branch: 0.6.0
     build-templates:
-      branch: 0.5.2
+      branch: 0.6.0
   env:
     GRAPHDB_PASSWORD: chooseapassword
     IRODS_CHUNKSIZE: 1048576

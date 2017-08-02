@@ -69,6 +69,7 @@ services:
       # base the user/role mechanism on some database
       AUTH_ENABLE: 0
       # AUTH_SERVICE: ${AUTH_SERVICE}
+      DEBUG_ENDPOINTS: 0
     volumes:
       # Custom configuration
       - ../projects/${COMPOSE_PROJECT_NAME}/project_configuration.yaml:/code/confs/project_configuration.yaml

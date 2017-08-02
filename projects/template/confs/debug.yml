@@ -7,6 +7,8 @@ services:
     # command: sleep infinity
     environment:
       APP_MODE: debug
+      FLASK_DEBUG: 1
+      DEBUG_ENDPOINTS: 1
       DEBUG_LEVEL: VERBOSE
       ACTIVATE: 1
     ports:

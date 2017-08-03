@@ -1,0 +1,34 @@
+---
+project:
+  title: My SQL project
+  description: Title of my sql project
+  version: "RAPyDo framework v0.6.0-beta"
+
+variables:
+  repos:
+    rapydo:
+      branch: 0.6.0
+    utils:
+      branch: 0.6.0
+    backend:
+      branch: 0.6.0
+    build-templates:
+      branch: 0.6.0
+  env:
+    ALCHEMY_USER: sqluser
+    ALCHEMY_PASSWORD: chooseapasswordwisely
+    ALCHEMY_API_DB: SQL_API
+    ALCHEMY_ENGINE: postgresql
+    ALCHEMY_DBS: SQL_API
+  backend:
+    credentials:
+      username: "user@nomail.org"
+      password: "test"
+      roles:
+        user: normal_user
+        internal: staff_user
+        admin: admin_root
+        default: normal_user
+  frontend:
+    enable: true
+

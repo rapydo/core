@@ -2,7 +2,7 @@
 project:
   title: My MongoDB project
   description: Title of my mongodb project
-  version: "RAPyDo framework v0.5.2-beta"
+  version: "RAPyDo framework v0.6.0-beta"
 
 variables:
   repos:

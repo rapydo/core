@@ -2,7 +2,7 @@
 project:
   title: My project
   description: Title of my project
-  version: "RAPyDo framework v0.5.2-beta"
+  version: "RAPyDo framework v0.6.0-beta"
 
 variables:
   repos:

@@ -25,5 +25,4 @@ variables:
         admin: admin_root
         default: normal_user
   frontend:
-    enable: true
-
+    enable: false

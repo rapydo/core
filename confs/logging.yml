@@ -1,0 +1,81 @@
+
+version: '3'
+#######################
+# Link services inside API
+
+services:
+  
+  # backend:
+  #   networks:
+  #     elk:
+  #   logging:
+  #     driver: syslog
+  #     options:
+  #       syslog-address: "tcp://localhost:6000"
+  #       syslog-facility: daemon
+  #   depends_on:
+  #     - logstash
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.5.2
+    volumes:
+      - ../confs/elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xmx256m -Xms256m"
+      ACTIVATE: 1
+      LOGSPOUT: ignore
+    networks:
+      elk:
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:5.5.2
+    volumes:
+      - ../confs/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ../confs/logstash/pipeline:/usr/share/logstash/pipeline
+    ports:
+      - "6000:6000"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+      ACTIVATE: 1
+      LOGSPOUT: ignore
+    networks:
+      elk:
+        aliases:
+          - logstash
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:5.5.2
+    volumes:
+      - ../confs/kibana/:/usr/share/kibana/config
+    ports:
+      - "5601:5601"
+    environment:
+      ACTIVATE: 1
+      LOGSPOUT: ignore
+    networks:
+      elk:
+    depends_on:
+      - elasticsearch
+
+  logspout:
+    image: gliderlabs/logspout
+    command: 'syslog://logstash:6000'
+    # command: 'syslog://logstash:6000?filter.name=imc_*'
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock 
+    environment:
+      ACTIVATE: 1
+    depends_on:
+      - logstash
+    networks:
+      elk:
+ 
+
+networks:
+  elk:
+    driver: bridge

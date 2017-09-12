@@ -7,11 +7,11 @@ project:
 variables:
   repos:
     utils:
-      branch: 0.5.2
+      branch: 0.5.4
     backend:
-      branch: 0.5.2
+      branch: 0.5.4
     build-templates:
-      branch: 0.5.2
+      branch: 0.5.4
   env:
     GRAPHDB_PASSWORD: chooseapassword
     IRODS_CHUNKSIZE: 1048576
@@ -25,5 +25,4 @@ variables:
         admin: admin_root
         default: normal_user
   frontend:
-    enable: true
-
+    enable: false

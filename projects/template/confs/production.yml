@@ -29,7 +29,8 @@ services:
 
   frontend:
     environment:
-      APP_MODE: production
+      - APP_MODE=production
+      - APP_DEBUG=false 
     networks:
       proxy_net:
         aliases:

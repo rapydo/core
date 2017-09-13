@@ -33,7 +33,7 @@ services:
     image: pdonorio/jsdev
     working_dir: /confs
     volumes:
-      - ../data:/libs
+      - ../data/${COMPOSE_PROJECT_NAME}:/libs
       - ../projects/${COMPOSE_PROJECT_NAME}/frontend/bower.json:/confs/bower.json
 
   ###############################

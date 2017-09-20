@@ -79,6 +79,10 @@ services:
       CELERY_BROKER_HOST: ${CELERY_BROKER_HOST}
       CELERY_BROKER_PORT: ${CELERY_BROKER_PORT}
 
+      # TODO: REMOVE ME after solved issue #64
+      CELERY_HOST: ${CELERY_BROKER_HOST}
+      CELERY_PORT: ${CELERY_BROKER_PORT}
+
   smtp:
     environment:
       ACTIVATE: 1

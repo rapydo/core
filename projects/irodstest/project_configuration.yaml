@@ -27,6 +27,7 @@ variables:
     IRODS_DEFAULT_ADMIN_USER: rodsminer
     IRODS_ZONE: tempZone
     IRODS_HOME: home
+    IRODS_AUTHSCHEME:   # to be auto-detected
     # DN of your iRODS host with GSI plugin installed
     # leave it empty if use (e.g. in debug) the dockerized iRODS instance
     IRODS_DN:

@@ -44,6 +44,7 @@ services:
 
     networks:
       smtp_net:
+      worker_net:
 
     depends_on:
       - postgres

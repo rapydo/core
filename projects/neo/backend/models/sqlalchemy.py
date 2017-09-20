@@ -2,7 +2,7 @@
 
 """ CUSTOM Models for the relational database """
 
-from restapi.models.sql import db, User
+from restapi.models.sqlalchemy import db, User
 
 import logging
 

@@ -1,5 +1,5 @@
 definitions:
-	ExampleSchema:
-	  properties:
-	    example:
-	      type: string
+  ExampleSchema:
+    properties:
+      example:
+        type: string

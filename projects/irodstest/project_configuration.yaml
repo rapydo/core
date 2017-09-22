@@ -1,0 +1,48 @@
+---
+project:
+  title: My iRODS project
+  description: Title of my irods project
+  version: "RAPyDo framework beta"
+
+variables:
+  repos:
+    rapydo:
+      branch: __current__
+    utils:
+      branch: __current__
+    backend:
+      branch: __current__
+    build-templates:
+      branch: __current__
+  env:
+    ALCHEMY_USER: sqluser
+    ALCHEMY_PASSWORD: chooseapasswordwisely
+    ALCHEMY_API_DB: SQL_API
+    ALCHEMY_ENGINE: postgresql
+    ALCHEMY_DBS: 'ICAT SQL_API'
+    ## LOCAL iRODS server VERSION
+    # You may leave this like this in DEBUG mode
+    IRODS_USER: irods
+    IRODS_GUEST_USER: guest
+    IRODS_DEFAULT_ADMIN_USER: rodsminer
+    IRODS_ZONE: tempZone
+    IRODS_HOME: home
+    IRODS_AUTHSCHEME:   # to be auto-detected
+    # DN of your iRODS host with GSI plugin installed
+    # leave it empty if use (e.g. in debug) the dockerized iRODS instance
+    IRODS_DN:
+    # NOTE: this must match ALCHEMY_PASSWORD if running in debug mode
+    IRODS_PASSWORD: chooseapasswordwisely
+
+  backend:
+    credentials:
+      username: "user@nomail.org"
+      password: "test"
+      roles:
+        user: normal_user
+        internal: staff_user
+        admin: admin_root
+        default: normal_user
+  frontend:
+    enable: true
+

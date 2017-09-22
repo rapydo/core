@@ -1,0 +1,107 @@
+# Customize this file to include compose configurations common to bluprints
+version: '3'
+
+volumes:
+  sharedcerts:
+    driver: local
+  etcconf:
+    driver: local
+  irodshome:
+    driver: local
+  irodsvar:
+    driver: local
+
+services:
+  backend:
+    environment:
+      VANILLA_PACKAGE: ${COMPOSE_PROJECT_NAME}
+
+      # base the user/role mechanism on some database
+      AUTH_ENABLE: 1
+      # putting this here because it should not be configurable in .env
+      AUTH_SERVICE: sqlalchemy
+
+      AUTH_REGISTER_FAILED_LOGIN: ${AUTH_REGISTER_FAILED_LOGIN}
+      AUTH_FORCE_FIRST_PASSWORD_CHANGE: ${AUTH_FORCE_FIRST_PASSWORD_CHANGE}
+      AUTH_VERIFY_PASSWORD_STRENGTH: ${AUTH_VERIFY_PASSWORD_STRENGTH}
+      AUTH_MAX_PASSWORD_VALIDITY: ${AUTH_MAX_PASSWORD_VALIDITY}
+      AUTH_DISABLE_UNUSED_CREDENTIALS_AFTER: ${AUTH_DISABLE_UNUSED_CREDENTIALS_AFTER}
+      AUTH_MAX_LOGIN_ATTEMPTS: ${AUTH_MAX_LOGIN_ATTEMPTS}
+      AUTH_SECOND_FACTOR_AUTHENTICATION: ${AUTH_SECOND_FACTOR_AUTHENTICATION}
+
+      # db access
+      ALCHEMY_ENABLE: 1
+      ALCHEMY_HOST: ${ALCHEMY_HOST}
+      ALCHEMY_PORT: ${ALCHEMY_PORT}
+      ALCHEMY_USER: ${ALCHEMY_USER}
+      ALCHEMY_PASSWORD: ${ALCHEMY_PASSWORD}
+      ALCHEMY_DB: ${ALCHEMY_API_DB}
+
+      # irods configuration
+      IRODS_ENABLE: 1
+      IRODS_HOST: ${IRODS_HOST}
+      IRODS_PORT: ${IRODS_PORT}
+      IRODS_USER: ${IRODS_USER}
+      IRODS_ZONE: ${IRODS_ZONE}
+      IRODS_HOME: ${IRODS_HOME}
+      IRODS_DN: ${IRODS_DN}
+      IRODS_PASSWORD: ${IRODS_PASSWORD}
+      IRODS_AUTHSCHEME: ${IRODS_AUTHSCHEME}
+      IRODS_GUEST_USER: ${IRODS_GUEST_USER}
+      IRODS_DEFAULT_ADMIN_USER: ${IRODS_DEFAULT_ADMIN_USER}
+
+    networks:
+      i_net:
+      smtp_net:
+
+    depends_on:
+      - icat
+      - postgres
+      - smtp
+
+  postgres:
+    environment:
+      POSTGRES_USER: "${ALCHEMY_USER}"
+      POSTGRES_PASSWORD: "${ALCHEMY_PASSWORD}"
+      POSTGRES_DBS: ${ALCHEMY_DBS}
+
+  icat:
+    environment:
+      ACTIVATE: 1
+      POSTGRES_HOST: "${ALCHEMY_HOST}"
+      POSTGRES_USER: "${ALCHEMY_USER}"
+      POSTGRES_PASSWORD: "${ALCHEMY_PASSWORD}"
+      IRODS_HOST: "${IRODS_HOST}"
+      IRODS_PORT: ${IRODS_PORT}
+      IRODS_ZONE: ${IRODS_ZONE}
+      IRODS_DB: "${IRODS_DB}"
+      IRODS_USER: ${IRODS_USER}
+      IRODS_PASSWORD: ${IRODS_PASSWORD}
+
+    volumes:
+      - etcconf:/etc
+      - irodshome:/home/irods
+      - irodsvar:/var/lib/irods
+      - sharedcerts:/opt/certificates
+
+  smtp:
+    environment:
+      ACTIVATE: 1
+
+      # GMAIL_USER: xxx@gmail.com
+      # GMAIL_PASSWORD: abc
+
+      # SMARTHOST_ADDRESS: mail.cineca.it
+      # SMARTHOST_PORT: 465
+      # SMARTHOST_PORT: 587
+      # SMARTHOST_USER: m.dantonio@cineca.it
+      # SMARTHOST_PASSWORD: -
+      # SMARTHOST_ALIASES: "*.cineca.it"
+
+
+# volumes:
+#   ...
+
+# networks:
+#   ...
+

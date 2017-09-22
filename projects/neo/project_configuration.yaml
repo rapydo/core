@@ -1,0 +1,31 @@
+---
+project:
+  title: My Neo4j project
+  description: Title of my Neo4j project
+  version: "RAPyDo framework beta"
+
+variables:
+  repos:
+    rapydo:
+      branch: __current__
+    utils:
+      branch: __current__
+    backend:
+      branch: __current__
+    build-templates:
+      branch: __current__
+  env:
+    GRAPHDB_PASSWORD: chooseapassword
+    IRODS_CHUNKSIZE: 1048576
+  backend:
+    credentials:
+      username: "user@nomail.org"
+      password: "test"
+      roles:
+        user: normal_user
+        internal: staff_user
+        admin: admin_root
+        default: normal_user
+  frontend:
+    enable: true
+

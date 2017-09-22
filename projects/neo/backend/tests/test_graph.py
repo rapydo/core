@@ -17,5 +17,3 @@ class BaseTests(RestTestsBase, TestUtilities):
         log.info("*** VERIFY if API is online")
         r = self.app.get(endpoint)
         self.assertEqual(r.status_code, self._hcodes.HTTP_OK_BASIC)
-        # I introduce this simply to verify that this test is executed and fail
-        self.assertEqual(r.status_code, 999)

@@ -2,18 +2,18 @@
 project:
   title: My Neo4j project
   description: Title of my Neo4j project
-  version: "RAPyDo framework v0.5.5-beta"
+  version: "RAPyDo framework beta"
 
 variables:
   repos:
     rapydo:
-      branch: 0.5.5
+      branch: __current__
     utils:
-      branch: 0.5.5
+      branch: __current__
     backend:
-      branch: 0.5.5
+      branch: __current__
     build-templates:
-      branch: 0.5.5
+      branch: __current__
   env:
     GRAPHDB_PASSWORD: chooseapassword
     IRODS_CHUNKSIZE: 1048576

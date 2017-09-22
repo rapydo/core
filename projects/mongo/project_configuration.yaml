@@ -2,18 +2,18 @@
 project:
   title: My MongoDB project
   description: Title of my mongodb project
-  version: "RAPyDo framework v0.6.0-beta"
+  version: "RAPyDo framework v0.5.5-beta"
 
 variables:
   repos:
     rapydo:
-      branch: 0.6.0
+      branch: 0.5.5
     utils:
-      branch: 0.6.0
+      branch: 0.5.5
     backend:
-      branch: 0.6.0
+      branch: 0.5.5
     build-templates:
-      branch: 0.6.0
+      branch: 0.5.5
   env:
     GRAPHDB_PASSWORD: chooseapassword
     IRODS_CHUNKSIZE: 1048576

@@ -1,7 +1,7 @@
 ---
 project:
-  title: My project
-  description: Title of my project
+  title: My MongoDB project
+  description: Title of my mongodb project
   version: "RAPyDo framework v0.6.0-beta"
 
 variables:
@@ -9,11 +9,11 @@ variables:
     rapydo:
       branch: 0.6.0
     utils:
-      branch: 0.5.5
+      branch: 0.6.0
     backend:
-      branch: 0.5.5
+      branch: 0.6.0
     build-templates:
-      branch: 0.5.5
+      branch: 0.6.0
   env:
     GRAPHDB_PASSWORD: chooseapassword
     IRODS_CHUNKSIZE: 1048576
@@ -28,3 +28,4 @@ variables:
         default: normal_user
   frontend:
     enable: true
+

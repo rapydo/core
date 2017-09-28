@@ -20,4 +20,5 @@ if current_app.config['TESTING']:
             graph = self.global_get_service('neo4j')
             print(graph)
             log.warning("a call")
+            graph.cypher("MATCH (n) RETURN n")
             return self.force_response('Hello world')

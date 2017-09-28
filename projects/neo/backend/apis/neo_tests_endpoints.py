@@ -4,6 +4,7 @@
 An endpoint example
 """
 
+from flask import current_app
 from restapi.rest.definition import EndpointResource
 # from restapi.services.detect import SQL_AVAILABLE, GRAPHDB_AVAILABLE
 
@@ -11,13 +12,12 @@ from utilities.logs import get_logger
 
 log = get_logger(__name__)
 
+if current_app.config['TESTING']:
+    class DoTests(EndpointResource):
 
-class DoTests(EndpointResource):
+        def get(self):
 
-    def get(self):
-
-        user = self.get_current_user()
-        graph = self.global_get_service('neo4j')
-        print(graph)
-        log.warning("a call")
-        return self.force_response('Hello world, %s!' % user)
+            graph = self.global_get_service('neo4j')
+            print(graph)
+            log.warning("a call")
+            return self.force_response('Hello world')

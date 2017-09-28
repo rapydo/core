@@ -1,6 +1,6 @@
 
+file: template_endpoints 
 class: NewEndpoint
-file: newendpoint
 
 mapping:
   new: "/newendpoint"

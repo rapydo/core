@@ -1,0 +1,11 @@
+depends_on:
+  - SQL_AVAILABLE
+file: sql_tests_endpoints 
+class: DoTests 
+schema:
+  expose: true
+mapping:
+  helloworld: "/tests"
+labels:
+  - example
+  - helloworld

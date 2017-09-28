@@ -1,0 +1,11 @@
+depends_on:
+  - GRAPHDB_AVAILABLE
+file: celery_tests_endpoints 
+class: DoTests
+schema:
+  expose: true
+mapping:
+  helloworld: "/tests"
+labels:
+  - example
+  - helloworld

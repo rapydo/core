@@ -1,7 +1,7 @@
 ---
 project:
-  title: My Celery project
-  description: Title of my celery project
+  title: My Sql project
+  description: Title of my sql project
   version: "RAPyDo framework beta"
 
 variables:

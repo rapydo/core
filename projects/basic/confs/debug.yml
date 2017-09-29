@@ -11,9 +11,6 @@ services:
       ACTIVATE: 1
     ports:
       - 8080:5000
-    # volumes:
-    #   - ../submodules/backend/rapydo:/usr/local/lib/python3.6/dist-packages/restapi
-    #   - ../submodules/utilities/rapydo/utils:/usr/local/lib/python3.6/dist-packages/utilities
 
   frontend:
     ports:

@@ -3,17 +3,9 @@ project:
   title: My Basic project
   description: Title of my basic project
   version: "RAPyDo framework beta"
+  rapydo: 0.5.6
 
 variables:
-  repos:
-    rapydo:
-      branch: __current__
-    utils:
-      branch: __current__
-    backend:
-      branch: __current__
-    build-templates:
-      branch: __current__
   env:
     ALCHEMY_USER: sqluser
     ALCHEMY_PASSWORD: chooseapasswordwisely

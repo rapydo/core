@@ -19,7 +19,7 @@ class DoTests(EndpointResource):
 
     @catch_error()
     def get(self, test_num):
-        sql = self.get_service_instance('sql')
+        sql = self.get_service_instance('sqlalchemy')
 
         meta = Meta()
         methods = meta.get_methods_inside_instance(self)

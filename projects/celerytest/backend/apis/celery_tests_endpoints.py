@@ -4,6 +4,7 @@
 from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
 from restapi.decorators import catch_error
+from restapi.flask_ext.flask_celery import CeleryExt
 from utilities.meta import Meta
 from utilities.logs import get_logger
 
@@ -15,7 +16,15 @@ class DoTests(EndpointResource):
 
     def test_1(self, celery):
 
+        # Just test the endpoint is able to retrieve the instance
         return "1"
+
+    def test_2(self, celery):
+
+        task = CeleryExt.testme.apply_async(
+            args=[], countdown=10
+        )
+        return task.id
 
     @catch_error()
     def get(self, test_num):

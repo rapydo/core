@@ -14,13 +14,18 @@ class BaseTests(RestTestsBase, TestUtilities):
 
         endpoint = self._api_uri + '/basic_tests/restapi/0'
         r = self.app.get(endpoint)
-        self.assertEqual(r.status_code, self._hcodes.HTTP_BAD_REQUEST)
+        self.assertEqual(r.status_code, self._hcodes.HTTP_BAD_NOTFOUND)
 
         endpoint = self._api_uri + '/basic_tests/restapi/378'
         r = self.app.get(endpoint)
-        self.assertEqual(r.status_code, 378)
+        self.assertEqual(r.status_code, self._hcodes.HTTP_SERVER_ERROR)
 
-        ok = self._hcodes.HTTP_OK_BASIC
-        endpoint = self._api_uri + '/basic_tests/restapi/%s' % ok
+        endpoint = '%s/basic_tests/restapi/%s' % \
+            (self._api_uri, self._hcodes.HTTP_OK_BASIC)
         r = self.app.get(endpoint)
-        self.assertEqual(r.status_code, ok)
+        self.assertEqual(r.status_code, self._hcodes.HTTP_SERVER_ERROR)
+
+        endpoint = '%s/basic_tests/restapi/%s' % \
+            (self._api_uri, self._hcodes.HTTP_BAD_REQUEST)
+        r = self.app.get(endpoint)
+        self.assertEqual(r.status_code, self._hcodes.HTTP_BAD_REQUEST)

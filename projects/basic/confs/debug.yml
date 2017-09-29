@@ -1,0 +1,31 @@
+version: '3'
+#######################
+# Link services inside API
+
+services:
+  backend:
+    # command: sleep infinity
+    environment:
+      APP_MODE: debug
+      DEBUG_LEVEL: VERBOSE
+      ACTIVATE: 1
+    ports:
+      - 8080:5000
+
+  frontend:
+    ports:
+      - 80:5000
+    environment:
+      APP_MODE: debug
+      BACKEND_PORT: 8080
+      ACTIVATE: 1
+
+  sqlalchemyui:
+    # volumes:
+    #   - restlitedb:/dbs
+    ports:
+      - 81:8888
+
+  swaggerui:
+    ports:
+      - 7777:80

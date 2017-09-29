@@ -15,3 +15,7 @@ class BaseTests(RestTestsBase, TestUtilities):
         endpoint = self._api_uri + '/tests/1'
         r = self.app.get(endpoint)
         self.assertEqual(r.status_code, self._hcodes.HTTP_OK_BASIC)
+
+        endpoint = self._api_uri + '/tests/2'
+        r = self.app.get(endpoint)
+        self.assertEqual(r.status_code, self._hcodes.HTTP_BAD_REQUEST)

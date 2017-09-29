@@ -1,7 +1,7 @@
 ---
 project:
-  title: My Sql project
-  description: Title of my sql project
+  title: My Basic project
+  description: Title of my basic project
   version: "RAPyDo framework beta"
   rapydo: 0.5.6
 

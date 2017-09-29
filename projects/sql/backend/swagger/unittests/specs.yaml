@@ -1,5 +1,3 @@
-depends_on:
-  - SQL_AVAILABLE
 file: sql_tests_endpoints 
 class: DoTests 
 schema:

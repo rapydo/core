@@ -6,7 +6,6 @@ An endpoint example
 
 # from flask import current_app
 from restapi.rest.definition import EndpointResource
-# from restapi.services.detect import SQL_AVAILABLE, GRAPHDB_AVAILABLE
 
 from utilities.logs import get_logger
 
@@ -17,7 +16,7 @@ log = get_logger(__name__)
 class DoTests(EndpointResource):
 
     def get(self):
-        celery = self.global_get_service('celery')
+        celery = self.get_service_instance('celery')
         print(celery)
         log.warning("a call")
         return self.force_response('Hello world!')

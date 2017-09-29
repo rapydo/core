@@ -7,13 +7,13 @@ project:
 variables:
   repos:
     rapydo:
-      branch: __current__
+      branch: quality
     utils:
-      branch: __current__
+      branch: quality
     backend:
-      branch: __current__
+      branch: quality
     build-templates:
-      branch: __current__
+      branch: 0.5.5
   env:
     GRAPHDB_PASSWORD: chooseapassword
     IRODS_CHUNKSIZE: 1048576

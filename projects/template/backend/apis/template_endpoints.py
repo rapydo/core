@@ -28,7 +28,7 @@ if detector.check_availability('sqlalchemy'):
     class SqlEndPoint(EndpointResource):
 
         def get(self):
-            sql = self.global_get_service('sql')
+            sql = self.get_service_instance('sql')
             print(sql)
             log.warning("a call")
             return self.force_response('Hello world!')
@@ -43,7 +43,7 @@ if detector.check_availability('neo4j'):
         def get(self):
 
             user = self.get_current_user()
-            graph = self.global_get_service('neo4j')
+            graph = self.get_service_instance('neo4j')
             print(graph)
             log.warning("a call")
             return self.force_response('Hello world, %s!' % user)

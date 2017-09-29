@@ -1,5 +1,3 @@
-depends_on:
-  - GRAPHDB_AVAILABLE
 file: mongo_tests_endpoints 
 class: DoTests
 schema:

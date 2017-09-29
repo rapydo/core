@@ -1,6 +1,6 @@
 common:
   custom:
-    authentication: true
+    authentication: false
 
 helloworld:
   summary: Hello world authenticated with sql db

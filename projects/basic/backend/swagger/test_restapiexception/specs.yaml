@@ -1,0 +1,8 @@
+file: sql_tests_endpoints 
+class: TestRestApiException
+schema:
+  expose: true
+mapping:
+  tests: "/basic_tests/restapi/<test_param>"
+labels:
+  - tests

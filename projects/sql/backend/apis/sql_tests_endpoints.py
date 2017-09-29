@@ -11,7 +11,7 @@ log = get_logger(__name__)
 
 
 # if current_app.config['TESTING']:
-class SqlEndPoint(EndpointResource):
+class DoTests(EndpointResource):
 
     def test_1(self, sql):
 

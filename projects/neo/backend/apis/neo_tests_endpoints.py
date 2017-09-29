@@ -3,6 +3,7 @@
 # from flask import current_app
 from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
+from restapi.decorators import catch_error
 from utilities.meta import Meta
 from utilities.logs import get_logger
 
@@ -17,13 +18,19 @@ class DoTests(EndpointResource):
 
         return "1"
 
+    def test_2(self, graph):
+        graph.cypher("MATCH (n) RETURN n with a syntax error")
+
+        return "1"
+
+    @catch_error()
     def get(self, test_num):
 
         graph = self.get_service_instance('neo4j')
 
         meta = Meta()
         methods = meta.get_methods_inside_instance(self)
-        method_name = "test_%d" % test_num
+        method_name = "test_%s" % test_num
         if method_name not in methods:
             raise RestApiException("Test %d not found" % test_num)
         method = methods[method_name]

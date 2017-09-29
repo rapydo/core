@@ -12,8 +12,10 @@ class BaseTests(RestTestsBase, TestUtilities):
 
     def test_01_x(self):
 
-        # Check success
-        endpoint = self._api_uri + '/tests'
-        log.info("*** VERIFY if API is online")
+        endpoint = self._api_uri + '/tests/1'
         r = self.app.get(endpoint)
         self.assertEqual(r.status_code, self._hcodes.HTTP_OK_BASIC)
+
+        endpoint = self._api_uri + '/tests/2'
+        r = self.app.get(endpoint)
+        self.assertEqual(r.status_code, self._hcodes.HTTP_BAD_REQUEST)

@@ -15,9 +15,11 @@ class TestRestApiException(EndpointResource):
     @catch_error()
     def get(self, test_param):
 
-        if test_param == "0":
-            code = None
-        else:
-            code = int(test_param)
+        raise RestApiException("Failed")
 
-        raise RestApiException("Failed", status_code=code)
+        # if test_param == "0":
+        #     code = None
+        # else:
+        #     code = int(test_param)
+
+        # raise RestApiException("Failed", status_code=code)

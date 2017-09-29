@@ -14,8 +14,8 @@ services:
     ports:
       - 8080:5000
     # volumes:
-    #   - ../submodules/backend/rapydo:/usr/local/lib/python3.6/dist-packages/restapi
-    #   - ../submodules/utilities/rapydo/utils:/usr/local/lib/python3.6/dist-packages/utilities
+    #   - ../submodules/http-api/restapi:/usr/local/lib/python3.6/dist-packages/restapi
+    #   - ../submodules/utils/utilities:/usr/local/lib/python3.6/dist-packages/utilities
 
   frontend:
     ports:

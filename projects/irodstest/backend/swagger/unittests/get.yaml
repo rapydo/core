@@ -2,9 +2,9 @@ common:
   custom:
     authentication: false
 
-helloworld:
-  summary: Hello world authenticated with graph db
+tests:
+  summary: Do tests
   responses:
     '200':
-      description: Hello world returned 
+      description: a test is executed
 

@@ -1,9 +1,8 @@
 file: sql_tests_endpoints 
-class: DoTests 
+class: DoTests
 schema:
   expose: true
 mapping:
-  helloworld: "/tests"
+  tests: "/tests/<test_num>"
 labels:
-  - example
-  - helloworld
+  - tests

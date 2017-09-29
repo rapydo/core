@@ -1,4 +1,4 @@
-file: sql_tests_endpoints 
+file: basic_tests_endpoints 
 class: TestRestApiException
 schema:
   expose: true

@@ -3,6 +3,7 @@
 # from flask import current_app
 # from restapi.rest.definition import EndpointResource
 from restapi.services.neo4j.graph_endpoints import GraphBaseOperations
+from restapi.services.neo4j.graph_endpoints import graph_transactions
 from restapi.exceptions import RestApiException
 from restapi.decorators import catch_error
 from utilities.meta import Meta
@@ -30,10 +31,8 @@ class DoTests(GraphBaseOperations):
         g = graph.Group(name='test')
         u = self._current_user
 
-        u.belongs_to(g)
-        # Should fail for Cardinality violation?
-        # Required OneOrMore RelationTest?
         g.save()
+        u.belongs_to.connect(g)
 
         return "3"
 
@@ -43,6 +42,7 @@ class DoTests(GraphBaseOperations):
         return "4"
 
     @catch_error()
+    @graph_transactions
     def get(self, test_num):
 
         # self.graph = self.get_service_instance('neo4j')

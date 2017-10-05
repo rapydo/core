@@ -14,17 +14,19 @@ class TestApp(BaseTests):
 
     def test_01_x(self, client):
 
+        headers, _ = self.do_login(client, None, None)
+
         # Cypher query
         endpoint = API_URI + '/tests/1'
-        r = client.get(endpoint)
+        r = client.get(endpoint, headers=headers)
         assert r.status_code == HTTP_OK_BASIC
 
         # Wrong cypher query (with syntax error)
         endpoint = API_URI + '/tests/2'
-        r = client.get(endpoint)
+        r = client.get(endpoint, headers=headers)
         assert r.status_code == HTTP_BAD_REQUEST
 
         # Nodes and relationships creation, based on models
         endpoint = API_URI + '/tests/3'
-        r = client.get(endpoint)
+        r = client.get(endpoint, headers=headers)
         assert r.status_code == HTTP_OK_BASIC

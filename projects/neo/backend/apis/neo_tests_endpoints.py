@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 # from flask import current_app
-from restapi.rest.definition import EndpointResource
+# from restapi.rest.definition import EndpointResource
+from restapi.services.neo4j.graph_endpoints import GraphBaseOperations
 from restapi.exceptions import RestApiException
 from restapi.decorators import catch_error
 from utilities.meta import Meta
@@ -11,7 +12,7 @@ log = get_logger(__name__)
 
 
 # if current_app.config['TESTING']:
-class DoTests(EndpointResource):
+class DoTests(GraphBaseOperations):
 
     def test_1(self, graph):
         graph.cypher("MATCH (n) RETURN n")
@@ -21,12 +22,31 @@ class DoTests(EndpointResource):
     def test_2(self, graph):
         graph.cypher("MATCH (n) RETURN n with a syntax error")
 
-        return "1"
+        return "2"
+
+    def test_3(self, graph):
+        """ Create models """
+
+        g = graph.Group(name='test')
+        u = self._current_user
+
+        u.belongs_to(g)
+        # Should fail for Cardinality violation?
+        # Required OneOrMore RelationTest?
+        g.save()
+
+        return "3"
+
+    def test_4(self, graph):
+        """ Read previously created models """
+
+        return "4"
 
     @catch_error()
     def get(self, test_num):
 
-        graph = self.get_service_instance('neo4j')
+        # self.graph = self.get_service_instance('neo4j')
+        self.initGraph()
 
         meta = Meta()
         methods = meta.get_methods_inside_instance(self)
@@ -34,5 +54,5 @@ class DoTests(EndpointResource):
         if method_name not in methods:
             raise RestApiException("Test %d not found" % test_num)
         method = methods[method_name]
-        out = method(graph)
+        out = method(self.graph)
         return self.force_response(out)

@@ -78,7 +78,7 @@ services:
       # JWT tokens secret
       - jwt_tokens:${JWT_APP_SECRETS}
       # Unit tests
-      - ../submodules/backend/tests:/code/tests
+      - ../submodules/http-api/tests:/code/tests
       - ../projects/${COMPOSE_PROJECT_NAME}/backend/tests:/code/tests/custom
     networks:
       app_net:

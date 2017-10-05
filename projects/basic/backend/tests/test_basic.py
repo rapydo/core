@@ -12,7 +12,7 @@ __author__ = "Mattia D'Antonio (m.dantonio@cineca.it)"
 log = get_logger(__name__)
 
 
-class BaseTests(BaseTests):
+class TestApp(BaseTests):
 
     def test_01_x(self, client):
 

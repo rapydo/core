@@ -30,3 +30,10 @@ class TestApp(BaseTests):
         endpoint = API_URI + '/tests/3'
         r = client.get(endpoint, headers=headers)
         assert r.status_code == HTTP_OK_BASIC
+
+        # Read nodes and relationships created
+        endpoint = API_URI + '/tests/4'
+        r = client.get(endpoint, headers=headers)
+        content = self.get_content(r)
+        assert r.status_code == HTTP_OK_BASIC
+        assert content == {'ping': 'pong'}

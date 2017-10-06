@@ -29,17 +29,24 @@ class DoTests(GraphBaseOperations):
         """ Create models """
 
         g = graph.Group(name='test')
-        u = self._current_user
-
         g.save()
+
+        u = self._current_user
         u.belongs_to.connect(g)
+
+        t = graph.JustATest(p_str='abc', p_int=123)
+
+        rel = g.test.connect(t)
+        rel.pp = "XYZ"
+        rel.save()
 
         return "3"
 
     def test_4(self, graph):
         """ Read previously created models """
 
-        return "4"
+        g = graph.Group(name='test')
+        return self.getJsonResponse(g)
 
     @catch_error()
     @graph_transactions

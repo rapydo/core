@@ -11,9 +11,9 @@ Imports and models have to be defined/used AFTER normal Graphdb connection.
 from neomodel import ZeroOrMore, OneOrMore
 
 from restapi.services.neo4j.models import \
-    StringProperty, IntegerProperty, DateTimeProperty, \
-    JSONProperty, ArrayProperty, FloatProperty, \
-    IdentifiedNode, StructuredRel, TimestampedNode, \
+    StringProperty, IntegerProperty, DateProperty, DateTimeProperty, \
+    JSONProperty, ArrayProperty, FloatProperty, BooleanProperty, \
+    AliasProperty, IdentifiedNode, StructuredRel, TimestampedNode, \
     RelationshipTo, RelationshipFrom  # , UniqueIdProperty
 from restapi.models.neo4j import User as UserBase
 
@@ -44,12 +44,15 @@ class Group(IdentifiedNode):
 
 
 class JustATest(TimestampedNode):
-    p_str = StringProperty(required=True, unique_index=True, show=True)
+    p_str = StringProperty(required=True, show=True)
     p_int = IntegerProperty()
     p_arr = ArrayProperty()
     p_json = JSONProperty()
     p_float = FloatProperty()
+    p_date = DateProperty()
     p_dt = DateTimeProperty()
+    p_bool = BooleanProperty()
+    p_alias = AliasProperty()
 
     test = RelationshipFrom(
         'Group', 'TEST', cardinality=ZeroOrMore, model=RelationTest)

@@ -35,6 +35,7 @@ class DoTests(GraphBaseOperations):
         u.belongs_to.connect(g)
 
         t = graph.JustATest(p_str='abc', p_int=123)
+        t.save()
 
         rel = g.test.connect(t)
         rel.pp = "XYZ"

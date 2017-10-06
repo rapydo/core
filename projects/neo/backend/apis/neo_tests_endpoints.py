@@ -28,26 +28,35 @@ class DoTests(GraphBaseOperations):
     def test_3(self, graph):
         """ Create models """
 
-        g = graph.Group(name='test')
+        g = graph.Group(name='test', extra='hidden')
         g.save()
 
         u = self._current_user
         u.belongs_to.connect(g)
 
-        t = graph.JustATest(p_str='abc', p_int=123)
-        t.save()
+        t1 = graph.JustATest(p_str='abc', p_int=123)
+        t1.save()
 
-        rel = g.test.connect(t)
+        rel = g.test1.connect(t1)
         rel.pp = "XYZ"
         rel.save()
+
+        t2 = graph.JustATest(p_str='def', p_int=123)
+        t2.save()
+
+        rel = g.test1.connect(t2)
 
         return "3"
 
     def test_4(self, graph):
         """ Read previously created models """
 
-        g = graph.Group(name='test')
-        return self.getJsonResponse(g)
+        groups = graph.Group.nodes.filter(name='test')
+        for g in groups:
+            # Just take the first
+            j = self.getJsonResponse(g)
+            # log.exit(j)
+            return j
 
     @catch_error()
     @graph_transactions

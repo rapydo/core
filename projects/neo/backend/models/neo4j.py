@@ -36,11 +36,16 @@ class RelationTest(StructuredRel):
 
 class Group(IdentifiedNode):
     name = StringProperty(required=True, unique_index=True, show=True)
+    extra = StringProperty(required=True, unique_index=True, show=False)
     members = RelationshipFrom(
         'User', 'BELONGS_TO', cardinality=ZeroOrMore, show=True)
 
-    test = RelationshipTo(
-        'JustATest', 'TEST', cardinality=OneOrMore, model=RelationTest)
+    test1 = RelationshipTo(
+        'JustATest', 'TEST', cardinality=OneOrMore,
+        show=True, model=RelationTest)
+    test2 = RelationshipTo(
+        'JustATest', 'TEST2', cardinality=OneOrMore,
+        show=False, model=RelationTest)
 
 
 class JustATest(TimestampedNode):
@@ -54,5 +59,8 @@ class JustATest(TimestampedNode):
     p_bool = BooleanProperty()
     p_alias = AliasProperty()
 
-    test = RelationshipFrom(
+    test1 = RelationshipFrom(
         'Group', 'TEST', cardinality=ZeroOrMore, model=RelationTest)
+
+    test2 = RelationshipFrom(
+        'Group', 'TEST2', cardinality=ZeroOrMore, model=RelationTest)

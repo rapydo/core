@@ -36,4 +36,14 @@ class TestApp(BaseTests):
         r = client.get(endpoint, headers=headers)
         content = self.get_content(r)
         assert r.status_code == HTTP_OK_BASIC
-        assert content == {'ping': 'pong'}
+        assert "attributes" in content
+        assert "name" in content["attributes"]
+        assert "extra" not in content["attributes"]
+        assert "relationships" in content
+        assert "test2" not in content["relationships"]
+        assert "test1" in content["relationships"]
+        assert len(content["relationships"]["test1"]) > 0
+        assert "attributes" in content["relationships"]["test1"][0]
+        attrs = content["relationships"]["test1"][0]["attributes"]
+        assert "p_str" in attrs
+        assert "p_int" not in attrs

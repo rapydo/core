@@ -28,7 +28,7 @@ class DoTests(EndpointResource):
 
     def test_3(self, celery, task_id=None):
 
-        return task_id
+        return celery.AsyncResult(task_id)
 
     @catch_error()
     def get(self, test_num, task_id=None):

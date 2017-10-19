@@ -32,3 +32,23 @@ class TestApp(BaseTests):
         content = self.get_content(r)
         # Temporary: this call returns the input
         assert content == task_id
+
+        # VERIFY BATCH ACTIVE
+        # for count in range(1, 10):
+        #     active = []
+        #     active.append(
+        #         self._test_get(
+        #             batch_def, 'batch/' + study, headers,
+        #             OK, parse_response=False
+        #         )
+        #     )
+
+        #     if len(active) > 0:
+        #         wait = 10
+        #         print(
+        #             "Found %s active operation(s), waiting for %s seconds" %
+        #              (len(active), wait)
+        #         )
+        #         time.sleep(wait)
+        #     print("No active operation found, tests can continue")
+        #     break

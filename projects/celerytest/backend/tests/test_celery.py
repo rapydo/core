@@ -21,5 +21,14 @@ class TestApp(BaseTests):
         r = client.get(endpoint)
         assert r.status_code == HTTP_OK_BASIC
 
+        task_id = self.get_content(r)
+        # We expect as return value the task_id and no more
+        assert type(task_id) == str
+
+        endpoint = API_URI + '/tests/3/%s' % task_id
+        r = client.get(endpoint)
+        assert r.status_code == HTTP_OK_BASIC
+
         content = self.get_content(r)
-        assert content == "task_id"
+        # Temporary: this call returns the input
+        assert content == task_id

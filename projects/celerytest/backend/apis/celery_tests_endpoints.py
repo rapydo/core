@@ -14,20 +14,24 @@ log = get_logger(__name__)
 # if current_app.config['TESTING']:
 class DoTests(EndpointResource):
 
-    def test_1(self, celery):
+    def test_1(self, celery, task_id=None):
 
         # Just test the endpoint is able to retrieve the instance
         return "1"
 
-    def test_2(self, celery):
+    def test_2(self, celery, task_id=None):
 
         task = CeleryExt.testme.apply_async(
-            args=[], countdown=10
+            args=[], countdown=0
         )
         return task.id
 
+    def test_3(self, celery, task_id=None):
+
+        return task_id
+
     @catch_error()
-    def get(self, test_num):
+    def get(self, test_num, task_id=None):
         celery = self.get_service_instance('celery')
 
         meta = Meta()
@@ -36,5 +40,5 @@ class DoTests(EndpointResource):
         if method_name not in methods:
             raise RestApiException("Test %d not found" % test_num)
         method = methods[method_name]
-        out = method(celery)
+        out = method(celery, task_id)
         return self.force_response(out)

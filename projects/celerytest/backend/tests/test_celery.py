@@ -20,3 +20,6 @@ class TestApp(BaseTests):
         endpoint = API_URI + '/tests/2'
         r = client.get(endpoint)
         assert r.status_code == HTTP_OK_BASIC
+
+        content = self.get_content(r)
+        assert content == "task_id"

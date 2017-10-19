@@ -30,8 +30,10 @@ class TestApp(BaseTests):
         assert r.status_code == HTTP_OK_BASIC
 
         content = self.get_content(r)
-        # Temporary: this call returns the input
-        assert content == task_id
+        assert content['task_id'] == task_id
+        assert content['status'] == "SUCCESS"
+        assert content['result'] == "Task executed!"
+        assert content['status'] == "STOP ME"
 
         # VERIFY BATCH ACTIVE
         # for count in range(1, 10):

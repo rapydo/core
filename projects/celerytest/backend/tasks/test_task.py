@@ -18,3 +18,9 @@ def testme(self):
 
         log.info("Task executed!")
         return "Task executed!"
+
+
+# @celery_app.task(bind=True)
+# def ping(self):
+#     with celery_app.app.app_context():
+#         return "pong"

@@ -27,8 +27,8 @@ class TestApp(BaseTests):
         assert type(task_id) == str
 
         endpoint = API_URI + '/tests/3/%s' % task_id
-        wait = 10
-        for count in range(1, 10):
+        wait = 20
+        for count in range(1, 20):
             r = client.get(endpoint)
             assert r.status_code == HTTP_OK_BASIC
 

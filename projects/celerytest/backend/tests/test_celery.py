@@ -40,23 +40,5 @@ class TestApp(BaseTests):
                 continue
             break
 
-        assert content['status'] == "SUCCESS"
-        assert content['result'] == "Task executed!"
-
-        # VERIFY BATCH ACTIVE
-        #     active = []
-        #     active.append(
-        #         self._test_get(
-        #             batch_def, 'batch/' + study, headers,
-        #             OK, parse_response=False
-        #         )
-        #     )
-
-        #     if len(active) > 0:
-        #         wait = 10
-        #         print(
-        #             "Found %s active operation(s), waiting for %s seconds" %
-        #              (len(active), wait)
-        #         )
-        #     print("No active operation found, tests can continue")
-        #     break
+        # assert content['status'] == "SUCCESS"
+        # assert content['result'] == "Task executed!"

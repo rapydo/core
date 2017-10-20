@@ -12,7 +12,6 @@ log = get_logger(__name__)
 
 class TestApp(BaseTests):
 
-    # def test_01_x(self, client, celery_worker):
     def test_01_x(self, app, client):
 
         endpoint = API_URI + '/tests/1'

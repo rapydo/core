@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import time
 from restapi.tests import BaseTests
 from restapi.tests.utilities import API_URI
 from utilities.htmlcodes import HTTP_OK_BASIC
@@ -26,17 +27,23 @@ class TestApp(BaseTests):
         assert type(task_id) == str
 
         endpoint = API_URI + '/tests/3/%s' % task_id
-        r = client.get(endpoint)
-        assert r.status_code == HTTP_OK_BASIC
+        wait = 10
+        for count in range(1, 10):
+            r = client.get(endpoint)
+            assert r.status_code == HTTP_OK_BASIC
 
-        content = self.get_content(r)
-        assert content['task_id'] == task_id
+            content = self.get_content(r)
+            assert content['task_id'] == task_id
+            if content['status'] == "PENDING":
+                log.print("Task is already pending, sleeping")
+                time.sleep(wait)
+                continue
+            break
+
         assert content['status'] == "SUCCESS"
         assert content['result'] == "Task executed!"
-        assert content['status'] == "STOP ME"
 
         # VERIFY BATCH ACTIVE
-        # for count in range(1, 10):
         #     active = []
         #     active.append(
         #         self._test_get(
@@ -51,6 +58,5 @@ class TestApp(BaseTests):
         #             "Found %s active operation(s), waiting for %s seconds" %
         #              (len(active), wait)
         #         )
-        #         time.sleep(wait)
         #     print("No active operation found, tests can continue")
         #     break

@@ -47,9 +47,6 @@ class TestApp(BaseTests):
         assert not irods.is_dataobject(path)
         assert not irods.is_dataobject(data_obj)
 
-        sub_path = irods.getPath(path, "/tempZone")
-        assert sub_path == "home/irods"
-
         irods.create_empty(collection, directory=True)
         irods.create_empty(data_obj)
 

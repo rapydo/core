@@ -77,7 +77,7 @@ class TestApp(BaseTests):
 
         content = irods.list(path)
         # here we should also find data_obj3
-        assert len(content) == 3
+        assert len(content) == 2
         assert "sub" in content
         assert "test.txt" in content
         assert "objects" in content["sub"]

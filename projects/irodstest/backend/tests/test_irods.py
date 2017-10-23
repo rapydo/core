@@ -26,7 +26,7 @@ class TestApp(BaseTests):
 
         assert home == "/tempZone/home/irods"
 
-        path = irods.get_absolute_path(home.split("/"))
+        path = irods.get_absolute_path("tempZone", "home", "irods")
         assert path == home
 
         data_obj = os.path.join(path, "test.txt")

@@ -75,16 +75,19 @@ class TestApp(BaseTests):
         irods.move(data_obj2, data_obj3)
         # irods.copy(collection, collection2, recursive=True)
 
-        content = irods.list(path)
+        content = irods.list(path, recursive=True)
         # here we should also find data_obj3
         assert len(content) == 2
         assert "sub" in content
         assert "test.txt" in content
         assert "objects" in content["sub"]
         assert "test3.txt" in content["sub"]["objects"]
+        # If not recursive, we should not find content of collections
+        content = irods.list(path)
+        assert "test3.txt" not in content["sub"]["objects"]
 
         irods.remove(data_obj3)
-        content = irods.list(path)
+        content = irods.list(path, recursive=True)
         # here we should no longer find data_obj3
         assert len(content) == 2
         assert "sub" in content

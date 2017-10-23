@@ -35,8 +35,7 @@ class TestApp(BaseTests):
         data_obj2 = os.path.join(collection, "test2.txt")
         data_obj3 = os.path.join(collection, "test3.txt")
 
-        collection = irods.get_collection_from_path(data_obj)
-        assert collection == path
+        assert irods.get_collection_from_path(data_obj) == path
 
         assert irods.exists(path)
         assert not irods.exists(data_obj)

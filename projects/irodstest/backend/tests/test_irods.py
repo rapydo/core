@@ -66,8 +66,8 @@ class TestApp(BaseTests):
         content = irods.list(path)
         # here we should find only collection and data_obj
         assert len(content) == 2
-        assert collection in content
-        assert data_obj in content
+        assert "sub" in content
+        assert "test.txt" in content
 
         # COPY AND MOVE
         irods.copy(data_obj, data_obj2)
@@ -77,17 +77,17 @@ class TestApp(BaseTests):
         content = irods.list(path)
         # here we should also find data_obj3
         assert len(content) == 3
-        assert collection in content
-        assert data_obj in content
-        assert data_obj3 in content
+        assert "sub" in content
+        assert "test.txt" in content
+        assert "test3.txt" in content
 
         irods.remove(data_obj3)
         content = irods.list(path)
         # here we should no longer find data_obj3
         assert len(content) == 2
-        assert collection in content
-        assert data_obj in content
-        assert data_obj3 not in content
+        assert "sub" in content
+        assert "test.txt" in content
+        assert "test3.txt" not in content
 
         # irods.remove(collection2, recursive=True)
         # content = irods.list(path)

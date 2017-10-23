@@ -34,7 +34,7 @@ class TestApp(BaseTests):
         # DEFINING SOME PATHS
         data_obj = os.path.join(path, "test.txt")
         collection = os.path.join(path, "sub")
-        collection2 = os.path.join(path, "sub2")
+        # collection2 = os.path.join(path, "sub2")
         data_obj2 = os.path.join(collection, "test2.txt")
         data_obj3 = os.path.join(collection, "test3.txt")
 
@@ -65,7 +65,9 @@ class TestApp(BaseTests):
 
         content = irods.list(path)
         # here we should find only collection and data_obj
-        assert content == {}
+        assert len(content) == 2
+        assert collection in content
+        assert data_obj in content
 
         # COPY AND MOVE
         irods.copy(data_obj, data_obj2)
@@ -74,12 +76,18 @@ class TestApp(BaseTests):
 
         content = irods.list(path)
         # here we should also find data_obj3
-        assert content == {}
+        assert len(content) == 3
+        assert collection in content
+        assert data_obj in content
+        assert data_obj3 in content
 
         irods.remove(data_obj3)
         content = irods.list(path)
         # here we should no longer find data_obj3
-        assert content == {}
+        assert len(content) == 2
+        assert collection in content
+        assert data_obj in content
+        assert data_obj3 not in content
 
         # irods.remove(collection2, recursive=True)
         # content = irods.list(path)

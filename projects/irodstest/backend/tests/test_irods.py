@@ -60,7 +60,7 @@ class TestApp(BaseTests):
 
         irods.copy(data_obj, data_obj2)
         irods.move(data_obj2, data_obj3)
-        irods.copy(collection, collection2, recursive=True)
+        # irods.copy(collection, collection2, recursive=True)
 
         content = irods.list(path)
         assert content == {}

@@ -50,7 +50,7 @@ class TestApp(BaseTests):
         assert not irods.is_dataobject(path)
         assert not irods.is_dataobject(data_obj)
 
-        # CREATE FIRST COLLECTIONN AND FIRST FILE
+        # CREATE FIRST COLLECTION AND FIRST FILE
         irods.create_empty(collection, directory=True)
         irods.create_empty(data_obj)
 
@@ -68,6 +68,7 @@ class TestApp(BaseTests):
         assert len(content) == 2
         assert "sub" in content
         assert "test.txt" in content
+        assert "objects" in content["sub"]
 
         # COPY AND MOVE
         irods.copy(data_obj, data_obj2)
@@ -79,7 +80,8 @@ class TestApp(BaseTests):
         assert len(content) == 3
         assert "sub" in content
         assert "test.txt" in content
-        assert "test3.txt" in content
+        assert "objects" in content["sub"]
+        assert "test3.txt" in content["sub"]["objects"]
 
         irods.remove(data_obj3)
         content = irods.list(path)
@@ -87,7 +89,8 @@ class TestApp(BaseTests):
         assert len(content) == 2
         assert "sub" in content
         assert "test.txt" in content
-        assert "test3.txt" not in content
+        assert "objects" in content["sub"]
+        assert "test3.txt" not in content["sub"]["objects"]
 
         # irods.remove(collection2, recursive=True)
         # content = irods.list(path)

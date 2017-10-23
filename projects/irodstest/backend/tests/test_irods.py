@@ -23,4 +23,4 @@ class TestApp(BaseTests):
 
         home = irods.get_user_home()
 
-        assert home == "test"
+        assert home == "/tempZone/home/irods"

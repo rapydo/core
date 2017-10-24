@@ -2,7 +2,7 @@
 project:
   title: My Neo4j project
   description: Title of my Neo4j project
-  version: "RAPyDo framework beta"
+  version: 1.0
   rapydo: 0.5.6
 
 variables:

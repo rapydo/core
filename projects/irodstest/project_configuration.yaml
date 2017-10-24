@@ -2,7 +2,7 @@
 project:
   title: My iRODS project
   description: Title of my irods project
-  version: "RAPyDo framework beta"
+  version: 1.0
   rapydo: 0.5.6
 
 variables:

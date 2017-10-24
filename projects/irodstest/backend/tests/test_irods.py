@@ -5,6 +5,7 @@ from restapi.tests import BaseTests
 from restapi.tests.utilities import API_URI
 from restapi.services.detect import detector
 from utilities.htmlcodes import HTTP_OK_BASIC
+
 from utilities.logs import get_logger
 
 __author__ = "Mattia D'Antonio (m.dantonio@cineca.it)"

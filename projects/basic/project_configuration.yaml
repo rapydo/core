@@ -2,7 +2,7 @@
 project:
   title: My Basic project
   description: Title of my basic project
-  version: "RAPyDo framework beta"
+  version: 1.0
   rapydo: 0.5.6
 
 variables:

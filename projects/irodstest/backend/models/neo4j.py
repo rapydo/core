@@ -8,8 +8,7 @@ VERY IMPORTANT!
 Imports and models have to be defined/used AFTER normal Graphdb connection.
 """
 
-from neomodel import StringProperty, \
-    StructuredNode, RelationshipFrom  # , RelationshipTo
+from neomodel import StringProperty, StructuredNode
 import logging
 
 log = logging.getLogger(__name__)
@@ -17,4 +16,3 @@ log = logging.getLogger(__name__)
 
 class Person(StructuredNode):
     name = StringProperty(unique_index=True)
-    ownership = RelationshipFrom('DataObject', 'IS_OWNED_BY')

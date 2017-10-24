@@ -332,15 +332,6 @@ services:
   #       - restangulask_graphbased_elasticdata:/usr/share/elasticsearch/data
 
   #################################
-  # SMTP server
-  smtp:
-    image: namshi/smtp
-    networks:
-      smtp_net:
-        aliases:
-          - ${SMTP_HOST}
-
-  #################################
   # REDIS key/value store
   # redisqueue:
   #   image: redis:alpine

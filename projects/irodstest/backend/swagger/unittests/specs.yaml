@@ -1,0 +1,8 @@
+file: irods_tests_endpoints 
+class: DoTests
+schema:
+  expose: true
+mapping:
+  tests: "/tests/<test_num>"
+labels:
+  - tests

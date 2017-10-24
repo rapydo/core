@@ -1,0 +1,15 @@
+common:
+  custom:
+    authentication: false
+
+tests:
+  summary: Do tests
+  responses:
+    '200':
+      description: a test is executed
+
+test_task:
+  summary: Do tests
+  responses:
+    '200':
+      description: a test is executed

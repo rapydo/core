@@ -1,19 +1,18 @@
 # -*- coding: utf-8 -*-
 
-from tests import RestTestsBase
-from restapi.tests.utilities import TestUtilities
+from restapi.tests import BaseTests
+from restapi.tests.utilities import API_URI
+from utilities.htmlcodes import HTTP_OK_BASIC
 from utilities.logs import get_logger
 
 __author__ = "Mattia D'Antonio (m.dantonio@cineca.it)"
 log = get_logger(__name__)
 
 
-class BaseTests(RestTestsBase, TestUtilities):
+class TestApp(BaseTests):
 
-    def test_01_x(self):
+    def test_01_x(self, client):
 
-        # Check success
-        endpoint = self._api_uri + '/status'
-        log.info("*** VERIFY if API is online")
-        r = self.app.get(endpoint)
-        self.assertEqual(r.status_code, self._hcodes.HTTP_OK_BASIC)
+        endpoint = API_URI + '/tests/1'
+        r = client.get(endpoint)
+        assert r.status_code == HTTP_OK_BASIC

@@ -1,0 +1,9 @@
+file: celery_tests_endpoints 
+class: DoTests
+schema:
+  expose: true
+mapping:
+  tests: "/tests/<test_num>"
+  test_task: "/tests/<test_num>/<task_id>"
+labels:
+  - tests

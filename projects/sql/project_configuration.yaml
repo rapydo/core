@@ -3,7 +3,6 @@ project:
   title: My Sql project
   description: Title of my sql project
   version: "1.0"
-  rapydo: "0.5.7"
 
 variables:
   env:
@@ -24,3 +23,8 @@ variables:
   frontend:
     enable: true
 
+releases:
+  '1.0':
+    type: beta
+    rapydo: 0.5.7
+    status: developing

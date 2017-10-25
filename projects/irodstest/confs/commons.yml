@@ -52,7 +52,6 @@ services:
 
     networks:
       i_net:
-      smtp_net:
 
     depends_on:
       - icat

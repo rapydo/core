@@ -27,9 +27,6 @@ services:
       ALCHEMY_PASSWORD: ${ALCHEMY_PASSWORD}
       ALCHEMY_DB: ${ALCHEMY_API_DB}
 
-    networks:
-      smtp_net:
-
     depends_on:
       - postgres
 

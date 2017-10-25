@@ -36,7 +36,6 @@ networks:
   proxy_net:
   worker_net:
   ftp_net:
-  smtp_net:
   db_net:
     # # driver: bridge
     # ipam:

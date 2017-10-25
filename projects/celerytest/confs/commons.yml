@@ -43,7 +43,6 @@ services:
       - ../data/test:/data
 
     networks:
-      smtp_net:
       worker_net:
 
     depends_on:

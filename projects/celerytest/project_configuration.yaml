@@ -1,5 +1,6 @@
 ---
 project:
+  rapydo: 0.5.7
   title: My Celery project
   description: Title of my celery project
   version: "1.0"

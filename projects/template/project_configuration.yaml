@@ -1,5 +1,6 @@
 ---
 project:
+  rapydo: 0.5.7
   title: My project
   description: Title of my project
   version: "1.0"

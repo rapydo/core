@@ -1,5 +1,6 @@
 ---
 project:
+  rapydo: 0.5.7
   title: My iRODS project
   description: Title of my irods project
   version: "1.0"

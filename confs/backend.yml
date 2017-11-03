@@ -62,6 +62,7 @@ services:
     environment:
       ACTIVATE: 0  # activate me inside your Blueprint
       FLASK_APP: ${COMPOSE_PROJECT_NAME}/${PYTHON_MAIN_FILE}.py
+      # FLASK_APP: /usr/local/lib/python3.6/dist-packages/restapi/__main__.py
       UWSGI_APP: ${COMPOSE_PROJECT_NAME}.${PYTHON_MAIN_FILE}
       VANILLA_PACKAGE: ${COMPOSE_PROJECT_NAME}
       JWT_APP_SECRETS: ${JWT_APP_SECRETS}

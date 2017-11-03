@@ -35,15 +35,10 @@ services:
       CELERY_BROKER_HOST: ${CELERY_BROKER_HOST}
       CELERY_BROKER_PORT: ${CELERY_BROKER_PORT}
 
-      # TODO: REMOVE ME after solved issue #64
-      CELERY_HOST: ${CELERY_BROKER_HOST}
-      CELERY_PORT: ${CELERY_BROKER_PORT}
-
     volumes:
       - ../data/test:/data
 
     networks:
-      smtp_net:
       worker_net:
 
     depends_on:

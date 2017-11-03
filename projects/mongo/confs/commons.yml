@@ -24,9 +24,6 @@ services:
       MONGO_HOST: ${MONGO_HOST}
       MONGO_PORT: ${MONGO_PORT}
 
-    networks:
-      smtp_net:
-
     depends_on:
       - mongodb
 

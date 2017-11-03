@@ -26,9 +26,6 @@ services:
       GRAPHDB_PORT: ${GRAPHDB_BOLT_PORT}
       GRAPHDB_PASSWORD: ${GRAPHDB_PASSWORD}
 
-    networks:
-      smtp_net:
-
     depends_on:
       - neo4j
 

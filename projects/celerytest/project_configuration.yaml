@@ -1,9 +1,9 @@
 ---
 project:
+  rapydo: 0.5.7
   title: My Celery project
   description: Title of my celery project
   version: "1.0"
-  rapydo: "0.5.6"
 
 variables:
   env:
@@ -23,4 +23,10 @@ variables:
         default: normal_user
   frontend:
     enable: true
+
+releases:
+  '1.0':
+    type: beta
+    rapydo: 0.5.7
+    status: developing
 

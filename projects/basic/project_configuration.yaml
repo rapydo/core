@@ -1,6 +1,6 @@
 ---
 project:
-  rapydo: 0.5.7
+  rapydo: 0.6.0
   title: My Basic project
   description: Title of my basic project
   version: "1.0"
@@ -27,5 +27,5 @@ variables:
 releases:
   '1.0':
     type: beta
-    rapydo: 0.5.7
+    rapydo: 0.6.0
     status: developing

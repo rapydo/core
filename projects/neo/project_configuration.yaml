@@ -1,6 +1,6 @@
 ---
 project:
-  rapydo: 0.5.7
+  rapydo: 0.6.0
   title: My Neo4j project
   description: Title of my Neo4j project
   version: "1.0"
@@ -24,5 +24,5 @@ variables:
 releases:
   '1.0':
     type: beta
-    rapydo: 0.5.7
+    rapydo: 0.6.0
     status: developing

@@ -1,6 +1,5 @@
 ---
 project:
-  rapydo: 0.6.0
   title: My MongoDB project
   description: Title of my mongodb project
   version: "1.0"

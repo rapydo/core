@@ -1,6 +1,5 @@
 ---
 project:
-  rapydo: 0.6.0
   title: My Neo4j project
   description: Title of my Neo4j project
   version: "1.0"

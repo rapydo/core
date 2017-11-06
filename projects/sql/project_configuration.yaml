@@ -1,6 +1,5 @@
 ---
 project:
-  rapydo: 0.6.0
   title: My Sql project
   description: Title of my sql project
   version: "1.0"

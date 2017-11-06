@@ -4,7 +4,8 @@ version: '3'
 services:
   backend:
     build: ../projects/${COMPOSE_PROJECT_NAME}/builds/backend
-    image: ${COMPOSE_PROJECT_NAME}/backend:${COMPOSE_PROJECT_NAME}
+    # image: ${COMPOSE_PROJECT_NAME}/backend:${COMPOSE_PROJECT_NAME}
+    image: ${COMPOSE_PROJECT_NAME}/backend:${RAPYDO_VERSION}
     environment:
       VANILLA_PACKAGE: ${COMPOSE_PROJECT_NAME}
 

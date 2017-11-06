@@ -93,6 +93,7 @@ services:
           - ${FLASK_HOST}
       db_net:
       # i_net:
+    # privileged: ${DOCKER_PRIVILEGED_MODE}
 
   ##############################
   proxy:

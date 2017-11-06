@@ -5,6 +5,8 @@ services:
     volumes:
       - ../submodules/http-api/restapi:${PYTHON_PATH}/restapi
       - ../submodules/utils/utilities:${PYTHON_PATH}/utilities
+      # Unit tests
+      - ../submodules/http-api/tests:/code/tests
 
   celery:
     volumes:

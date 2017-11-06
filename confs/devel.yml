@@ -1,14 +1,12 @@
 version: '3'
-#######################
-# Link services inside API
 
 services:
   backend:
     volumes:
-      - ../submodules/http-api/restapi:/usr/local/lib/python3.6/dist-packages/restapi
-      - ../submodules/utils/utilities:/usr/local/lib/python3.6/dist-packages/utilities
+      - ../submodules/http-api/restapi:${PYTHON_PATH}/restapi
+      - ../submodules/utils/utilities:${PYTHON_PATH}/utilities
 
   celery:
     volumes:
-      - ../submodules/http-api/restapi:/usr/local/lib/python3.6/dist-packages/restapi
-      - ../submodules/utils/utilities:/usr/local/lib/python3.6/dist-packages/utilities
+      - ../submodules/http-api/restapi:${PYTHON_PATH}/restapi
+      - ../submodules/utils/utilities:${PYTHON_PATH}/utilities

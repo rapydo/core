@@ -8,93 +8,59 @@ VERY IMPORTANT!
 Imports and models have to be defined/used AFTER normal Graphdb connection.
 """
 
-from __future__ import absolute_import
-from neomodel import StringProperty, \
-    StructuredNode, RelationshipFrom  # , RelationshipTo
-import logging
+from neomodel import ZeroOrMore, OneOrMore
 
-logger = logging.getLogger(__name__)
-# logger.setLevel(logging.DEBUG)
+from restapi.services.neo4j.models import \
+    StringProperty, IntegerProperty, DateProperty, DateTimeProperty, \
+    JSONProperty, ArrayProperty, FloatProperty, BooleanProperty, \
+    AliasProperty, IdentifiedNode, StructuredRel, TimestampedNode, \
+    RelationshipTo, RelationshipFrom  # , UniqueIdProperty
+from restapi.models.neo4j import User as UserBase
 
+from utilities.logs import get_logger
+log = get_logger(__name__)
 
-##############################################################################
-# MODELS
-##############################################################################
-
-class Person(StructuredNode):
-    name = StringProperty(unique_index=True)
-    ownership = RelationshipFrom('DataObject', 'IS_OWNED_BY')
+__author__ = "Mattia D'Antonio (m.dantonio@cineca.it)"
 
 
-# class Zone(StructuredNode):
-#     name = StringProperty(unique_index=True)
-#     hosting = RelationshipFrom('DataObject', 'IS_LOCATED_IN')
-#     hosting_res = RelationshipFrom('Resource', 'IS_AVAILABLE_IN')
-#     hosting_col = RelationshipFrom('Collection', 'IS_PLACED_IN')
+# Extension of User model for accounting in API login/logout
+class User(UserBase):
+
+    belongs_to = RelationshipTo(
+        'Group', 'BELONGS_TO', cardinality=ZeroOrMore, show=True)
 
 
-# class Resource(StructuredNode):
-#     name = StringProperty(unique_index=True)
-#     store = RelationshipFrom('DataObject', 'STORED_IN')
-#     described = RelationshipFrom('MetaData', 'DESCRIBED_BY')
-#     hosted = RelationshipTo(Zone, 'IS_AVAILABLE_IN')
+class RelationTest(StructuredRel):
+    pp = StringProperty(show=True)
 
 
-# class Collection(StructuredNode):
-#     """ iRODS collection of data objects [Directory] """
-#     path = StringProperty(unique_index=True)
-#     name = StringProperty()
-#     belongs = RelationshipFrom('DataObject', 'BELONGS_TO')
-#     described = RelationshipFrom('MetaData', 'DESCRIBED_BY')
-#     hosted = RelationshipTo(Zone, 'IS_PLACED_IN')
-#     # Also Related to itself: a collection may be inside a collection.
-#     matrioska_from = RelationshipFrom('Collection', 'INSIDE')
-#     matrioska_to = RelationshipTo('Collection', 'INSIDE')
+class Group(IdentifiedNode):
+    name = StringProperty(required=True, unique_index=True, show=True)
+    extra = StringProperty(required=True, unique_index=True, show=False)
+    members = RelationshipFrom(
+        'User', 'BELONGS_TO', cardinality=ZeroOrMore, show=True)
+
+    test1 = RelationshipTo(
+        'JustATest', 'TEST', cardinality=OneOrMore,
+        show=True, model=RelationTest)
+    test2 = RelationshipTo(
+        'JustATest', 'TEST2', cardinality=OneOrMore,
+        show=False, model=RelationTest)
 
 
-# class Replication(StructuredRel):
-#     """
-#     Replica connects a DataObject to its copies.
-#         Note: this is a relationship, not a node.
-#     """
-#     # Parent
-#     PPID = StringProperty()
-#     # Ancestor
-#     ROR = StringProperty()
+class JustATest(TimestampedNode):
+    p_str = StringProperty(required=True, show=True)
+    p_int = IntegerProperty()
+    p_arr = ArrayProperty()
+    p_json = JSONProperty()
+    p_float = FloatProperty()
+    p_date = DateProperty()
+    p_dt = DateTimeProperty()
+    p_bool = BooleanProperty()
+    p_alias = AliasProperty()
 
+    test1 = RelationshipFrom(
+        'Group', 'TEST', cardinality=ZeroOrMore, model=RelationTest)
 
-# class DataObject(StructuredNode):
-#     """ iRODS data object [File] """
-#     location = StringProperty(unique_index=True)
-#     # PID = StringProperty(index=True)    # May not exist
-#     filename = StringProperty(index=True)
-#     path = StringProperty()
-#     owned = RelationshipTo(Person, 'IS_OWNED_BY')
-#     located = RelationshipTo(Zone, 'IS_LOCATED_IN')
-#     stored = RelationshipTo(Resource, 'STORED_IN')
-#     belonging = RelationshipTo(Collection, 'BELONGS_TO')
-#     replica = RelationshipTo('DataObject', 'IS_REPLICA_OF', model=Replication)
-#     described = RelationshipFrom('MetaData', 'DESCRIBED_BY')
-#     identity = RelationshipFrom('PID', 'UNIQUELY_IDENTIFIED_BY')
-
-
-# class PID(StructuredNode):
-#     """
-#     EUDAT Persistent Identification (PID)
-#     http://eudat.eu/User%20Documentation%20-%20PIDs%20in%20EUDAT.html
-#     """
-#     code = StringProperty(unique_index=True)
-#     checksum = StringProperty(index=True)   # For integrity
-#     described = RelationshipFrom('MetaData', 'DESCRIBED_BY')
-#     identify = RelationshipTo(DataObject, 'UNIQUELY_IDENTIFIED_BY')
-
-
-# class MetaData(StructuredNode):
-#     """ Any metaData stored in any service level """
-#     key = StringProperty(index=True)
-#     metatype = StringProperty()         # Describe the level of metadata
-#     value = StringProperty(index=True)
-#     pid = RelationshipTo(PID, 'DESCRIBED_BY')
-#     data = RelationshipTo(DataObject, 'DESCRIBED_BY')
-#     resource = RelationshipTo(Resource, 'DESCRIBED_BY')
-#     collection = RelationshipTo(Collection, 'DESCRIBED_BY')
+    test2 = RelationshipFrom(
+        'Group', 'TEST2', cardinality=ZeroOrMore, model=RelationTest)

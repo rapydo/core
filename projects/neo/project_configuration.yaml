@@ -1,19 +1,11 @@
 ---
 project:
+  rapydo: 0.6.0
   title: My Neo4j project
   description: Title of my Neo4j project
-  version: "RAPyDo framework v0.6.0-beta"
+  version: "1.0"
 
 variables:
-  repos:
-    rapydo:
-      branch: 0.6.0
-    utils:
-      branch: 0.6.0
-    backend:
-      branch: 0.6.0
-    build-templates:
-      branch: 0.6.0
   env:
     GRAPHDB_PASSWORD: chooseapassword
     IRODS_CHUNKSIZE: 1048576
@@ -29,3 +21,8 @@ variables:
   frontend:
     enable: true
 
+releases:
+  '1.0':
+    type: beta
+    rapydo: 0.6.0
+    status: developing

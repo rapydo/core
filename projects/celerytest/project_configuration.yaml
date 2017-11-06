@@ -1,19 +1,11 @@
 ---
 project:
-  title: My SQL project
-  description: Title of my sql project
-  version: "RAPyDo framework v0.6.0-beta"
+  rapydo: 0.6.0
+  title: My Celery project
+  description: Title of my celery project
+  version: "1.0"
 
 variables:
-  repos:
-    rapydo:
-      branch: 0.6.0
-    utils:
-      branch: 0.6.0
-    backend:
-      branch: 0.6.0
-    build-templates:
-      branch: 0.6.0
   env:
     ALCHEMY_USER: sqluser
     ALCHEMY_PASSWORD: chooseapasswordwisely
@@ -31,4 +23,10 @@ variables:
         default: normal_user
   frontend:
     enable: true
+
+releases:
+  '1.0':
+    type: beta
+    rapydo: 0.6.0
+    status: developing
 

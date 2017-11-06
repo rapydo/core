@@ -24,27 +24,8 @@ services:
       MONGO_HOST: ${MONGO_HOST}
       MONGO_PORT: ${MONGO_PORT}
 
-    networks:
-      smtp_net:
-
     depends_on:
       - mongodb
-      - smtp
-
-  smtp:
-    environment:
-      ACTIVATE: 1
-
-      # GMAIL_USER: xxx@gmail.com
-      # GMAIL_PASSWORD: abc
-
-      # SMARTHOST_ADDRESS: mail.cineca.it
-      # SMARTHOST_PORT: 465
-      # SMARTHOST_PORT: 587
-      # SMARTHOST_USER: m.dantonio@cineca.it
-      # SMARTHOST_PASSWORD: -
-      # SMARTHOST_ALIASES: "*.cineca.it"
-
 
 # volumes:
 #   ...

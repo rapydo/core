@@ -11,10 +11,16 @@ __author__ = "Mattia D'Antonio (m.dantonio@cineca.it)"
 
 
 @celery_app.task(bind=True)
-def update_annotations(self):
+def testme(self):
     with celery_app.app.app_context():
 
-        self.db = celery_app.get_service('sqlalchemy')
+        # self.db = celery_app.get_service('sqlalchemy')
 
         log.info("Task executed!")
         return "Task executed!"
+
+
+# @celery_app.task(bind=True)
+# def ping(self):
+#     with celery_app.app.app_context():
+#         return "pong"

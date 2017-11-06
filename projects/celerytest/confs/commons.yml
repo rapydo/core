@@ -35,20 +35,14 @@ services:
       CELERY_BROKER_HOST: ${CELERY_BROKER_HOST}
       CELERY_BROKER_PORT: ${CELERY_BROKER_PORT}
 
-      # TODO: REMOVE ME after solved issue #64
-      CELERY_HOST: ${CELERY_BROKER_HOST}
-      CELERY_PORT: ${CELERY_BROKER_PORT}
-
     volumes:
       - ../data/test:/data
 
     networks:
-      smtp_net:
       worker_net:
 
     depends_on:
       - postgres
-      - smtp
 
   postgres:
     environment:
@@ -83,21 +77,6 @@ services:
       CELERY_BROKER: ${CELERY_BROKER}
       CELERY_BROKER_HOST: ${CELERY_BROKER_HOST}
       CELERY_BROKER_PORT: ${CELERY_BROKER_PORT}
-
-  smtp:
-    environment:
-      ACTIVATE: 1
-
-      # GMAIL_USER: xxx@gmail.com
-      # GMAIL_PASSWORD: abc
-
-      # SMARTHOST_ADDRESS: mail.cineca.it
-      # SMARTHOST_PORT: 465
-      # SMARTHOST_PORT: 587
-      # SMARTHOST_USER: m.dantonio@cineca.it
-      # SMARTHOST_PASSWORD: -
-      # SMARTHOST_ALIASES: "*.cineca.it"
-
 
 # volumes:
 #   ...

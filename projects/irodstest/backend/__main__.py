@@ -26,9 +26,7 @@ if PRODUCTION:
 app = create_app(name='REST_API')
 
 if __name__ == "__main__":
-    log.debug("Server running (w/ %s)" % be.__name__)
-
-    # NOTE: 'threaded' option avoid to see
+    log.debug("Server running (w/ %s)", be.__name__)
     # angular request on this server dropping
     # and becoming slow if not totally frozen
     app.run(host='0.0.0.0', threaded=True)

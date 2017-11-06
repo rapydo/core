@@ -1,0 +1,31 @@
+---
+project:
+  rapydo: 0.6.0
+  title: My Basic project
+  description: Title of my basic project
+  version: "1.0"
+
+variables:
+  env:
+    ALCHEMY_USER: sqluser
+    ALCHEMY_PASSWORD: chooseapasswordwisely
+    ALCHEMY_API_DB: SQL_API
+    ALCHEMY_ENGINE: postgresql
+    ALCHEMY_DBS: SQL_API
+  backend:
+    credentials:
+      username: "user@nomail.org"
+      password: "test"
+      roles:
+        user: normal_user
+        internal: staff_user
+        admin: admin_root
+        default: normal_user
+  frontend:
+    enable: true
+
+releases:
+  '1.0':
+    type: beta
+    rapydo: 0.6.0
+    status: developing

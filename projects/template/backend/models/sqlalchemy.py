@@ -10,5 +10,4 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 # Add (inject) attributes to User
-setattr(User, 'name', db.Column(db.String(255)))
-setattr(User, 'surname', db.Column(db.String(255)))
+setattr(User, 'my_custom_field', db.Column(db.String(255)))

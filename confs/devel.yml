@@ -7,6 +7,7 @@ services:
       - ../submodules/utils/utilities:${PYTHON_PATH}/utilities
       # Unit tests
       - ../submodules/http-api/tests:/code/tests
+      - ../projects/${COMPOSE_PROJECT_NAME}/backend/tests:/code/tests/custom
 
   celery:
     volumes:

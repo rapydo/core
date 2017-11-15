@@ -286,9 +286,7 @@ services:
       MAIN_ENDPOINT: ${API_MAIN_ENDPOINT}
       ACTIVATE: 0
     volumes:
-      - ../projects/${COMPOSE_PROJECT_NAME}/project_configuration.yaml:/code/custom.yml
-      - ../submodules/utilities/utilities/projects_defaults.yaml:/code/base.yml
-
+      - ../projects/${COMPOSE_PROJECT_NAME}/project_configuration.yaml:/code/confs/project_configuration.yaml
 
   ###################
   ### FTP SERVER  ###

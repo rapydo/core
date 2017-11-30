@@ -34,8 +34,8 @@ services:
       NEO4J_AUTH: neo4j/${GRAPHDB_PASSWORD}
 
 # volumes:
-#   ...
+#   -
 
 # networks:
-#   ...
+#   -
 

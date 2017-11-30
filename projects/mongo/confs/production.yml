@@ -23,9 +23,6 @@ services:
       proxy_net:
         aliases:
           - ${FLASK_HOST}
-    depends_on:
-      - neo4j
-
 
   frontend:
     environment:

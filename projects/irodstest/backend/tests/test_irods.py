@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
-from restapi.tests import BaseTests
-from restapi.tests.utilities import API_URI
+from restapi.tests import BaseTests, API_URI
 from restapi.services.detect import detector
 from utilities.htmlcodes import HTTP_OK_BASIC
 

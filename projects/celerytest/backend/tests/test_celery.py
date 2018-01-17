@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
 # import time
-from restapi.tests import BaseTests
-from restapi.tests.utilities import API_URI
+from restapi.tests import BaseTests, API_URI
 from utilities.htmlcodes import HTTP_OK_BASIC
 from utilities.logs import get_logger
 

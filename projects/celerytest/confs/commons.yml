@@ -3,8 +3,9 @@ version: '3'
 
 services:
   backend:
-    build: ../projects/${COMPOSE_PROJECT_NAME}/builds/backend
-    image: ${COMPOSE_PROJECT_NAME}/backend:${COMPOSE_PROJECT_NAME}
+    build: ${VANILLA_DIR}/projects/${COMPOSE_PROJECT_NAME}/builds/backend
+    # image: ${COMPOSE_PROJECT_NAME}/backend:${COMPOSE_PROJECT_NAME}
+    image: ${COMPOSE_PROJECT_NAME}/backend:${RAPYDO_VERSION}
     environment:
       VANILLA_PACKAGE: ${COMPOSE_PROJECT_NAME}
 
@@ -36,7 +37,7 @@ services:
       CELERY_BROKER_PORT: ${CELERY_BROKER_PORT}
 
     volumes:
-      - ../data/test:/data
+      - ${VANILLA_DIR}/data/test:/data
 
     networks:
       worker_net:
@@ -52,7 +53,7 @@ services:
 
   celery:
     volumes:
-      - ../data/test:/data
+      - ${VANILLA_DIR}/data/test:/data
     depends_on:
       - rabbit
       - postgres 
@@ -79,8 +80,8 @@ services:
       CELERY_BROKER_PORT: ${CELERY_BROKER_PORT}
 
 # volumes:
-#   ...
+#   -
 
 # networks:
-#   ...
+#   -
 

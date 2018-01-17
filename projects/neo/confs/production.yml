@@ -7,7 +7,7 @@ services:
     environment:
       ACTIVATE: 1
     volumes:
-      - ../confs/nginx/production.conf:/etc/nginx/sites-enabled/production
+      - ${SUBMODULE_DIR}/rapydo-confs/confs/nginx/production.conf:/etc/nginx/sites-enabled/production
     depends_on:
       - backend
       - frontend
@@ -23,9 +23,6 @@ services:
       proxy_net:
         aliases:
           - ${FLASK_HOST}
-    depends_on:
-      - neo4j
-
 
   frontend:
     environment:

@@ -1,5 +1,5 @@
 {
-  "name": "restangulask",
+  "name": "sci",
   "version": "0.2",
   "dependencies": {
     "angular": "1.5.5",
@@ -36,6 +36,7 @@
   },
   "resolutions": {
     "angular": "^1.4.8",
-    "moment": "~2.11.1"
+    "moment": "~2.11.1",
+    "angular-formly": "^8.4.0"
   }
 }

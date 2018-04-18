@@ -26,5 +26,5 @@ variables:
 releases:
   '1.0':
     type: beta
-    rapydo: 0.6.0
+    rapydo: 0.6.1
     status: developing

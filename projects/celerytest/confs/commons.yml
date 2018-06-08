@@ -54,12 +54,17 @@ services:
       POSTGRES_PASSWORD: "${ALCHEMY_PASSWORD}"
       POSTGRES_DBS: ${ALCHEMY_DBS}
 
+  mongodb:
+    environment:
+      ACTIVATE: 1
+
   celery:
     volumes:
       - ${VANILLA_DIR}/data/test:/data
     depends_on:
       - rabbit
       - postgres 
+      - mongodb
 
     environment:
       ACTIVATE: 1

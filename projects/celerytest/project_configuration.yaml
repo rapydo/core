@@ -11,6 +11,11 @@ variables:
     ALCHEMY_API_DB: SQL_API
     ALCHEMY_ENGINE: postgresql
     ALCHEMY_DBS: SQL_API
+
+    CELERY_BACKEND: MONGODB
+    CELERY_BACKEND_HOST: mongo.dockerized.io
+    CELERY_BACKEND_PORT: 27017
+
   backend:
     credentials:
       username: "user@nomail.org"

@@ -3,6 +3,7 @@ project:
   title: My Sql project
   description: Title of my sql project
   version: "1.0"
+  rapydo: 0.6.2
 
 variables:
   env:
@@ -21,10 +22,4 @@ variables:
         admin: admin_root
         default: normal_user
   frontend:
-    enable: true
-
-releases:
-  '1.0':
-    type: beta
-    rapydo: 0.6.1
-    status: developing
+    framework: angular

@@ -35,6 +35,9 @@ services:
       CELERY_BROKER: ${CELERY_BROKER}
       CELERY_BROKER_HOST: ${CELERY_BROKER_HOST}
       CELERY_BROKER_PORT: ${CELERY_BROKER_PORT}
+      CELERY_BACKEND: ${CELERY_BACKEND}
+      CELERY_BACKEND_HOST: ${CELERY_BACKEND_HOST}
+      CELERY_BACKEND_PORT: ${CELERY_BACKEND_PORT}
 
     volumes:
       - ${VANILLA_DIR}/data/test:/data
@@ -51,12 +54,17 @@ services:
       POSTGRES_PASSWORD: "${ALCHEMY_PASSWORD}"
       POSTGRES_DBS: ${ALCHEMY_DBS}
 
+  mongodb:
+    environment:
+      ACTIVATE: 1
+
   celery:
     volumes:
       - ${VANILLA_DIR}/data/test:/data
     depends_on:
       - rabbit
       - postgres 
+      - mongodb
 
     environment:
       ACTIVATE: 1

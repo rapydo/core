@@ -1,5 +1,5 @@
 
-FROM rapydo/backend:0.6.2
+FROM rapydo/backend:0.6.3
 
 MAINTAINER "Mattia D'Antonio <m.dantonio@cineca.it>"
 

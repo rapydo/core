@@ -10,7 +10,3 @@ This is also called by us the `vanilla code`.
 
 Note: all python packages from our framework can be found in Pypi with the `rapydo-` prefix:
 https://pypi.python.org/pypi?%3Aaction=search&term=rapydo-&submit=search
-
-<!--
-    version: 0.6.2
-    -->

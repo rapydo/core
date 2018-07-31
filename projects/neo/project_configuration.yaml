@@ -8,7 +8,6 @@ project:
 variables:
   env:
     GRAPHDB_PASSWORD: chooseapassword
-    IRODS_CHUNKSIZE: 1048576
   backend:
     credentials:
       username: "user@nomail.org"

@@ -14,8 +14,6 @@ volumes:
 services:
   backend:
     environment:
-      VANILLA_PACKAGE: ${COMPOSE_PROJECT_NAME}
-
       # base the user/role mechanism on some database
       AUTH_ENABLE: 1
       # putting this here because it should not be configurable in .env

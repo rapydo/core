@@ -3,12 +3,7 @@ version: '3'
 
 services:
   backend:
-    build: ${VANILLA_DIR}/projects/${COMPOSE_PROJECT_NAME}/builds/backend
-    # image: ${COMPOSE_PROJECT_NAME}/backend:${COMPOSE_PROJECT_NAME}
-    image: ${COMPOSE_PROJECT_NAME}/backend:${RAPYDO_VERSION}
     environment:
-      VANILLA_PACKAGE: ${COMPOSE_PROJECT_NAME}
-
       # base the user/role mechanism on some database
       AUTH_ENABLE: 1
       # putting this here because it should not be configurable in .env

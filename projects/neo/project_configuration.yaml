@@ -3,12 +3,11 @@ project:
   title: My Neo4j project
   description: Title of my Neo4j project
   version: "1.0"
-  rapydo: 0.6.2
+  rapydo: 0.6.3
 
 variables:
   env:
     GRAPHDB_PASSWORD: chooseapassword
-    IRODS_CHUNKSIZE: 1048576
   backend:
     credentials:
       username: "user@nomail.org"

@@ -3,7 +3,7 @@ project:
   title: My project
   description: Title of my project
   version: "1.0"
-  rapydo: 0.6.3
+  rapydo: 0.6.4
 
 variables:
   backend:

@@ -8,7 +8,7 @@ To use one specific project:
 
 1) clone this repository
 
-2) install [rapydo controller](https://github.com/rapydo/do)
+2) install the [rapydo controller](https://github.com/rapydo/do)
 
 3) install docker
 

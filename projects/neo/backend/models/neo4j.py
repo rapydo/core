@@ -10,6 +10,8 @@ Imports and models have to be defined/used AFTER normal Graphdb connection.
 
 from neomodel import ZeroOrMore, OneOrMore
 
+from neomodel.util import NodeClassRegistry
+
 from restapi.services.neo4j.models import \
     StringProperty, IntegerProperty, DateProperty, DateTimeProperty, \
     JSONProperty, ArrayProperty, FloatProperty, BooleanProperty, \
@@ -21,6 +23,14 @@ from utilities.logs import get_logger
 log = get_logger(__name__)
 
 __author__ = "Mattia D'Antonio (m.dantonio@cineca.it)"
+
+
+registry = NodeClassRegistry()
+base_user = frozenset({'User'})
+for c in registry._NODE_CLASS_REGISTRY:
+    if c == base_user:
+        registry._NODE_CLASS_REGISTRY.pop(base_user)
+        break
 
 
 # Extension of User model for accounting in API login/logout

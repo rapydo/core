@@ -3,12 +3,31 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'customlinks',
   providers: [],
-  templateUrl: './app.custom.navbar.html',
+  templateUrl: './custom.navbar.links.html',
 })
 export class CustomNavbarComponent {
 
-	@Input() user: any;
+  @Input() user: any;
 
-	constructor() { console.log("custom");}
+  constructor() { }
+
+}
+
+
+@Component({
+  selector: 'custombrand',
+  providers: [],
+  templateUrl: './custom.navbar.brand.html',
+})
+export class CustomBrandComponent {
+
+  public myproject: string
+
+  constructor() {
+    var t = process.env.projectTitle;
+    t = t.replace(/^'/, "");
+    t = t.replace(/'$/, "");
+    this.myproject = t; 
+  }
 
 }

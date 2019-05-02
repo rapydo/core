@@ -3,6 +3,10 @@ version: '3'
 # Link services inside API
 
 services:
+
+  backend:
+    command: restapi launch
+
   frontend:
     ports:
       - 80:80
@@ -25,7 +29,7 @@ services:
     working_dir: /config
     volumes:
       - ${PROJECT_DIR}/frontend/tests/:/specs
-      - ${VANILLA_DIR}/data/frontend/tests/:/results
+      - ${VANILLA_DIR}/data/${COMPOSE_PROJECT_NAME}/frontend/tests/:/results
       - ${SUBMODULE_DIR}/rapydo-confs/confs/cypress/:/config
     networks:
       app_net:

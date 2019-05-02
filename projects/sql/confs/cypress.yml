@@ -4,6 +4,9 @@ version: '3'
 
 services:
 
+  backend:
+    command: restapi launch
+
   frontend:
     ports:
       - 80:80

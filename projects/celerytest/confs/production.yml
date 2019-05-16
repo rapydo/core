@@ -7,7 +7,7 @@ services:
     environment:
       ACTIVATE: 1
     volumes:
-      - ${SUBMODULE_DIR}/rapydo-confs/confs/nginx/production.conf:/etc/nginx/sites-enabled/production
+      - ${SUBMODULE_DIR}/rapydo-confs/confs/nginx/production-a2.conf:/etc/nginx/sites-enabled/production
     depends_on:
       - backend
       - frontend

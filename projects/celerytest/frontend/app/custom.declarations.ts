@@ -5,7 +5,7 @@ import { CustomBrandComponent } from './custom.navbar';
 // import {YourModule} from "your/module";
 
 export const declarations: any[] = [
-	CustomNavbarComponent, CustomBrandComponent
+    CustomNavbarComponent, CustomBrandComponent
 ];
 
 export const entryComponents: any[] = [

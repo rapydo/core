@@ -3,20 +3,21 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ProjectOptions {
 
-	constructor() {}
+    constructor() {}
 
-	public get_option(opt) {
+    public get_option(opt) {
 
-/*		if (opt == 'registration') {
-			return this.registration_options()
-		}
+/*   
+        if (opt == 'registration') {
+            return this.registration_options()
+        }
 */
-		return null;
-	}
+        return null;
+    }
 
-/*	
-	private registration_options() {
-		return {}
-	}
+/*    
+    private registration_options() {
+        return {}
+    }
 */
 }

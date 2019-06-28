@@ -7,16 +7,15 @@ services:
     environment:
       ACTIVATE: 1
     volumes:
-      - ${SUBMODULE_DIR}/rapydo-confs/confs/nginx/production.conf:/etc/nginx/sites-enabled/production
+      - ${SUBMODULE_DIR}/rapydo-confs/confs/nginx/production-a2.conf:/etc/nginx/sites-enabled/production
     depends_on:
       - backend
       - frontend
 
   backend:
     environment:
-      - APP_MODE=production
-      - DEBUG_LEVEL=INFO
-      - NGINX_ACTIVE=true
+      APP_MODE: production
+      NGINX_ACTIVE: "True"
 
     networks:
       worker_net:
@@ -26,8 +25,8 @@ services:
 
   frontend:
     environment:
-      - APP_MODE=production
-      - APP_DEBUG=false 
+      APP_MODE: production
+      BACKEND_PORT: ${PROXY_PROD_PORT}
     networks:
       proxy_net:
         aliases:

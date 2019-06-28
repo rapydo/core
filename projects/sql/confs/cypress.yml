@@ -1,0 +1,40 @@
+version: '3'
+#######################
+# Link services inside API
+
+services:
+
+  backend:
+    command: restapi launch
+
+  frontend:
+    ports:
+      - 80:80
+    environment:
+      BACKEND_HOST: ${FLASK_HOST}
+      BACKEND_PORT: 5000
+    networks:
+      frontend_net:
+        aliases:
+          - ${FRONTEND_HOST}
+
+  cypress:
+    image: "mtlynch/cypress:3.2.0"
+    environment:
+      ACTIVATE: 1 
+      CYPRESS_baseUrl: http://${FRONTEND_HOST}
+      CYPRESS_PAGE_LOAD_TIMEOUT: 30000
+      CYPRESS_USERNAME: ${DEFAULT_USERNAME} 
+      CYPRESS_PASSWORD: ${DEFAULT_PASSWORD} 
+    working_dir: /config
+    volumes:
+      - ${PROJECT_DIR}/frontend/tests/:/specs
+      - ${VANILLA_DIR}/data/${COMPOSE_PROJECT_NAME}/frontend/tests/:/results
+      - ${SUBMODULE_DIR}/rapydo-confs/confs/cypress/:/config
+    networks:
+      app_net:
+      frontend_net:
+
+networks:
+  # default:
+  frontend_net:

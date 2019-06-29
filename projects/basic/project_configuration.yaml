@@ -3,7 +3,7 @@ project:
   title: My Basic project
   description: Title of my basic project
   version: "1.0"
-  rapydo: 0.6.6
+  rapydo: 0.6.7
 
 variables:
   env:

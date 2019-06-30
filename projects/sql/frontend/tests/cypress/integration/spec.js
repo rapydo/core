@@ -3,10 +3,10 @@ it('login', () => {
 
   cy.get('[routerlink="/app/login"]').click()
 
-  cy.get('#formly_1_input_username_0')
+  cy.get('#formly_2_input_username_0')
     .type(Cypress.env('USERNAME'))
 
-  cy.get('#formly_1_input_password_1')
+  cy.get('#formly_2_input_password_1')
     .type(Cypress.env('PASSWORD'))
 
   cy.get('form').submit()

@@ -1,8 +1,0 @@
-
-file: template_endpoints 
-class: NewEndpoint
-
-mapping:
-  new: "/newendpoint"
-labels:
-  - new

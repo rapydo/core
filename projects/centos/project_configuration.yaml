@@ -10,6 +10,7 @@ variables:
 
     BACKEND_BUILD_MODE: backendcentos
 
+    ACTIVATE_ALCHEMY: 1
     ALCHEMY_USER: sqluser
     ALCHEMY_PASSWORD: chooseapasswordwisely
 

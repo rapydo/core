@@ -7,6 +7,7 @@ project:
 
 variables:
   env:
+    ACTIVATE_ALCHEMY: 1
     ALCHEMY_USER: sqluser
     ALCHEMY_PASSWORD: chooseapasswordwisely
 

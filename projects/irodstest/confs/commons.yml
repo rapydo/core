@@ -17,6 +17,7 @@ services:
       # irods configuration
       IRODS_ENABLE: 1
       
+      IRODS_HOST: ${IRODS_HOST}
       IRODS_PORT: ${IRODS_PORT}
       IRODS_USER: ${IRODS_USER}
       IRODS_ZONE: ${IRODS_ZONE}

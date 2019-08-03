@@ -6,6 +6,10 @@ project:
   rapydo: 0.6.7
 
 variables:
+  env:
+    ACTIVATE_MONGODB: 1
+    AUTH_SERVICE: mongo
+
   backend:
     credentials:
       username: "user@nomail.org"

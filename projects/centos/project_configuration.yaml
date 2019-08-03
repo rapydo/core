@@ -12,9 +12,7 @@ variables:
 
     ALCHEMY_USER: sqluser
     ALCHEMY_PASSWORD: chooseapasswordwisely
-    ALCHEMY_API_DB: SQL_API
-    ALCHEMY_ENGINE: postgresql
-    ALCHEMY_DBS: SQL_API
+
   backend:
     credentials:
       username: "user@nomail.org"

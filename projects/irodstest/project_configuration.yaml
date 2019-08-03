@@ -10,10 +10,10 @@ variables:
 
     BACKEND_BUILD_MODE: backendirods
 
+    ACTIVATE_ALCHEMY: 1
     ALCHEMY_USER: sqluser
     ALCHEMY_PASSWORD: chooseapasswordwisely
-    ALCHEMY_API_DB: SQL_API
-    ALCHEMY_ENGINE: postgresql
+
     ALCHEMY_DBS: 'ICAT SQL_API'
     ## LOCAL iRODS server VERSION
     # You may leave this like this in DEBUG mode

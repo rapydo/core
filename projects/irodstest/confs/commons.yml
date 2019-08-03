@@ -14,30 +14,9 @@ volumes:
 services:
   backend:
     environment:
-      # base the user/role mechanism on some database
-      AUTH_ENABLE: 1
-      # putting this here because it should not be configurable in .env
-      AUTH_SERVICE: sqlalchemy
-
-      AUTH_REGISTER_FAILED_LOGIN: ${AUTH_REGISTER_FAILED_LOGIN}
-      AUTH_FORCE_FIRST_PASSWORD_CHANGE: ${AUTH_FORCE_FIRST_PASSWORD_CHANGE}
-      AUTH_VERIFY_PASSWORD_STRENGTH: ${AUTH_VERIFY_PASSWORD_STRENGTH}
-      AUTH_MAX_PASSWORD_VALIDITY: ${AUTH_MAX_PASSWORD_VALIDITY}
-      AUTH_DISABLE_UNUSED_CREDENTIALS_AFTER: ${AUTH_DISABLE_UNUSED_CREDENTIALS_AFTER}
-      AUTH_MAX_LOGIN_ATTEMPTS: ${AUTH_MAX_LOGIN_ATTEMPTS}
-      AUTH_SECOND_FACTOR_AUTHENTICATION: ${AUTH_SECOND_FACTOR_AUTHENTICATION}
-
-      # db access
-      ALCHEMY_ENABLE: 1
-      ALCHEMY_HOST: ${ALCHEMY_HOST}
-      ALCHEMY_PORT: ${ALCHEMY_PORT}
-      ALCHEMY_USER: ${ALCHEMY_USER}
-      ALCHEMY_PASSWORD: ${ALCHEMY_PASSWORD}
-      ALCHEMY_DB: ${ALCHEMY_API_DB}
-
       # irods configuration
       IRODS_ENABLE: 1
-      IRODS_HOST: ${IRODS_HOST}
+      
       IRODS_PORT: ${IRODS_PORT}
       IRODS_USER: ${IRODS_USER}
       IRODS_ZONE: ${IRODS_ZONE}
@@ -51,28 +30,10 @@ services:
     networks:
       i_net:
 
-    depends_on:
-      - icat
-      - postgres
-
-  postgres:
-    environment:
-      POSTGRES_USER: "${ALCHEMY_USER}"
-      POSTGRES_PASSWORD: "${ALCHEMY_PASSWORD}"
-      POSTGRES_DBS: ${ALCHEMY_DBS}
 
   icat:
     environment:
       ACTIVATE: 1
-      POSTGRES_HOST: "${ALCHEMY_HOST}"
-      POSTGRES_USER: "${ALCHEMY_USER}"
-      POSTGRES_PASSWORD: "${ALCHEMY_PASSWORD}"
-      IRODS_HOST: "${IRODS_HOST}"
-      IRODS_PORT: ${IRODS_PORT}
-      IRODS_ZONE: ${IRODS_ZONE}
-      IRODS_DB: "${IRODS_DB}"
-      IRODS_USER: ${IRODS_USER}
-      IRODS_PASSWORD: ${IRODS_PASSWORD}
 
     volumes:
       - etcconf:/etc

@@ -7,14 +7,6 @@ project:
 
 variables:
 
-  submodules:
-    utils:
-      branch: 0.6.7
-    http-api:
-      branch: 0.6.7
-    do:
-      branch: 0.6.7
-
   env:
     ALCHEMY_USER: sqluser
     ALCHEMY_PASSWORD: chooseapasswordwisely

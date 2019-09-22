@@ -7,14 +7,6 @@ project:
 
 variables:
 
-  submodules:
-    utils:
-      branch: 0.6.7
-    http-api:
-      branch: 0.6.7
-    do:
-      branch: 0.6.7
-
   env:
     ACTIVATE_NEO4J: 1
     AUTH_SERVICE: neo4j

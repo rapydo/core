@@ -3,9 +3,18 @@ project:
   title: My Sql project
   description: Title of my sql project
   version: "1.0"
-  rapydo: 0.6.7
+  rapydo: 0.7.0
 
 variables:
+
+  submodules:
+    utils:
+      branch: 0.6.7
+    http-api:
+      branch: 0.6.7
+    do:
+      branch: 0.6.7
+
   env:
     ACTIVATE_ALCHEMY: 1
     ACTIVATE_POSTGRES: 1

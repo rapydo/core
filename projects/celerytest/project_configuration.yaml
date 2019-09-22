@@ -3,9 +3,18 @@ project:
   title: My Celery project
   description: Title of my celery project
   version: "1.0"
-  rapydo: 0.6.7
+  rapydo: 0.7.0
 
 variables:
+
+  submodules:
+    utils:
+      branch: 0.6.7
+    http-api:
+      branch: 0.6.7
+    do:
+      branch: 0.6.7
+
   env:
     ALCHEMY_USER: sqluser
     ALCHEMY_PASSWORD: chooseapasswordwisely

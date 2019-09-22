@@ -7,7 +7,16 @@ import { AuthGuard } from '/rapydo/src/app/app.auth.guard';
 // import {YourModule} from "your/module";
 
 const routes: Routes = [
-
+	{
+		path: '',
+		redirectTo: '/app/admin/users',
+		pathMatch: 'full'
+	},
+	{
+		path: 'app',
+		redirectTo: '/app/admin/users',
+		pathMatch: 'full'
+	},
 ];
 
 @NgModule({

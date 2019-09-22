@@ -3,15 +3,15 @@ project:
   title: My Sql project
   description: Title of my sql project
   version: "1.0"
-  rapydo: 0.6.6
+  rapydo: 0.6.7
 
 variables:
   env:
+    ACTIVATE_ALCHEMY: 1
+    ACTIVATE_POSTGRES: 1
     ALCHEMY_USER: sqluser
     ALCHEMY_PASSWORD: chooseapasswordwisely
-    ALCHEMY_API_DB: SQL_API
-    ALCHEMY_ENGINE: postgresql
-    ALCHEMY_DBS: SQL_API
+
   backend:
     credentials:
       username: "user@nomail.org"

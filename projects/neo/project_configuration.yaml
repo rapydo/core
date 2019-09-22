@@ -3,10 +3,12 @@ project:
   title: My Neo4j project
   description: Title of my Neo4j project
   version: "1.0"
-  rapydo: 0.6.6
+  rapydo: 0.6.7
 
 variables:
   env:
+    ACTIVATE_NEO4J: 1
+    AUTH_SERVICE: neo4j
     GRAPHDB_PASSWORD: chooseapassword
   backend:
     credentials:

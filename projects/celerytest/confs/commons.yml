@@ -3,84 +3,15 @@ version: '3'
 
 services:
   backend:
-    environment:
-      # base the user/role mechanism on some database
-      AUTH_ENABLE: 1
-      # putting this here because it should not be configurable in .env
-      AUTH_SERVICE: sqlalchemy
-
-      AUTH_REGISTER_FAILED_LOGIN: ${AUTH_REGISTER_FAILED_LOGIN}
-      AUTH_FORCE_FIRST_PASSWORD_CHANGE: ${AUTH_FORCE_FIRST_PASSWORD_CHANGE}
-      AUTH_VERIFY_PASSWORD_STRENGTH: ${AUTH_VERIFY_PASSWORD_STRENGTH}
-      AUTH_MAX_PASSWORD_VALIDITY: ${AUTH_MAX_PASSWORD_VALIDITY}
-      AUTH_DISABLE_UNUSED_CREDENTIALS_AFTER: ${AUTH_DISABLE_UNUSED_CREDENTIALS_AFTER}
-      AUTH_MAX_LOGIN_ATTEMPTS: ${AUTH_MAX_LOGIN_ATTEMPTS}
-      AUTH_SECOND_FACTOR_AUTHENTICATION: ${AUTH_SECOND_FACTOR_AUTHENTICATION}
-
-      # db access
-      ALCHEMY_ENABLE: 1
-      ALCHEMY_HOST: ${ALCHEMY_HOST}
-      ALCHEMY_PORT: ${ALCHEMY_PORT}
-      ALCHEMY_USER: ${ALCHEMY_USER}
-      ALCHEMY_PASSWORD: ${ALCHEMY_PASSWORD}
-      ALCHEMY_DB: ${ALCHEMY_API_DB}
-
-      CELERY_ENABLE: 1
-      CELERY_EXTERNAL: ${CELERY_EXTERNAL}
-      CELERY_BROKER: ${CELERY_BROKER}
-      CELERY_BROKER_HOST: ${CELERY_BROKER_HOST}
-      CELERY_BROKER_PORT: ${CELERY_BROKER_PORT}
-      CELERY_BACKEND: ${CELERY_BACKEND}
-      CELERY_BACKEND_HOST: ${CELERY_BACKEND_HOST}
-      CELERY_BACKEND_PORT: ${CELERY_BACKEND_PORT}
-
     volumes:
       - ${VANILLA_DIR}/data/test:/data
 
     networks:
       worker_net:
 
-    depends_on:
-      - postgres
-
-  postgres:
-    environment:
-      POSTGRES_USER: "${ALCHEMY_USER}"
-      POSTGRES_PASSWORD: "${ALCHEMY_PASSWORD}"
-      POSTGRES_DBS: ${ALCHEMY_DBS}
-
-  mongodb:
-    environment:
-      ACTIVATE: 1
-
   celery:
     volumes:
       - ${VANILLA_DIR}/data/test:/data
-    depends_on:
-      - rabbit
-      - postgres 
-      - mongodb
-
-    environment:
-      ACTIVATE: 1
-      # base the user/role mechanism on some database
-      AUTH_ENABLE: 1
-      # putting this here because it should not be configurable in .env
-      AUTH_SERVICE: sqlalchemy
-
-       # db access
-      ALCHEMY_ENABLE: 1
-      ALCHEMY_HOST: ${ALCHEMY_HOST}
-      ALCHEMY_PORT: ${ALCHEMY_PORT}
-      ALCHEMY_USER: ${ALCHEMY_USER}
-      ALCHEMY_PASSWORD: ${ALCHEMY_PASSWORD}
-      ALCHEMY_DB: ${ALCHEMY_API_DB}
-
-      CELERY_ENABLE: 1
-      CELERY_EXTERNAL: ${CELERY_EXTERNAL}
-      CELERY_BROKER: ${CELERY_BROKER}
-      CELERY_BROKER_HOST: ${CELERY_BROKER_HOST}
-      CELERY_BROKER_PORT: ${CELERY_BROKER_PORT}
 
 # volumes:
 #   -

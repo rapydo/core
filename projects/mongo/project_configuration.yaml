@@ -3,9 +3,13 @@ project:
   title: My MongoDB project
   description: Title of my mongodb project
   version: "1.0"
-  rapydo: 0.6.6
+  rapydo: 0.6.7
 
 variables:
+  env:
+    ACTIVATE_MONGODB: 1
+    AUTH_SERVICE: mongo
+
   backend:
     credentials:
       username: "user@nomail.org"

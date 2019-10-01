@@ -13,6 +13,7 @@ services:
     environment:
       BACKEND_HOST: ${FLASK_HOST}
       BACKEND_PORT: 5000
+      APP_MODE: cypress
     networks:
       frontend_net:
         aliases:

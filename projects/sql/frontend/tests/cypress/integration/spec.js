@@ -1,5 +1,7 @@
 it('login', () => {
   cy.visit('/')
+  
+  cy.wait(2000)
 
   cy.get('[routerlink="/app/login"]').click()
 

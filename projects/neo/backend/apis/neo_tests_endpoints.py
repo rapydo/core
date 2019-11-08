@@ -6,6 +6,7 @@ from restapi.services.neo4j.graph_endpoints import GraphBaseOperations
 from restapi.services.neo4j.graph_endpoints import graph_transactions
 from restapi.exceptions import RestApiException
 from restapi.decorators import catch_error
+from restapi.protocols.bearer import authentication
 from utilities.meta import Meta
 from utilities.logs import get_logger
 
@@ -14,6 +15,10 @@ log = get_logger(__name__)
 
 # if current_app.config['TESTING']:
 class DoTests(GraphBaseOperations):
+
+    # schema_expose = True
+    labels = ['tests']
+    GET = {'/tests/<test_num>': {'custom': {}, 'summary': 'Do tests', 'responses': {'200': {'description': 'a test is executed'}}}}
 
     def test_1(self, graph):
         graph.cypher("MATCH (n) RETURN n")
@@ -31,7 +36,7 @@ class DoTests(GraphBaseOperations):
         g = graph.Group(name='test', extra='hidden')
         g.save()
 
-        u = self._current_user
+        u = self.get_current_user()
         u.belongs_to.connect(g)
 
         t1 = graph.JustATest(p_str='abc', p_int=123)
@@ -60,9 +65,10 @@ class DoTests(GraphBaseOperations):
 
     @catch_error()
     @graph_transactions
+    @authentication.required()
     def get(self, test_num):
 
-        # self.graph = self.get_service_instance('neo4j')
+        self.graph = self.get_service_instance('neo4j')
         self.initGraph()
 
         meta = Meta()

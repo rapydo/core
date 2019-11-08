@@ -13,6 +13,10 @@ log = get_logger(__name__)
 # if current_app.config['TESTING']:
 class DoTests(EndpointResource):
 
+    # schema_expose = True
+    labels = ['tests']
+    GET = {'/tests/<test_num>': {'custom': {}, 'summary': 'Do tests', 'responses': {'200': {'description': 'a test is executed'}}}}
+
     def test_1(self, mongo):
 
         return "1"

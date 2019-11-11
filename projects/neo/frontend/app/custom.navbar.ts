@@ -18,7 +18,7 @@ export class CustomNavbarComponent {
 @Component({
   selector: 'custombrand',
   providers: [],
-  template: "custom.navbar.brand.html",
+  templateUrl: "custom.navbar.brand.html",
 })
 export class CustomBrandComponent {
 

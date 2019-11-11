@@ -69,7 +69,6 @@ class DoTests(GraphBaseOperations):
     def get(self, test_num):
 
         self.graph = self.get_service_instance('neo4j')
-        self.initGraph()
 
         meta = Meta()
         methods = meta.get_methods_inside_instance(self)

@@ -10,7 +10,7 @@ services:
       DEBUG_LEVEL: VERBOSE
       ACTIVATE: 1
     ports:
-      - 8080:8080
+      - ${BACKEND_PORT}:${FLASK_DEFAULT_PORT}
 
   frontend:
     ports:

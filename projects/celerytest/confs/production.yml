@@ -6,20 +6,11 @@ services:
   proxy:
     environment:
       ACTIVATE: 1
-    depends_on:
-      - backend
-      - frontend
 
   backend:
     environment:
       APP_MODE: production
       NGINX_ACTIVE: "True"
-
-    networks:
-      worker_net:
-      proxy_net:
-        aliases:
-          - ${FLASK_HOST}
 
   frontend:
     environment:

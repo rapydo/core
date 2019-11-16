@@ -4,8 +4,8 @@
 from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
 from restapi.decorators import catch_error
-from utilities.meta import Meta
-from utilities.logs import get_logger
+from restapi.utilities.meta import Meta
+from restapi.utilities.logs import get_logger
 
 log = get_logger(__name__)
 

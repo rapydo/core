@@ -3,9 +3,9 @@
 import os
 from restapi.tests import BaseTests, API_URI
 from restapi.services.detect import detector
-from utilities.htmlcodes import HTTP_OK_BASIC
+from restapi.utilities.htmlcodes import hcodes
 
-from utilities.logs import get_logger
+from restapi.utilities.logs import get_logger
 
 __author__ = "Mattia D'Antonio (m.dantonio@cineca.it)"
 log = get_logger(__name__)
@@ -17,7 +17,7 @@ class TestApp(BaseTests):
 
         endpoint = API_URI + '/tests/1'
         r = client.get(endpoint)
-        assert r.status_code == HTTP_OK_BASIC
+        assert r.status_code == hcodes.HTTP_OK_BASIC
 
         irods_ext = detector.extensions_instances.get('irods')
         irods = irods_ext.get_instance()

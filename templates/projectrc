@@ -1,9 +1,7 @@
-development: True
 # project: your_project
 mode: debug
 # mode: production
 hostname: localhost
-log-level: DEBUG
 
 project_configuration:
   variables:

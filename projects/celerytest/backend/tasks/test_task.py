@@ -8,8 +8,6 @@ log = get_logger(__name__)
 
 celery_app = CeleryExt.celery_app
 
-__author__ = "Mattia D'Antonio (m.dantonio@cineca.it)"
-
 
 @celery_app.task(bind=True)
 def testme(self):

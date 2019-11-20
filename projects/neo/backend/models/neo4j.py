@@ -22,8 +22,6 @@ from restapi.models.neo4j import User as UserBase
 from restapi.utilities.logs import get_logger
 log = get_logger(__name__)
 
-__author__ = "Mattia D'Antonio (m.dantonio@cineca.it)"
-
 
 registry = NodeClassRegistry()
 base_user = frozenset({'User'})

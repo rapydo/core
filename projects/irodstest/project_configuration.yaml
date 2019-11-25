@@ -3,9 +3,10 @@ project:
   title: My iRODS project
   description: Title of my irods project
   version: "1.0"
-  rapydo: 0.6.7
+  rapydo: 0.7.0
 
 variables:
+
   env:
 
     BACKEND_BUILD_MODE: backendirods

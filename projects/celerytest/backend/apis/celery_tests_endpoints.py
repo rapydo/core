@@ -5,14 +5,18 @@ from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
 from restapi.decorators import catch_error
 from restapi.flask_ext.flask_celery import CeleryExt
-from utilities.meta import Meta
-from utilities.logs import get_logger
+from restapi.utilities.meta import Meta
+from restapi.utilities.logs import get_logger
 
 log = get_logger(__name__)
 
 
 # if current_app.config['TESTING']:
 class DoTests(EndpointResource):
+
+    # schema_expose = True
+    labels = ['tests']
+    GET = {'/tests/<test_num>/<task_id>': {'custom': {}, 'summary': 'Do tests', 'responses': {'200': {'description': 'a test is executed'}}}, '/tests/<test_num>': {'custom': {}, 'summary': 'Do tests', 'responses': {'200': {'description': 'a test is executed'}}}}
 
     def test_1(self, celery, task_id=None):
 

@@ -3,7 +3,7 @@ project:
   title: My Neo4j project
   description: Title of my Neo4j project
   version: "1.0"
-  rapydo: 0.7.0
+  rapydo: 0.7.1
 
 variables:
 

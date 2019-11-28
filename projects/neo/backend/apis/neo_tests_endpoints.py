@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# from flask import current_app
-# from restapi.rest.definition import EndpointResource
-from restapi.services.neo4j.graph_endpoints import GraphBaseOperations
-from restapi.services.neo4j.graph_endpoints import graph_transactions
+from restapi.rest.definition import EndpointResource
+from restapi.flask_ext.flask_neo4j import graph_transactions
+
 from restapi.exceptions import RestApiException
 from restapi.decorators import catch_error
 from restapi.protocols.bearer import authentication
@@ -14,7 +13,7 @@ log = get_logger(__name__)
 
 
 # if current_app.config['TESTING']:
-class DoTests(GraphBaseOperations):
+class DoTests(EndpointResource):
 
     # schema_expose = True
     labels = ['tests']

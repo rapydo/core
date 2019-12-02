@@ -5,9 +5,7 @@ from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
 from restapi.decorators import catch_error
 from restapi.utilities.meta import Meta
-from restapi.utilities.logs import get_logger
-
-log = get_logger(__name__)
+# from restapi.utilities.logs import log
 
 
 # if current_app.config['TESTING']:

@@ -25,9 +25,9 @@ class DoTests(EndpointResource):
 
         meta = Meta()
         methods = meta.get_methods_inside_instance(self)
-        method_name = "test_%s" % test_num
+        method_name = "test_{}".format(test_num)
         if method_name not in methods:
-            raise RestApiException("Test %d not found" % test_num)
+            raise RestApiException("Test {} not found".format(test_num))
         method = methods[method_name]
         out = method(sql)
         return self.force_response(out)

@@ -23,8 +23,6 @@ variables:
     CELERY_BACKEND_HOST: mongo.dockerized.io
     CELERY_BACKEND_PORT: 27017
 
-    ENABLE_TOASTR: True
-
   backend:
     credentials:
       username: "user@nomail.org"

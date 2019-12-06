@@ -8,6 +8,7 @@ project:
 variables:
 
   env:
+    FRONTEND_FRAMEWORK: angular
     ACTIVATE_NEO4J: 1
     AUTH_SERVICE: neo4j
     GRAPHDB_PASSWORD: chooseapassword
@@ -20,5 +21,3 @@ variables:
         internal: staff_user
         admin: admin_root
         default: normal_user
-  frontend:
-    framework: angular

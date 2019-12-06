@@ -8,6 +8,7 @@ project:
 variables:
 
   env:
+    FRONTEND_FRAMEWORK: angular
     ACTIVATE_ALCHEMY: 1
     ACTIVATE_POSTGRES: 1
     ALCHEMY_USER: sqluser
@@ -22,5 +23,3 @@ variables:
         internal: staff_user
         admin: admin_root
         default: normal_user
-  frontend:
-    framework: angular

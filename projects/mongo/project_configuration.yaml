@@ -8,6 +8,7 @@ project:
 variables:
 
   env:
+    FRONTEND_FRAMEWORK: angular
     ACTIVATE_MONGODB: 1
     AUTH_SERVICE: mongo
 
@@ -20,5 +21,3 @@ variables:
         internal: staff_user
         admin: admin_root
         default: normal_user
-  frontend:
-    framework: angular

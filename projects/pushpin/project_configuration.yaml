@@ -8,6 +8,9 @@ project:
 variables:
 
   env:
+
+    FRONTEND_FRAMEWORK: angular
+
     ALCHEMY_USER: sqluser
     ALCHEMY_PASSWORD: chooseapasswordwisely
 
@@ -31,5 +34,3 @@ variables:
         internal: staff_user
         admin: admin_root
         default: normal_user
-  frontend:
-    framework: angular

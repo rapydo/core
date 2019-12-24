@@ -20,8 +20,6 @@ variables:
     ACTIVATE_MONGODB: 1
     ACTIVATE_PUSHPIN: 1
     CELERY_BACKEND: MONGODB
-    CELERY_BACKEND_HOST: mongo.dockerized.io
-    CELERY_BACKEND_PORT: 27017
 
   backend:
     credentials:

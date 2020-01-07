@@ -1,18 +1,3 @@
 version: '3'
-#######################
-# Link services inside API
 
 services:
-  proxy:
-    environment:
-      ACTIVATE: 1
-
-  backend:
-    environment:
-      APP_MODE: production
-      NGINX_ACTIVE: "True"
-
-  frontend:
-    environment:
-      APP_MODE: production
-      BACKEND_PORT: ${PROXY_PROD_PORT}

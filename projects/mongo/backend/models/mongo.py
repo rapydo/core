@@ -3,6 +3,4 @@
 """ Models for mongo database """
 
 # from pymongo.write_concern import WriteConcern
-from pymodm import MongoModel, fields
-
-
+# from pymodm import MongoModel, fields

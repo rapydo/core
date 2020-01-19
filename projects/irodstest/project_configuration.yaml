@@ -3,12 +3,13 @@ project:
   title: My iRODS project
   description: Title of my irods project
   version: "1.0"
-  rapydo: 0.7.0
+  rapydo: 0.7.1
 
 variables:
 
   env:
 
+    FRONTEND_FRAMEWORK: angular
     BACKEND_BUILD_MODE: backendirods
 
     ACTIVATE_ALCHEMY: 1
@@ -40,5 +41,3 @@ variables:
         internal: staff_user
         admin: admin_root
         default: normal_user
-  frontend:
-    framework: angular

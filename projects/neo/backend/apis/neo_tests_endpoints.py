@@ -1,20 +1,17 @@
 # -*- coding: utf-8 -*-
 
-# from flask import current_app
-# from restapi.rest.definition import EndpointResource
-from restapi.services.neo4j.graph_endpoints import GraphBaseOperations
-from restapi.services.neo4j.graph_endpoints import graph_transactions
+from restapi.rest.definition import EndpointResource
+from restapi.flask_ext.flask_neo4j import graph_transactions
+
 from restapi.exceptions import RestApiException
 from restapi.decorators import catch_error
 from restapi.protocols.bearer import authentication
 from restapi.utilities.meta import Meta
-from restapi.utilities.logs import get_logger
-
-log = get_logger(__name__)
+# from restapi.utilities.logs import log
 
 
 # if current_app.config['TESTING']:
-class DoTests(GraphBaseOperations):
+class DoTests(EndpointResource):
 
     # schema_expose = True
     labels = ['tests']
@@ -72,9 +69,9 @@ class DoTests(GraphBaseOperations):
 
         meta = Meta()
         methods = meta.get_methods_inside_instance(self)
-        method_name = "test_%s" % test_num
+        method_name = "test_{}".format(test_num)
         if method_name not in methods:
-            raise RestApiException("Test %d not found" % test_num)
+            raise RestApiException("Test {} not found".format(test_num))
         method = methods[method_name]
         out = method(self.graph)
         return self.force_response(out)

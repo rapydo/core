@@ -6,9 +6,7 @@ from restapi.exceptions import RestApiException
 from restapi.decorators import catch_error
 from restapi.flask_ext.flask_celery import CeleryExt
 from restapi.utilities.meta import Meta
-from restapi.utilities.logs import get_logger
-
-log = get_logger(__name__)
+# from restapi.utilities.logs import log
 
 
 # if current_app.config['TESTING']:
@@ -48,9 +46,9 @@ class DoTests(EndpointResource):
 
         meta = Meta()
         methods = meta.get_methods_inside_instance(self)
-        method_name = "test_%s" % test_num
+        method_name = "test_{}".format(test_num)
         if method_name not in methods:
-            raise RestApiException("Test %d not found" % test_num)
+            raise RestApiException("Test {} not found".format(test_num))
         method = methods[method_name]
         out = method(celery, task_id)
         return self.force_response(out)

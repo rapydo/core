@@ -3,11 +3,13 @@ project:
   title: My Sql project
   description: Title of my sql project
   version: "1.0"
-  rapydo: 0.7.0
+  rapydo: 0.7.1
 
 variables:
 
   env:
+
+    FRONTEND_FRAMEWORK: angular
 
     BACKEND_BUILD_MODE: backendcentos
 
@@ -25,5 +27,3 @@ variables:
         internal: staff_user
         admin: admin_root
         default: normal_user
-  frontend:
-    framework: angular

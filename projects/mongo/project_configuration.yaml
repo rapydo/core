@@ -3,7 +3,7 @@ project:
   title: My MongoDB project
   description: Title of my mongodb project
   version: "1.0"
-  rapydo: 0.7.1
+  rapydo: 0.7.2
 
 variables:
 

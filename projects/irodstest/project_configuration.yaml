@@ -34,8 +34,6 @@ variables:
 
   backend:
     credentials:
-      username: "user@nomail.org"
-      password: "test"
       roles:
         user: normal_user
         internal: staff_user

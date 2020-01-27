@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { RapydoModule } from '@rapydo/rapydo.module';
+import { SharedModule } from '@rapydo/shared.module';
 import { AuthGuard } from '@rapydo/app.auth.guard';
 
 import { DataComponent } from "@app/components/data.component";
@@ -28,7 +28,7 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
-		RapydoModule,
+		SharedModule,
 	    RouterModule.forChild(routes),
 	],
 	declarations: [

@@ -8,8 +8,8 @@ VERY IMPORTANT!
 Imports and models have to be defined/used AFTER normal Graphdb connection.
 """
 
-from neomodel import StringProperty, StructuredNode
 import logging
+from neomodel import StringProperty, StructuredNode
 
 log = logging.getLogger(__name__)
 

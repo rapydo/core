@@ -23,21 +23,21 @@ class DoTests(EndpointResource):
 
     def test_2(self, celery, task_id=None):
 
+        t = "celerybeat.tasks.test_task.testme"
+
         CeleryExt.create_periodic_task(
             "test",
-            "testme",
+            t,
             every=10,
             period="minutes"
         )
 
         CeleryExt.create_crontab_task(
             "test",
-            "testme",
+            t,
             minute=0,
             hour=3,
         )
-
-
 
         return "1"
 

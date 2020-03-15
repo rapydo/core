@@ -56,6 +56,9 @@ class DoTests(EndpointResource):
     @catch_error()
     def get(self, test_num, task_id=None):
         celery = self.get_service_instance('celery')
+        rabbit = self.get_service_instance('rabbit')
+
+        rabbit.write_to_queue("test", "celery")
 
         meta = Meta()
         methods = meta.get_methods_inside_instance(self)

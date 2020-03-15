@@ -1,0 +1,18 @@
+# Customize this file to include compose configurations common to bluprints
+version: '3'
+
+services:
+  backend:
+    volumes:
+      - ${VANILLA_DIR}/data/test:/data
+
+  celery:
+    volumes:
+      - ${VANILLA_DIR}/data/test:/data
+
+# volumes:
+#   -
+
+# networks:
+#   -
+

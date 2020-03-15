@@ -18,6 +18,4 @@ class TestApp(BaseTests):
         r = client.get(endpoint)
         assert r.status_code == hcodes.HTTP_OK_BASIC
 
-        task_id = self.get_content(r)
-        # We expect as return value the task_id and no more
-        assert type(task_id) == "1"
+        assert self.get_content(r) == "1"

@@ -31,24 +31,9 @@ class DoTests(EndpointResource):
 
         return "1"
 
-    def test_3(self, celery, task_id=None):
-
-        task = celery.AsyncResult(task_id)
-        if task is None:
-            return None
-
-        return {
-            "task_id": task.task_id,
-            "status": task.status,
-            "result": task.result
-        }
-
     @catch_error()
     def get(self, test_num, task_id=None):
         celery = self.get_service_instance('celery')
-        rabbit = self.get_service_instance('rabbit')
-
-        rabbit.write_to_queue("test", "celery")
 
         meta = Meta()
         methods = meta.get_methods_inside_instance(self)

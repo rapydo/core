@@ -1,0 +1,31 @@
+---
+project:
+  title: My Celery project
+  description: Title of my celery project
+  version: "1.0"
+  rapydo: 0.7.2
+
+variables:
+
+  env:
+
+    FRONTEND_FRAMEWORK: angular
+
+    ALCHEMY_USER: sqluser
+    ALCHEMY_PASSWORD: chooseapasswordwisely
+
+    ACTIVATE_ALCHEMY: 1
+    ACTIVATE_POSTGRES: 1
+    ACTIVATE_CELERY: 1
+    ACTIVATE_RABBIT: 1
+    ACTIVATE_REDIS: 1
+    ACTIVATE_CELERY_BEAT: 1
+    CELERY_BACKEND: REDIS 
+
+  backend:
+    credentials:
+      roles:
+        user: normal_user
+        internal: staff_user
+        admin: admin_root
+        default: normal_user

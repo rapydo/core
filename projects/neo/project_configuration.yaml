@@ -3,7 +3,7 @@ project:
   title: My Neo4j project
   description: Title of my Neo4j project
   version: "1.0"
-  rapydo: 0.7.1
+  rapydo: 0.7.2
 
 variables:
 
@@ -11,11 +11,8 @@ variables:
     FRONTEND_FRAMEWORK: angular
     ACTIVATE_NEO4J: 1
     AUTH_SERVICE: neo4j
-    GRAPHDB_PASSWORD: chooseapassword
   backend:
     credentials:
-      username: "user@nomail.org"
-      password: "test"
       roles:
         user: normal_user
         internal: staff_user

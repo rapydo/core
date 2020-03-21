@@ -1,8 +1,8 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { RapydoModule } from '@rapydo/rapydo.module';
-import { AuthGuard } from '@rapydo/app.auth.guard';
+import { SharedModule } from '@rapydo/shared.module';
+// import { AuthGuard } from '@rapydo/app.auth.guard';
 
 // import {YourModule} from "your/module";
 
@@ -21,7 +21,7 @@ const routes: Routes = [
 
 @NgModule({
 	imports: [
-		RapydoModule,
+		SharedModule,
 	    RouterModule.forChild(routes),
 	],
 	declarations: [

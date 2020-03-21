@@ -3,7 +3,7 @@ project:
   title: My Celery project
   description: Title of my celery project
   version: "1.0"
-  rapydo: 0.7.1
+  rapydo: 0.7.2
 
 variables:
 
@@ -17,13 +17,12 @@ variables:
     ACTIVATE_ALCHEMY: 1
     ACTIVATE_POSTGRES: 1
     ACTIVATE_CELERY: 1
+    ACTIVATE_RABBIT: 1
     ACTIVATE_MONGODB: 1
     CELERY_BACKEND: MONGODB
 
   backend:
     credentials:
-      username: "user@nomail.org"
-      password: "test"
       roles:
         user: normal_user
         internal: staff_user

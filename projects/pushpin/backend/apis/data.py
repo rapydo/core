@@ -20,4 +20,4 @@ class Data(EndpointResource):
         task = CeleryExt.data_task.apply_async(
             args=[], countdown=5
         )
-        return self.force_response(task.task_id)
+        return self.response(task.task_id)

@@ -42,4 +42,4 @@ class DoTests(EndpointResource):
             raise RestApiException("Test {} not found".format(test_num))
         method = methods[method_name]
         out = method(celery, task_id)
-        return self.force_response(out)
+        return self.response(out)

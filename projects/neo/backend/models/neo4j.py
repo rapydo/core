@@ -12,11 +12,23 @@ from neomodel import ZeroOrMore, OneOrMore
 
 from neomodel.util import NodeClassRegistry
 
-from restapi.services.neo4j.models import \
-    StringProperty, IntegerProperty, DateProperty, DateTimeProperty, \
-    JSONProperty, ArrayProperty, FloatProperty, BooleanProperty, \
-    AliasProperty, IdentifiedNode, StructuredRel, TimestampedNode, \
-    RelationshipTo, RelationshipFrom  # , UniqueIdProperty
+from restapi.services.neo4j import (
+    StringProperty,
+    IntegerProperty,
+    DateProperty,
+    DateTimeProperty,
+    JSONProperty,
+    ArrayProperty,
+    FloatProperty,
+    BooleanProperty,
+    AliasProperty,
+    IdentifiedNode,
+    StructuredRel,
+    TimestampedNode,
+    RelationshipTo,
+    RelationshipFrom,
+    # UniqueIdProperty
+)
 from restapi.models.neo4j import User as UserBase
 
 # from restapi.utilities.logs import log

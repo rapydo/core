@@ -1,6 +1,5 @@
 # project: your_project
-mode: debug
-# mode: production
+# stack: your_custom_stack 
 hostname: localhost
 
 project_configuration:

@@ -28,8 +28,15 @@ class DoTests(EndpointResource):
         rabbit.write_to_queue("test", "celery")
 
         task = CeleryExt.testme.apply_async(
-            args=[], countdown=0
+            args=[]
         )
+        # task = CeleryExt.testme.apply_async(
+        #     args=[], countdown=1
+        # )
+        # task = CeleryExt.priotestme.testme(
+        #     args=[], priority=8
+        # )
+
         return task.id
 
     def test_3(self, celery, task_id=None):

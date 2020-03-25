@@ -20,6 +20,7 @@ variables:
     ACTIVATE_RABBIT: 1
     ACTIVATE_MONGODB: 1
     CELERY_BACKEND: MONGODB
+    # RABBITMQ_ENABLE_MANAGEMENT_PLUGIN: 1
 
   backend:
     credentials:

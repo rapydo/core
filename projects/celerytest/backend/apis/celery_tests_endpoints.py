@@ -3,7 +3,7 @@
 # from flask import current_app
 from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
-from restapi.decorators import catch_error
+from restapi import decorators
 from restapi.flask_ext.flask_celery import CeleryExt
 from restapi.utilities.meta import Meta
 # from restapi.utilities.logs import log
@@ -51,7 +51,7 @@ class DoTests(EndpointResource):
             "result": task.result
         }
 
-    @catch_error()
+    @decorators.catch_errors()
     def get(self, test_num, task_id=None):
         celery = self.get_service_instance('celery')
 

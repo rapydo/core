@@ -2,8 +2,7 @@
 
 # from flask import current_app
 from restapi.rest.definition import EndpointResource
-from restapi.decorators import catch_error
-from restapi.protocols.bearer import authentication
+from restapi import decorators
 from restapi.flask_ext.flask_celery import CeleryExt
 # from restapi.utilities.logs import log
 
@@ -12,8 +11,8 @@ class Data(EndpointResource):
 
     POST = {'/data': {'summary': 'Start a data task', 'responses': {'200': {'description': 'Task executed'}}}}
 
-    @catch_error()
-    @authentication.required()
+    @decorators.catch_errors()
+    @decorators.auth.required()
     def post(self):
         # celery = self.get_service_instance('celery')
 

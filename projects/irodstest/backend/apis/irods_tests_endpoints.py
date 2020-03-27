@@ -3,7 +3,7 @@
 # from flask import current_app
 from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
-from restapi.decorators import catch_error
+from restapi import decorators
 from restapi.utilities.meta import Meta
 # from restapi.utilities.logs import log
 
@@ -19,7 +19,7 @@ class DoTests(EndpointResource):
 
         return "1"
 
-    @catch_error()
+    @decorators.catch_errors()
     def get(self, test_num):
         irods = self.get_service_instance('irods')
 

@@ -4,8 +4,7 @@ from restapi.rest.definition import EndpointResource
 from restapi.flask_ext.flask_neo4j import graph_transactions
 
 from restapi.exceptions import RestApiException
-from restapi.decorators import catch_error
-from restapi.protocols.bearer import authentication
+from restapi import decorators
 from restapi.utilities.meta import Meta
 # from restapi.utilities.logs import log
 
@@ -60,9 +59,9 @@ class DoTests(EndpointResource):
             # log.exit(j)
             return j
 
-    @catch_error()
+    @decorators.catch_errors()
     @graph_transactions
-    @authentication.required()
+    @decorators.auth.required()
     def get(self, test_num):
 
         self.graph = self.get_service_instance('neo4j')

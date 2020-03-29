@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from restapi.flask_ext.flask_celery import CeleryExt
+from restapi.connectors.celery import CeleryExt
 import time
 
 from restapi.utilities.logs import log

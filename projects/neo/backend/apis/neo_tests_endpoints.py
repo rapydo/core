@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from restapi.rest.definition import EndpointResource
-from restapi.flask_ext.flask_neo4j import graph_transactions
+from restapi.connectors.neo4j import graph_transactions
 
 from restapi.exceptions import RestApiException
 from restapi import decorators

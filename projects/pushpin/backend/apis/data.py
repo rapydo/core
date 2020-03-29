@@ -3,7 +3,7 @@
 # from flask import current_app
 from restapi.rest.definition import EndpointResource
 from restapi import decorators
-from restapi.flask_ext.flask_celery import CeleryExt
+from restapi.connectors.celery import CeleryExt
 # from restapi.utilities.logs import log
 
 

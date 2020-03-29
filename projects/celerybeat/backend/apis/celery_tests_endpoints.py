@@ -5,7 +5,7 @@ from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
 from restapi import decorators
 
-from restapi.flask_ext.flask_celery import CeleryExt
+from restapi.connectors.celery import CeleryExt
 from restapi.utilities.meta import Meta
 # from restapi.utilities.logs import log
 

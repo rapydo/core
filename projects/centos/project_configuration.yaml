@@ -10,6 +10,7 @@ variables:
   env:
 
     FRONTEND_FRAMEWORK: angular
+    AUTH_SERVICE: sqlalchemy
 
     BACKEND_BUILD_MODE: backendcentos
 

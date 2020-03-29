@@ -11,6 +11,7 @@ variables:
 
     FRONTEND_FRAMEWORK: angular
     BACKEND_BUILD_MODE: backendirods
+    AUTH_SERVICE: sqlalchemy
 
     ACTIVATE_ALCHEMY: 1
     ACTIVATE_POSTGRES: 1

@@ -16,7 +16,7 @@ class TestApp(BaseTests):
         r = client.get(endpoint)
         assert r.status_code == hcodes.HTTP_OK_BASIC
 
-        irods_ext = detector.extensions_instances.get('irods')
+        irods_ext = detector.connectors_instances.get('irods')
         irods = irods_ext.get_instance()
 
         # TESTING HOME

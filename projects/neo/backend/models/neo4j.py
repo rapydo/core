@@ -12,7 +12,7 @@ from neomodel import ZeroOrMore, OneOrMore
 
 from neomodel.util import NodeClassRegistry
 
-from restapi.services.neo4j import (
+from restapi.connectors.neo4j.types import (
     StringProperty,
     IntegerProperty,
     DateProperty,

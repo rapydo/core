@@ -9,6 +9,7 @@ variables:
 
   env:
     FRONTEND_FRAMEWORK: angular
+    ACTIVATE_RABBIT: 1
     ACTIVATE_MONGODB: 1
     AUTH_SERVICE: mongo
 

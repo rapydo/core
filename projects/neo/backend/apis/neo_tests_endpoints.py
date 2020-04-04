@@ -55,9 +55,18 @@ class DoTests(EndpointResource):
         groups = graph.Group.nodes.filter(name='test')
         for g in groups:
             # Just take the first
-            return {
+            data = {
                 "name": g.name,
+                "_test1": []
             }
+            for t in g.test1.all():
+                data["_test1"].append(
+                    {
+                        "p_str": t.p_str,
+                        "p_int": t.p_int,
+                    }
+                )
+            return data
 
     @decorators.catch_errors()
     @graph_transactions

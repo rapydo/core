@@ -63,7 +63,6 @@ class DoTests(EndpointResource):
                 data["_test1"].append(
                     {
                         "p_str": t.p_str,
-                        "p_int": t.p_int,
                     }
                 )
             return data

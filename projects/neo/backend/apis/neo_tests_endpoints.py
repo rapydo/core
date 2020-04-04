@@ -29,7 +29,7 @@ class DoTests(EndpointResource):
     def test_3(self, graph):
         """ Create models """
 
-        g = graph.Group(name='test', extra='hidden')
+        g = graph.Group(name='test', extra='value')
         g.save()
 
         u = self.get_current_user()
@@ -55,9 +55,9 @@ class DoTests(EndpointResource):
         groups = graph.Group.nodes.filter(name='test')
         for g in groups:
             # Just take the first
-            j = self.getJsonResponse(g)
-            # log.exit(j)
-            return j
+            return {
+                "name": g.name,
+            }
 
     @decorators.catch_errors()
     @graph_transactions

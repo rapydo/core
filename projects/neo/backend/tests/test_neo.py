@@ -31,14 +31,11 @@ class TestApp(BaseTests):
         r = client.get(endpoint, headers=headers)
         content = self.get_content(r)
         assert r.status_code == hcodes.HTTP_OK_BASIC
-        assert "attributes" in content
-        assert "name" in content["attributes"]
-        assert "extra" not in content["attributes"]
-        assert "relationships" in content
-        assert "test2" not in content["relationships"]
-        assert "test1" in content["relationships"]
-        assert len(content["relationships"]["test1"]) > 0
-        assert "attributes" in content["relationships"]["test1"][0]
-        attrs = content["relationships"]["test1"][0]["attributes"]
+        assert "name" in content
+        assert "extra" not in content
+        assert "_test2" not in content
+        assert "_test1" in content
+        assert len(content["_test1"]) > 0
+        attrs = content["_test1"][0]
         assert "p_str" in attrs
         assert "p_int" not in attrs

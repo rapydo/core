@@ -59,7 +59,7 @@ class DoTests(EndpointResource):
                 "name": g.name,
                 "_test1": []
             }
-            t = self.getSingleLinkedNode(g.test1)
+            t = self.graph.getSingleLinkedNode(g.test1)
             data["_test1"].append(
                 {
                     "p_str": t.p_str,

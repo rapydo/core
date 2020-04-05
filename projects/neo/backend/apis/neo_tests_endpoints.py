@@ -59,12 +59,12 @@ class DoTests(EndpointResource):
                 "name": g.name,
                 "_test1": []
             }
-            for t in g.test1.all():
-                data["_test1"].append(
-                    {
-                        "p_str": t.p_str,
-                    }
-                )
+            t = self.getSingleLinkedNode(g.test1)
+            data["_test1"].append(
+                {
+                    "p_str": t.p_str,
+                }
+            )
             return data
 
     @decorators.catch_errors()

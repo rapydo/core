@@ -14,10 +14,6 @@ class DoTests(EndpointResource):
     labels = ['tests']
     GET = {'/tests/<test_num>': {'custom': {}, 'summary': 'Do tests', 'responses': {'200': {'description': 'a test is executed'}}}}
 
-    def test_1(self, mongo):
-
-        return "1"
-
     @decorators.catch_errors()
     def get(self, test_num):
         mongo = self.get_service_instance('mongo')

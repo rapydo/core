@@ -20,7 +20,7 @@ class TestApp(BaseTests):
 
         task_id = self.get_content(r)
         # We expect as return value the task_id and no more
-        assert type(task_id) == str
+        assert isinstance(task_id, str)
 
         celery = self.get_celery(app)
         res = celery.testme()

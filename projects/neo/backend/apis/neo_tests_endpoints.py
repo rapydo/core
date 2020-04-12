@@ -73,13 +73,13 @@ class DoTests(EndpointResource):
 
         self.graph = self.get_service_instance('neo4j')
 
-        if test_num == 1:
+        if test_num == "1":
             out = self.test_1()
-        elif test_num == 2:
+        elif test_num == "2":
             out = self.test_2()
-        elif test_num == 3:
+        elif test_num == "3":
             out = self.test_3()
-        elif test_num == 4:
+        elif test_num == "4":
             out = self.test_4()
         else:
             raise RestApiException("Test {} not found".format(test_num))

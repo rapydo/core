@@ -37,9 +37,9 @@ class DoTests(EndpointResource):
     def get(self, test_num, task_id=None):
         celery = self.get_service_instance('celery')
 
-        if test_num == 1:
+        if test_num == "1":
             out = self.test_1(celery, task_id)
-        elif test_num == 2:
+        elif test_num == "2":
             out = self.test_2(celery, task_id)
         else:
             raise RestApiException("Test {} not found".format(test_num))

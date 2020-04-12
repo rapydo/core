@@ -2,13 +2,14 @@
 
 from restapi.tests import BaseTests, API_URI
 from restapi.utilities.htmlcodes import hcodes
-# from restapi.utilities.logs import log
+from restapi.utilities.logs import log
 
 
 class TestApp(BaseTests):
 
     def test_01_x(self, client):
 
+        log.debug("Executing tests from {}", self.__class__.__module__)
         headers, _ = self.do_login(client, None, None)
 
         # Cypher query

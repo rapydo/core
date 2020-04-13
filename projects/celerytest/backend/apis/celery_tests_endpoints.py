@@ -12,7 +12,11 @@ class DoTests(EndpointResource):
     # schema_expose = True
     labels = ['tests']
     GET = {
-        '/tests/<test_num><task_id>': {
+        '/tests/<test_num>': {
+            'summary': 'Do tests',
+            'responses': {'200': {'description': 'a test is executed'}}
+        },
+        '/tests/<test_num>/<task_id>': {
             'summary': 'Do tests',
             'responses': {'200': {'description': 'a test is executed'}}
         }

@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# from flask import current_app
 from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
 from restapi import decorators
@@ -9,12 +8,16 @@ from restapi.connectors.celery import CeleryExt
 # from restapi.utilities.logs import log
 
 
-# if current_app.config['TESTING']:
 class DoTests(EndpointResource):
 
     # schema_expose = True
     labels = ['tests']
-    GET = {'/tests/<test_num>/<task_id>': {'custom': {}, 'summary': 'Do tests', 'responses': {'200': {'description': 'a test is executed'}}}, '/tests/<test_num>': {'custom': {}, 'summary': 'Do tests', 'responses': {'200': {'description': 'a test is executed'}}}}
+    GET = {
+        '/tests/<test_num><task_id>': {
+            'summary': 'Do tests',
+            'responses': {'200': {'description': 'a test is executed'}}
+        }
+    }
 
     @staticmethod
     def test_1(celery, task_id=None):

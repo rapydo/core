@@ -12,9 +12,6 @@ variables:
     FRONTEND_FRAMEWORK: angular
     AUTH_SERVICE: sqlalchemy
 
-    ALCHEMY_USER: sqluser
-    ALCHEMY_PASSWORD: chooseapasswordwisely
-
     ACTIVATE_ALCHEMY: 1
     ACTIVATE_POSTGRES: 1
     ACTIVATE_CELERY: 1

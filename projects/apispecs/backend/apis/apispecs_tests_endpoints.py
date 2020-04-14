@@ -89,7 +89,6 @@ class ApiSpecsPoC(MethodResource, EndpointResource):
 
 class DoTests(EndpointResource):
 
-    # schema_expose = True
     labels = ['tests']
     GET = {
         '/tests/<test_num>': {
@@ -100,8 +99,8 @@ class DoTests(EndpointResource):
 
     @decorators.catch_errors()
     def get(self, test_num):
-        sql = self.get_service_instance('sqlalchemy')
+        graph = self.get_service_instance('neo4j')
 
-        log.debug(sql)
+        log.debug(graph)
 
         return self.response("1")

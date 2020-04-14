@@ -9,12 +9,8 @@ variables:
 
   env:
     FRONTEND_FRAMEWORK: angular
-    AUTH_SERVICE: sqlalchemy
-
-    ACTIVATE_ALCHEMY: 1
-    ACTIVATE_POSTGRES: 1
-    ALCHEMY_USER: sqluser
-    ALCHEMY_PASSWORD: chooseapasswordwisely
+    ACTIVATE_NEO4J: 1
+    AUTH_SERVICE: neo4j
 
   backend:
     credentials:

@@ -8,7 +8,6 @@ from restapi.utilities.logs import log
 
 class DoTests(EndpointResource):
 
-    # schema_expose = True
     labels = ['tests']
     GET = {
         '/tests/<test_num>': {

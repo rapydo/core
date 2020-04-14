@@ -16,8 +16,6 @@ variables:
 
     ACTIVATE_ALCHEMY: 1
     ACTIVATE_POSTGRES: 1
-    ALCHEMY_USER: sqluser
-    ALCHEMY_PASSWORD: chooseapasswordwisely
 
   backend:
     credentials:

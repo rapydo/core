@@ -13,27 +13,15 @@ from restapi.utilities.htmlcodes import hcodes
 from restapi.utilities.logs import log
 
 
-class TestNum(Schema):
-    test_num = fields.Int(
-        required=True,
-        validate=validate.Range(min=1, max=3)
-    )
-
-
-class UserSchema(Schema):
+class InputSchema(Schema):
     name = fields.Str(required=True, validate=validate.Length(min=4))
     email = fields.Email(required=True)
     age = fields.Int(required=True, validate=validate.Range(min=18, max=40))
     created_at = fields.DateTime(required=True, format="%Y-%M-%d")
 
 
-class Error(Schema):
-    mykey: fields.Str()
-
-
-class OutSchema(Schema):
+class OutputSchema(Schema):
     value = fields.Int()
-
 
 # Field that applies no formatting.
 # data = fields.Raw(attribute="content")
@@ -43,19 +31,20 @@ class OutSchema(Schema):
 # "Dict",
 # "List",
 
-class FlatResponses(MethodResource, EndpointResource):
+
+class MarshalData(MethodResource, EndpointResource):
 
     labels = ['helpers']
 
     _GET = {
-        "/tests": {
+        "/data": {
             "summary": "Experiments with ApiSpec",
             "description": "Proof of concept for ApiSpec integration in RAPyDo",
             "responses": {"200": {"description": "Endpoint is working"}},
         }
     }
 
-    @use_kwargs(TestNum)
+    @marshal_with(OutputSchema)
     @decorators.catch_errors()
     def get(self, **kwargs):
 
@@ -63,14 +52,24 @@ class FlatResponses(MethodResource, EndpointResource):
 
         log.debug(graph)
 
-        test_num = kwargs.get("test_num")
-        if test_num == 1:
-            return self.response("1")
+        data = []
 
-        if test_num == 2:
-            raise RestApiException("Just an error")
+        return self.response(data)
 
-        raise RestApiException("Test {} not implemented".format(test_num))
+
+class TestNum(Schema):
+    test_num = fields.Int(
+        required=True,
+        validate=validate.Range(min=1, max=3)
+    )
+
+
+class Error(Schema):
+    mykey: fields.Str()
+
+
+class OutSchema(Schema):
+    value = fields.Int()
 
 
 class MarshalResponses(MethodResource, EndpointResource):
@@ -107,5 +106,35 @@ class MarshalResponses(MethodResource, EndpointResource):
         if test_num == 3:
             error = {"mykey": "Just an error", "hideme": "Not returned"}
             raise RestApiException(error, status_code=hcodes.HTTP_BAD_REQUEST)
+
+        raise RestApiException("Test {} not implemented".format(test_num))
+
+
+class FlatResponses(MethodResource, EndpointResource):
+
+    labels = ['helpers']
+
+    _GET = {
+        "/flat": {
+            "summary": "Experiments with ApiSpec",
+            "description": "Proof of concept for ApiSpec integration in RAPyDo",
+            "responses": {"200": {"description": "Endpoint is working"}},
+        }
+    }
+
+    @use_kwargs(TestNum)
+    @decorators.catch_errors()
+    def get(self, **kwargs):
+
+        graph = self.get_service_instance('neo4j')
+
+        log.debug(graph)
+
+        test_num = kwargs.get("test_num")
+        if test_num == 1:
+            return self.response("1")
+
+        if test_num == 2:
+            raise RestApiException("Just an error")
 
         raise RestApiException("Test {} not implemented".format(test_num))

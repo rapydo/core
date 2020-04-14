@@ -1,14 +1,20 @@
 # -*- coding: utf-8 -*-
 
-from flask_apispec import use_kwargs, marshal_with
-from flask_apispec import MethodResource
 from marshmallow import Schema, fields, validate
+# from webargs.flaskparser import use_kwargs
+from flask_apispec import use_kwargs
+from flask_apispec import marshal_with
+from flask_apispec import MethodResource
 
 from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
 from restapi import decorators
 from restapi.utilities.htmlcodes import hcodes
 from restapi.utilities.logs import log
+
+# 1 - How to return expected input model?
+# get some ideas from here https://github.com/danohu/py2n
+# 2 - How to reuse inputSchemaPost in PUT by stripping off required flags?
 
 
 class InputSchemaPost(Schema):

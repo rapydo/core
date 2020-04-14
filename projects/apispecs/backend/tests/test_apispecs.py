@@ -16,7 +16,7 @@ class TestApp(BaseTests):
         assert r.status_code == hcodes.HTTP_BAD_REQUEST
         c = self.get_content(r)
         assert "test_num" in c
-        assert c["test_num"][0] = "Missing data for required field."
+        assert c["test_num"][0] == "Missing data for required field."
 
         r = client.get(endpoint, data={"test_num": 1})
         assert r.status_code == hcodes.HTTP_OK_BASIC
@@ -32,7 +32,7 @@ class TestApp(BaseTests):
         assert r.status_code == hcodes.HTTP_BAD_REQUEST
         c = self.get_content(r)
         assert "test_num" in c
-        assert c["test_num"][0] = "Missing data for required field."
+        assert c["test_num"][0] == "Missing data for required field."
 
         r = client.get(endpoint, data={"test_num": 1})
         assert r.status_code == hcodes.HTTP_OK_BASIC

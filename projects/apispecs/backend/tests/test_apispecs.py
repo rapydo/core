@@ -13,7 +13,10 @@ class TestApp(BaseTests):
         endpoint = API_URI + '/flat'
 
         r = client.get(endpoint)
-        assert r.status_code == 422
+        assert r.status_code == hcodes.HTTP_BAD_REQUEST
+        c = self.get_content(r)
+        assert "test_num" in c
+        assert c["test_num"][0] = "Missing data for required field."
 
         r = client.get(endpoint, data={"test_num": 1})
         assert r.status_code == hcodes.HTTP_OK_BASIC
@@ -26,7 +29,10 @@ class TestApp(BaseTests):
         endpoint = API_URI + '/marshal'
 
         r = client.get(endpoint)
-        assert r.status_code == 422
+        assert r.status_code == hcodes.HTTP_BAD_REQUEST
+        c = self.get_content(r)
+        assert "test_num" in c
+        assert c["test_num"][0] = "Missing data for required field."
 
         r = client.get(endpoint, data={"test_num": 1})
         assert r.status_code == hcodes.HTTP_OK_BASIC
@@ -70,11 +76,11 @@ class TestApp(BaseTests):
         assert "hgb" in c
         # This is optional
         assert "healthy" not in c
-        assert c["name"] == "Missing data for required field."
-        assert c["age"] == "Missing data for required field."
-        assert c["date"] == "Missing data for required field."
-        assert c["email"] == "Missing data for required field."
-        assert c["hgb"] == "Missing data for required field."
+        assert c["name"][0] == "Missing data for required field."
+        assert c["age"][0] == "Missing data for required field."
+        assert c["date"][0] == "Missing data for required field."
+        assert c["email"][0] == "Missing data for required field."
+        assert c["hgb"][0] == "Missing data for required field."
 
         # Trying to create an entity, but input is still wrong
         r = client.post(
@@ -96,11 +102,11 @@ class TestApp(BaseTests):
         assert "hgb" in c
         # This is optional
         assert "healthy" not in c
-        assert c["name"] == "Shorter than minimum length 4."
-        assert c["age"] == "Not a valid integer."
-        assert c["date"] == "Not a valid date."
-        assert c["email"] == "Not a valid email address."
-        assert c["hgb"] == "Not a valid number."
+        assert c["name"][0] == "Shorter than minimum length 4."
+        assert c["age"][0] == "Not a valid integer."
+        assert c["date"][0] == "Not a valid date."
+        assert c["email"][0] == "Not a valid email address."
+        assert c["hgb"][0] == "Not a valid number."
 
 		# Trying to create an entity, but some inputs is still wrong
         r = client.post(
@@ -122,8 +128,8 @@ class TestApp(BaseTests):
         assert "hgb" in c
         # This is optional
         assert "healthy" not in c
-        assert c["age"] == "Must be greater than or equal to 18 and less than or equal to 99."
-        assert c["hgb"] == "Must be greater than or equal to 0 and less than or equal to 30."
+        assert c["age"][0] == "Must be greater than or equal to 18 and less than or equal to 99."
+        assert c["hgb"][0] == "Must be greater than or equal to 0 and less than or equal to 30."
 
         # Creating an entity and retrieving the corresponding uuid
         r = client.post(

@@ -9,13 +9,14 @@ from flask_apispec import MethodResource
 # from flask_apispec import Ref
 from marshmallow import Schema, fields, validate
 
+from restapi.utilities.htmlcodes import hcodes
 from restapi.utilities.logs import log
 
 
 class TestNum(Schema):
     test_num = fields.Int(
         required=True,
-        validate=validate.Range(min=1, max=2)
+        validate=validate.Range(min=1, max=3)
     )
 
 
@@ -85,8 +86,8 @@ class MarshalResponses(MethodResource, EndpointResource):
     }
 
     @use_kwargs(TestNum)
-    @marshal_with(Error, code=400)
-    # @marshal_with(OutSchema, code=200)
+    @marshal_with(Error, code=404)
+    @marshal_with(OutSchema, code=200)
     @decorators.catch_errors()
     def get(self, **kwargs):
 
@@ -96,15 +97,15 @@ class MarshalResponses(MethodResource, EndpointResource):
 
         test_num = kwargs.get("test_num")
         if test_num == 1:
-            return self.response("1")
+            data = {"value": "123", "hideme": "Not returned"}
+            return self.response(data)
 
         if test_num == 2:
-            raise RestApiException("Just an error")
+            error = {"mykey": "Just an error", "hideme": "Not returned"}
+            raise RestApiException(error)
 
-        log.info(kwargs)
+        if test_num == 3:
+            error = {"mykey": "Just an error", "hideme": "Not returned"}
+            raise RestApiException(error, status_code=hcodes.HTTP_BAD_REQUEST)
 
-        # return self.response("blabla")
-        data = {"value": "123", "xyz": "abc"}
-
-        raise RestApiException(data)
-        return self.response(data)
+        raise RestApiException("Test {} not implemented".format(test_num))

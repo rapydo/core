@@ -41,3 +41,11 @@ class Data(TimestampedNode):
     test_date = DateProperty(required=True)
     healthy = BooleanProperty(required=False, default=True)
     HGB = FloatProperty(required=True)
+
+    subnode = RelationshipTo('Subnode', 'HAS_SUBNODE', cardinality=ZeroOrMore)
+
+
+class Subnode(TimestampedNode):
+    f = StringProperty(default='default value')
+
+    data = RelationshipFrom('Data', 'HAS_SUBNODE', cardinality=ZeroOrMore)

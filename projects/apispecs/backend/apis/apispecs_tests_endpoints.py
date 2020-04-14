@@ -35,8 +35,14 @@ class InputSchemaPut(Schema):
     HGB = fields.Float(data_key='hgb', validate=validate.Range(min=0, max=30))
 
 
+class Subnode(Schema):
+    f = fields.Str()
+
+
 class OutputSchema(InputSchemaPost):
     uuid = fields.Str()
+    # subnode = fields.List(fields.Nested(Subnode))
+    subnode = fields.Nested(Subnode)
 
 # Field that applies no formatting.
 # data = fields.Raw(attribute="content")
@@ -50,6 +56,7 @@ class OutputSchema(InputSchemaPost):
 class MarshalData(MethodResource, EndpointResource):
 
     labels = ['helpers']
+    expose_schema = True
 
     _GET = {
         "/data": {
@@ -87,6 +94,8 @@ class MarshalData(MethodResource, EndpointResource):
 
         data = []
         for d in graph.Data.nodes.all():
+            # d.subnode = d.subnode.all()
+
             data.append(d)
 
         return self.response(data)
@@ -98,11 +107,32 @@ class MarshalData(MethodResource, EndpointResource):
         graph = self.get_service_instance('neo4j')
         d = graph.Data(**kwargs).save()
 
+        s = graph.Subnode().save()
+
+        d.subnode.connect(s)
+
         return d.uuid
+
+    # def schema(self, schema):
+    #     fields = []
+    #     for field, field_def in schema._declared_fields.items():
+    #         f = {}
+    #         if field_def.data_key is None:
+    #             f["name"] = field
+    #         else:
+    #             f["name"] = field_def.data_key
+    #         f["required"] = field_def.required
+
+    #         log.critical(type(field_def).__dict__)
+    #         log.critical(field_def.__dict__)
+    #         fields.append(f)
+    #     return self.response(fields)
 
     @use_kwargs(InputSchemaPut)
     @decorators.catch_errors()
     def put(self, uuid, **kwargs):
+
+        # return self.schema(InputSchemaPost)
 
         graph = self.get_service_instance('neo4j')
 

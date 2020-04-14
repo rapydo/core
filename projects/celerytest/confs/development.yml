@@ -10,11 +10,3 @@ services:
   frontend:
     ports:
       - 80:8080
-
-  sqlalchemyui:
-    ports:
-      - 81:8888
-
-  swaggerui:
-    ports:
-      - 7777:80

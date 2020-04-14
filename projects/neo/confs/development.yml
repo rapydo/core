@@ -15,7 +15,3 @@ services:
     ports:
       - 9090:7474
       - 7687:7687
-
-  swaggerui:
-    ports:
-      - 7777:80

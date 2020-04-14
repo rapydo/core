@@ -44,7 +44,7 @@ class MarshalData(MethodResource, EndpointResource):
         }
     }
 
-    @marshal_with(OutputSchema)
+    @marshal_with(OutputSchema(many=True))
     @decorators.catch_errors()
     def get(self, **kwargs):
 
@@ -64,12 +64,12 @@ class TestNum(Schema):
     )
 
 
-class Error(Schema):
-    mykey: fields.Str()
-
-
 class OutSchema(Schema):
     value = fields.Int()
+
+
+class Error(Schema):
+    mykey = fields.Str()
 
 
 class MarshalResponses(MethodResource, EndpointResource):
@@ -85,8 +85,8 @@ class MarshalResponses(MethodResource, EndpointResource):
     }
 
     @use_kwargs(TestNum)
-    @marshal_with(Error, code=404)
     @marshal_with(OutSchema, code=200)
+    @marshal_with(Error, code=404)
     @decorators.catch_errors()
     def get(self, **kwargs):
 
@@ -101,7 +101,7 @@ class MarshalResponses(MethodResource, EndpointResource):
 
         if test_num == 2:
             error = {"mykey": "Just an error", "hideme": "Not returned"}
-            raise RestApiException(error)
+            raise RestApiException(error, status_code=hcodes.HTTP_BAD_NOTFOUND)
 
         if test_num == 3:
             error = {"mykey": "Just an error", "hideme": "Not returned"}

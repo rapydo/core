@@ -168,11 +168,11 @@ class TestApp(BaseTests):
         assert c[0]['healthy']
 
         # Trying to modify a non existing entity
-        client.put(endpoint + "/xyz")
+        r = client.put(endpoint + "/xyz")
         assert r.status_code == hcodes.HTTP_BAD_NOTFOUND
 
         # Modifying an entity, note that email will not change
-        client.put(
+        r = client.put(
             endpoint + "/" + uuid,
             data={
                 "name": "abcd",

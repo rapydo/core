@@ -113,6 +113,7 @@ class MarshalData(MethodResource, EndpointResource):
 
         for key in kwargs:
             d.__dict__[key] = kwargs[key]
+
         d.save()
         return self.empty_response()
 

@@ -87,7 +87,7 @@ class TestApp(BaseTests):
             endpoint,
             data={
                 "name": "x",
-                "age": 1,
+                "age": "a",
                 "date": "y",
                 "email": "w",
                 "hgb": "z"

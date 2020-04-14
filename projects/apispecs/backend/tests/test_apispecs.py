@@ -192,15 +192,15 @@ class TestApp(BaseTests):
         assert c[0]['email'] == "user@nomail.org"
 
         # cannot delete non existing entities
-        client.delete(endpoint + "/xyz")
+        r = client.delete(endpoint + "/xyz")
         assert r.status_code == hcodes.HTTP_BAD_NOTFOUND
 
         # entity is now deleted
-        client.delete(endpoint + "/" + uuid)
+        r = client.delete(endpoint + "/" + uuid)
         assert r.status_code == hcodes.HTTP_OK_NORESPONSE
 
         # cannot delete entity already deleted
-        client.delete(endpoint + "/" + uuid)
+        r = client.delete(endpoint + "/" + uuid)
         assert r.status_code == hcodes.HTTP_BAD_NOTFOUND
 
         # data list is now empty again

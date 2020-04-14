@@ -10,6 +10,6 @@ class TestApp(BaseTests):
     def test_01_x(self, client):
 
         log.debug("Executing tests from {}", self.__class__.__module__)
-        endpoint = API_URI + '/tests/1'
-        r = client.get(endpoint)
+        endpoint = API_URI + '/tests'
+        r = client.get(endpoint, "", {"test_num": 1})
         assert r.status_code == hcodes.HTTP_OK_BASIC

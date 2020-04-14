@@ -13,7 +13,10 @@ from restapi.utilities.logs import log
 
 
 class TestNum(Schema):
-    test_num = fields.Int(required=True, validate=validate.Range(min=1, max=1))
+    test_num = fields.Int(
+        required=True,
+        validate=validate.Range(min=1, max=2)
+    )
 
 
 class UserSchema(Schema):
@@ -24,15 +27,11 @@ class UserSchema(Schema):
 
 
 class Error(Schema):
-    xyz: fields.Str()
+    mykey: fields.Str()
 
 
 class OutSchema(Schema):
     value = fields.Int()
-
-
-class OutSchema1(Schema):
-    value = fields.Str()
 
 
 # Field that applies no formatting.
@@ -43,12 +42,42 @@ class OutSchema1(Schema):
 # "Dict",
 # "List",
 
-class DoTests(MethodResource, EndpointResource):
+class FlatResponses(MethodResource, EndpointResource):
 
     labels = ['helpers']
 
     _GET = {
-        "/tests": {
+        "/flat": {
+            "summary": "Experiments with ApiSpec",
+            "description": "Proof of concept for ApiSpec integration in RAPyDo",
+            "responses": {"200": {"description": "Endpoint is working"}},
+        }
+    }
+
+    @use_kwargs(TestNum)
+    @decorators.catch_errors()
+    def get(self, **kwargs):
+
+        graph = self.get_service_instance('neo4j')
+
+        log.debug(graph)
+
+        test_num = kwargs.get("test_num")
+        if test_num == 1:
+            return self.response("1")
+
+        if test_num == 2:
+            raise RestApiException("Just an error")
+
+        raise RestApiException("Test {} not implemented".format(test_num))
+
+
+class MarshalResponses(MethodResource, EndpointResource):
+
+    labels = ['helpers']
+
+    _GET = {
+        "/marshal": {
             "summary": "Experiments with ApiSpec",
             "description": "Proof of concept for ApiSpec integration in RAPyDo",
             "responses": {"200": {"description": "Endpoint is working"}},
@@ -57,10 +86,7 @@ class DoTests(MethodResource, EndpointResource):
 
     @use_kwargs(TestNum)
     @marshal_with(Error, code=400)
-    # @marshal_with(OutSchema, code=404)
-    @marshal_with(OutSchema, code=200)
-    @marshal_with(OutSchema1, code=201)
-    @marshal_with(None, code=204)
+    # @marshal_with(OutSchema, code=200)
     @decorators.catch_errors()
     def get(self, **kwargs):
 
@@ -68,14 +94,17 @@ class DoTests(MethodResource, EndpointResource):
 
         log.debug(graph)
 
-        if kwargs.get("test_num") == 1:
+        test_num = kwargs.get("test_num")
+        if test_num == 1:
             return self.response("1")
+
+        if test_num == 2:
+            raise RestApiException("Just an error")
 
         log.info(kwargs)
 
         # return self.response("blabla")
         data = {"value": "123", "xyz": "abc"}
 
-        raise RestApiException("Just an error")
         raise RestApiException(data)
         return self.response(data)

@@ -47,7 +47,7 @@ class FlatResponses(MethodResource, EndpointResource):
     labels = ['helpers']
 
     _GET = {
-        "/flat": {
+        "/tests": {
             "summary": "Experiments with ApiSpec",
             "description": "Proof of concept for ApiSpec integration in RAPyDo",
             "responses": {"200": {"description": "Endpoint is working"}},

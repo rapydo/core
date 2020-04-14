@@ -1,27 +1,42 @@
 # -*- coding: utf-8 -*-
 
+from flask_apispec import use_kwargs, marshal_with
+from flask_apispec import MethodResource
+from marshmallow import Schema, fields, validate
+
 from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
 from restapi import decorators
-
-from flask_apispec import use_kwargs, marshal_with
-from flask_apispec import MethodResource
-# from flask_apispec import Ref
-from marshmallow import Schema, fields, validate
-
 from restapi.utilities.htmlcodes import hcodes
 from restapi.utilities.logs import log
 
 
-class InputSchema(Schema):
+class InputSchemaPost(Schema):
     name = fields.Str(required=True, validate=validate.Length(min=4))
     email = fields.Email(required=True)
-    age = fields.Int(required=True, validate=validate.Range(min=18, max=40))
-    created_at = fields.DateTime(required=True, format="%Y-%M-%d")
+    age = fields.Int(required=True, validate=validate.Range(min=18, max=99))
+    # test_date = fields.DateTime(required=True, data_key="date", format="%Y-%m-%d")
+    test_date = fields.Date(required=True, data_key="date", format="%Y-%m-%d")
+    healthy = fields.Bool(required=False, default=True)
+    HGB = fields.Float(
+        required=True,
+        data_key='hgb',
+        validate=validate.Range(min=0, max=30)
+    )
 
 
-class OutputSchema(Schema):
-    value = fields.Int()
+class InputSchemaPut(Schema):
+    name = fields.Str(validate=validate.Length(min=4))
+    # email = fields.Email(required=True)
+    age = fields.Int(validate=validate.Range(min=18, max=99))
+    # test_date = fields.DateTime(data_key="date", format="%Y-%m-%d")
+    test_date = fields.Date(data_key="date", format="%Y-%m-%d")
+    healthy = fields.Bool(default=True)
+    HGB = fields.Float(data_key='hgb', validate=validate.Range(min=0, max=30))
+
+
+class OutputSchema(InputSchemaPost):
+    uuid = fields.Str()
 
 # Field that applies no formatting.
 # data = fields.Raw(attribute="content")
@@ -43,18 +58,77 @@ class MarshalData(MethodResource, EndpointResource):
             "responses": {"200": {"description": "Endpoint is working"}},
         }
     }
+    _POST = {
+        "/data": {
+            "summary": "Create an entity",
+            "responses": {"200": {"description": "The uuid of the entity is returned"}},
+        }
+    }
 
-    @marshal_with(OutputSchema(many=True))
+    _PUT = {
+        "/data/<uuid>": {
+            "summary": "Modify an entity",
+            "responses": {"204": {"description": "Entity modified"}},
+        }
+    }
+
+    _DELETE = {
+        "/data/<uuid>": {
+            "summary": "Delete an entity",
+            "responses": {"204": {"description": "Entity deleted"}},
+        }
+    }
+
+    @marshal_with(OutputSchema(many=True), code=200)
     @decorators.catch_errors()
     def get(self, **kwargs):
 
         graph = self.get_service_instance('neo4j')
 
-        log.debug(graph)
-
         data = []
+        for d in graph.Data.nodes.all():
+            data.append(d)
 
         return self.response(data)
+
+    @use_kwargs(InputSchemaPost)
+    @decorators.catch_errors()
+    def post(self, **kwargs):
+
+        graph = self.get_service_instance('neo4j')
+        d = graph.Data(**kwargs).save()
+
+        return d.uuid
+
+    @use_kwargs(InputSchemaPut)
+    @decorators.catch_errors()
+    def put(self, uuid, **kwargs):
+
+        graph = self.get_service_instance('neo4j')
+
+        d = graph.Data.nodes.get_or_none(uuid=uuid)
+
+        if d is None:
+            raise RestApiException("Data not found")
+
+        for key in kwargs:
+            d.__dict__[key] = kwargs[key]
+        d.save()
+        return self.empty_response()
+
+    @decorators.catch_errors()
+    def delete(self, uuid):
+
+        graph = self.get_service_instance('neo4j')
+
+        d = graph.Data.nodes.get_or_none(uuid=uuid)
+
+        if d is None:
+            raise RestApiException("Data not found")
+
+        d.delete()
+
+        return self.empty_response()
 
 
 class TestNum(Schema):

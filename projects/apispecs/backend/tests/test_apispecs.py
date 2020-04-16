@@ -161,7 +161,7 @@ class TestApp(BaseTests):
         assert c[0]['uuid'] == uuid
         assert c[0]['name'] == "xywz"
         assert c[0]['age'] == 18
-        assert c[0]['date'] == "1970-01-01"
+        assert c[0]['date'] == "1970-01-01T00:00:00.000Z"
         assert c[0]['email'] == "user@nomail.org"
         assert c[0]['HGB'] == 15.3
         # Healthy defaulted to True

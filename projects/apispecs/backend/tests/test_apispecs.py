@@ -73,14 +73,14 @@ class TestApp(BaseTests):
         assert "age" in c
         assert "date" in c
         assert "email" in c
-        assert "hgb" in c
+        assert "HGB" in c
         # This is optional
         assert "healthy" not in c
         assert c["name"][0] == "Missing data for required field."
         assert c["age"][0] == "Missing data for required field."
         assert c["date"][0] == "Missing data for required field."
         assert c["email"][0] == "Missing data for required field."
-        assert c["hgb"][0] == "Missing data for required field."
+        assert c["HGB"][0] == "Missing data for required field."
 
         # Trying to create an entity, but input is still wrong
         r = client.post(
@@ -90,7 +90,7 @@ class TestApp(BaseTests):
                 "age": "a",
                 "date": "y",
                 "email": "w",
-                "hgb": "z"
+                "HGB": "z"
             }
         )
         assert r.status_code == hcodes.HTTP_BAD_REQUEST
@@ -99,14 +99,14 @@ class TestApp(BaseTests):
         assert "age" in c
         assert "date" in c
         assert "email" in c
-        assert "hgb" in c
+        assert "HGB" in c
         # This is optional
         assert "healthy" not in c
         assert c["name"][0] == "Shorter than minimum length 4."
         assert c["age"][0] == "Not a valid integer."
         assert c["date"][0] == "Not a valid date."
         assert c["email"][0] == "Not a valid email address."
-        assert c["hgb"][0] == "Not a valid number."
+        assert c["HGB"][0] == "Not a valid number."
 
 		# Trying to create an entity, but some inputs is still wrong
         r = client.post(
@@ -116,7 +116,7 @@ class TestApp(BaseTests):
                 "age": 9999,
                 "date": "1970-01-01",
                 "email": "user@nomail.org",
-                "hgb": "-5"
+                "HGB": "-5"
             }
         )
         assert r.status_code == hcodes.HTTP_BAD_REQUEST
@@ -125,11 +125,11 @@ class TestApp(BaseTests):
         assert "age" in c
         assert "date" not in c
         assert "email" not in c
-        assert "hgb" in c
+        assert "HGB" in c
         # This is optional
         assert "healthy" not in c
         assert c["age"][0] == "Must be greater than or equal to 18 and less than or equal to 99."
-        assert c["hgb"][0] == "Must be greater than or equal to 0 and less than or equal to 30."
+        assert c["HGB"][0] == "Must be greater than or equal to 0 and less than or equal to 30."
 
         # Creating an entity and retrieving the corresponding uuid
         r = client.post(
@@ -139,7 +139,7 @@ class TestApp(BaseTests):
                 "age": 18,
                 "date": "1970-01-01",
                 "email": "user@nomail.org",
-                "hgb": "15.3",
+                "HGB": "15.3",
             }
         )
         assert r.status_code == hcodes.HTTP_OK_BASIC
@@ -148,7 +148,7 @@ class TestApp(BaseTests):
         assert "age" not in c
         assert "date" not in c
         assert "email" not in c
-        assert "hgb" not in c
+        assert "HGB" not in c
 
         uuid = c
 
@@ -163,7 +163,7 @@ class TestApp(BaseTests):
         assert c[0]['age'] == 18
         assert c[0]['date'] == "1970-01-01"
         assert c[0]['email'] == "user@nomail.org"
-        assert c[0]['hgb'] == 15.3
+        assert c[0]['HGB'] == 15.3
         # Healthy defaulted to True
         assert c[0]['healthy']
 

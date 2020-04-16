@@ -1,54 +1,45 @@
 # -*- coding: utf-8 -*-
 
-from marshmallow import Schema, fields, validate
+from marshmallow import fields, validate
 # from webargs.flaskparser import use_kwargs
 from flask_apispec import use_kwargs
 from flask_apispec import marshal_with
 from flask_apispec import MethodResource
 
+from restapi.models import Schema
 from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
 from restapi import decorators
 from restapi.utilities.htmlcodes import hcodes
 from restapi.utilities.logs import log
 
-# 1 - How to return expected input model?
-#     get some ideas from here https://github.com/danohu/py2n
-# 2 - How to reuse inputSchemaPost in PUT by stripping off required flags?
-# 3 - Experiments with sqlalchemy
+# 1 - Experiments with sqlalchemy
 #     https://github.com/marshmallow-code/marshmallow-sqlalchemy)
-# 4 - Convert some true endpoint... like admin tokens?
+# 2 - raise errors for unknown fields? (also useful for get_schema in PUT)
+# 3 - Convert some true endpoint... like admin tokens?
+# 4 - convert into interfaces? https://github.com/danohu/py2ng
+#     if used, please remove types from response.py and import from py2ng
 
 
-class InputSchemaPost(Schema):
+class InputSchema(Schema):
     name = fields.Str(required=True, validate=validate.Length(min=4))
     email = fields.Email(required=True)
     age = fields.Int(required=True, validate=validate.Range(min=18, max=99))
     # test_date = fields.DateTime(required=True, data_key="date", format="%Y-%m-%d")
-    test_date = fields.Date(required=True, data_key="date", format="%Y-%m-%d")
-    healthy = fields.Bool(required=False, default=True)
-    HGB = fields.Float(
+    # test_date = fields.Date(required=True, data_key="date", format="%Y-%m-%d")
+    test_date = fields.Date(
         required=True,
-        data_key='hgb',
-        validate=validate.Range(min=0, max=30)
-    )
-
-
-class InputSchemaPut(Schema):
-    name = fields.Str(validate=validate.Length(min=4))
-    # email = fields.Email(required=True)
-    age = fields.Int(validate=validate.Range(min=18, max=99))
-    # test_date = fields.DateTime(data_key="date", format="%Y-%m-%d")
-    test_date = fields.Date(data_key="date", format="%Y-%m-%d")
-    healthy = fields.Bool(default=True)
-    HGB = fields.Float(data_key='hgb', validate=validate.Range(min=0, max=30))
+        data_key="date",
+        format='%Y-%m-%dT%H:%M:%S.000Z')
+    healthy = fields.Bool(required=False, default=True)
+    HGB = fields.Float(required=True, validate=validate.Range(min=0, max=30))
 
 
 class Subnode(Schema):
     f = fields.Str()
 
 
-class OutputSchema(InputSchemaPost):
+class OutputSchema(InputSchema):
     uuid = fields.Str()
     # subnode = fields.List(fields.Nested(Subnode))
     subnode = fields.Nested(Subnode)
@@ -65,7 +56,6 @@ class OutputSchema(InputSchemaPost):
 class MarshalData(MethodResource, EndpointResource):
 
     labels = ['helpers']
-    expose_schema = True
 
     _GET = {
         "/data": {
@@ -95,10 +85,6 @@ class MarshalData(MethodResource, EndpointResource):
         }
     }
 
-    POST_INPUT_SCHEMA = InputSchemaPost
-    PUT_INPUT_SCHEMA = InputSchemaPut
-
-
     @marshal_with(OutputSchema(many=True), code=200)
     @decorators.catch_errors()
     def get(self, **kwargs):
@@ -113,7 +99,7 @@ class MarshalData(MethodResource, EndpointResource):
 
         return self.response(data)
 
-    @use_kwargs(InputSchemaPost)
+    @use_kwargs(InputSchema)
     @decorators.catch_errors()
     def post(self, **kwargs):
 
@@ -126,7 +112,7 @@ class MarshalData(MethodResource, EndpointResource):
 
         return d.uuid
 
-    @use_kwargs(InputSchemaPut)
+    @use_kwargs(InputSchema(strip_required=True, exclude=("email",)))
     @decorators.catch_errors()
     def put(self, uuid, **kwargs):
 

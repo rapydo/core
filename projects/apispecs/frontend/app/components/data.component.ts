@@ -17,8 +17,6 @@ export class DataComponent extends BasePaginationComponent<Data> {
 	@ViewChild('formModal', { static: false }) public formModal: TemplateRef<any>;
 
 	protected endpoint = 'data'
-	protected schema_endpoint = 'schemas/data'
-
 
 	constructor(protected injector: Injector) {
 
@@ -53,7 +51,7 @@ export class DataComponent extends BasePaginationComponent<Data> {
 		let data = {'get_schema': true, 'autocomplete': false}
 
 
-		return this.post(this.schema_endpoint, undefined, this.formModal, true);
+		return this.post(this.endpoint, data, this.formModal, false);
 	}
 
 	update(row, element) {

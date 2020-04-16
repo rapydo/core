@@ -1,0 +1,98 @@
+
+<div class='container-fluid'>
+<div class="row justify-content-md-center">
+<div class='col-12'>
+
+<div class='card'>
+
+	<div class='card-header'>
+		<h4>Testing ApiSpec Endpoint</h4>
+	</div>
+
+	<div class='card-block'>
+		<div class="table-responsive">
+
+			<div class='container-fluid'>
+			<div class='row'>
+				<div class='col-6'>
+ 					<input 
+						type='text'
+						style='padding:8px; margin-bottom:15px;'
+						class='form-control'
+						placeholder='Type to filter'
+						(keyup)='updateFilter($event)'
+					>
+
+				</div>
+				<div class='col-6 text-right'>
+
+					<button class="btn btn-secondary" (click)="create()">
+						<i class='fas fa-plus'></i> new {{resource_name}}
+					</button>
+
+				</div>
+			</div>
+			</div>
+			<div class="table-wrapper" #tableWrapper>
+				<ngx-spinner [fullScreen] = "false"></ngx-spinner>
+				<ngx-datatable
+			        class="bootstrap"
+			        [rows]="data"
+			        [columns]="columns"
+					[columnMode]="ColumnMode.flex"
+			        [headerHeight]="40"
+			        [footerHeight]="40"
+			        [limit]="paging.itemsPerPage"
+			        [rowHeight]="'auto'">
+				</ngx-datatable>
+
+			</div>
+
+		</div>
+
+		<ng-template #emptyHeader let-column="column">
+			&nbsp;
+		</ng-template>
+
+		<ng-template #controlsCell let-row="row" let-value="value" let-i="index">
+			<i class='fa fa-edit fa-large'
+			   ngbTooltip="Edit this user"
+			   #icon_element
+			   (click)='update(row, icon_element)'></i>
+			<i 
+				class='fa fa-trash fa-large' style='color:red;'
+				mwlConfirmationPopover
+				[popoverTitle]="'Confirmation required'"
+				[popoverMessage]="'Are you really sure you want to delete this user?'"
+		        placement="left"
+				(confirm)="remove(row.uuid)"
+			></i>
+		</ng-template>
+
+		<ng-template #formModal let-c="close" let-d="dismiss">
+
+		  <div class="modal-header bg-default">
+		    <h4 class="modal-title">{{modalTitle}}</h4>
+		    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+		      <span aria-hidden="true">&times;</span>
+		    </button>
+		  </div>
+		  <div class="modal-body">
+		  	<form [formGroup]="form" (ngSubmit)="submit()">
+		  		<formly-form [form]="form" [fields]="fields" [model]="model">
+		  		</formly-form>
+			    <button type="submit" class="btn btn-default" [disabled]="updating">
+				    <h4>Submit</h4>
+			    </button>
+	  		</form>
+		  </div>
+
+		</ng-template>
+
+	</div>
+
+</div>
+
+</div>
+</div>
+</div>

@@ -2,20 +2,27 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { SharedModule } from '@rapydo/shared.module';
-// import { AuthGuard } from '@rapydo/app.auth.guard';
+import { AuthGuard } from '@rapydo/app.auth.guard';
 
-// import {YourModule} from "your/module";
+import { DataComponent } from "@app/components/data.component";
 
 const routes: Routes = [
 	{
 		path: '',
-		redirectTo: '/app/admin/users',
+		redirectTo: '/app/data',
 		pathMatch: 'full'
 	},
 	{
 		path: 'app',
-		redirectTo: '/app/admin/users',
+		redirectTo: '/app/data',
 		pathMatch: 'full'
+	},
+	{
+		path: 'app/data',
+		component: DataComponent,
+		canActivate: [AuthGuard],
+		runGuardsAndResolvers: 'always',
+		data: { roles: ['normal_user'] }
 	},
 ];
 
@@ -25,6 +32,7 @@ const routes: Routes = [
 	    RouterModule.forChild(routes),
 	],
 	declarations: [
+		DataComponent
 	],
 
 	providers: [
@@ -35,5 +43,4 @@ const routes: Routes = [
   	]
 
 })
-export class CustomModule {
-} 
+export class CustomModule { } 

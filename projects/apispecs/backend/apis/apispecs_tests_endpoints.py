@@ -13,8 +13,11 @@ from restapi.utilities.htmlcodes import hcodes
 from restapi.utilities.logs import log
 
 # 1 - How to return expected input model?
-# get some ideas from here https://github.com/danohu/py2n
+#     get some ideas from here https://github.com/danohu/py2n
 # 2 - How to reuse inputSchemaPost in PUT by stripping off required flags?
+# 3 - Experiments with sqlalchemy
+#     https://github.com/marshmallow-code/marshmallow-sqlalchemy)
+# 4 - Convert some true endpoint... like admin tokens?
 
 
 class InputSchemaPost(Schema):
@@ -92,6 +95,10 @@ class MarshalData(MethodResource, EndpointResource):
         }
     }
 
+    POST_INPUT_SCHEMA = InputSchemaPost
+    PUT_INPUT_SCHEMA = InputSchemaPut
+
+
     @marshal_with(OutputSchema(many=True), code=200)
     @decorators.catch_errors()
     def get(self, **kwargs):
@@ -119,26 +126,9 @@ class MarshalData(MethodResource, EndpointResource):
 
         return d.uuid
 
-    # def schema(self, schema):
-    #     fields = []
-    #     for field, field_def in schema._declared_fields.items():
-    #         f = {}
-    #         if field_def.data_key is None:
-    #             f["name"] = field
-    #         else:
-    #             f["name"] = field_def.data_key
-    #         f["required"] = field_def.required
-
-    #         log.critical(type(field_def).__dict__)
-    #         log.critical(field_def.__dict__)
-    #         fields.append(f)
-    #     return self.response(fields)
-
     @use_kwargs(InputSchemaPut)
     @decorators.catch_errors()
     def put(self, uuid, **kwargs):
-
-        # return self.schema(InputSchemaPost)
 
         graph = self.get_service_instance('neo4j')
 

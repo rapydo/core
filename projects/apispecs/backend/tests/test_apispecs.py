@@ -108,13 +108,13 @@ class TestApp(BaseTests):
         assert c["email"][0] == "Not a valid email address."
         assert c["HGB"][0] == "Not a valid number."
 
-		# Trying to create an entity, but some inputs is still wrong
+        # Trying to create an entity, but some inputs is still wrong
         r = client.post(
             endpoint,
             data={
                 "name": "xywz",
                 "age": 9999,
-                "date": "1970-01-01",
+                "date": "1970-01-01T00:00:00.000Z",
                 "email": "user@nomail.org",
                 "HGB": "-5"
             }
@@ -137,7 +137,7 @@ class TestApp(BaseTests):
             data={
                 "name": "xywz",
                 "age": 18,
-                "date": "1970-01-01",
+                "date": "1970-01-01T00:00:00.000Z",
                 "email": "user@nomail.org",
                 "HGB": "15.3",
             }

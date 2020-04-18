@@ -106,7 +106,7 @@ class TestApp(BaseTests):
         assert "HGB" in c
         # This is optional
         assert "healthy" not in c
-        assert c["name"][0] == "Shorter than minimum length 4."
+        assert c["name"][0] == "Shorter than minimum length 3."
         assert c["age"][0] == "Not a valid integer."
         assert c["date"][0] == "Not a valid date."
         assert c["email"][0] == "Not a valid email address."
@@ -117,7 +117,7 @@ class TestApp(BaseTests):
         r = client.post(
             endpoint,
             data={
-                "name": "xywz",
+                "name": "xyw",
                 "age": 9999,
                 "date": "1970-01-01T00:00:00.000Z",
                 "email": "user@nomail.org",
@@ -142,7 +142,7 @@ class TestApp(BaseTests):
         r = client.post(
             endpoint,
             data={
-                "name": "xywz",
+                "name": "xyw",
                 "age": 18,
                 "date": "1970-01-01T00:00:00.000Z",
                 "email": "user@nomail.org",
@@ -172,7 +172,7 @@ class TestApp(BaseTests):
         assert c[0]['age'] == 18
         assert c[0]['date'] == "1970-01-01T00:00:00.000Z"
         assert c[0]['email'] == "user@nomail.org"
-        assert c[0]['blood_type'] == "0-"
+        assert c[0]['blood_type'] == "0+"
         assert c[0]['HGB'] == 15.3
         # Healthy defaulted to True
         assert c[0]['healthy']
@@ -185,7 +185,7 @@ class TestApp(BaseTests):
         r = client.put(
             endpoint + "/" + uuid,
             data={
-                "name": "abcd",
+                "name": "abc",
                 "email": "nomail@user.org"
             }
         )
@@ -197,7 +197,7 @@ class TestApp(BaseTests):
         c = self.get_content(r)
         assert c[0]['uuid'] == uuid
         # name is changed
-        assert c[0]['name'] == "abcd"
+        assert c[0]['name'] == "abc"
         # email is not changed
         assert c[0]['email'] == "user@nomail.org"
 

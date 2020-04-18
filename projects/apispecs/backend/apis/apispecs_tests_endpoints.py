@@ -24,7 +24,7 @@ from apispecs.models.neo4j import BLOOD_TYPES
 
 
 class InputSchema(Schema):
-    name = fields.Str(required=True, validate=validate.Length(min=4))
+    name = fields.Str(required=True, validate=validate.Length(min=3))
     email = fields.Email(required=True)
     age = fields.Int(required=True, validate=validate.Range(min=18, max=99))
     # test_date = fields.DateTime(required=True, data_key="date", format="%Y-%m-%d")

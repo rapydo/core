@@ -25,7 +25,7 @@ from restapi.connectors.neo4j.types import (
 # from restapi.utilities.logs import log
 
 BLOOD_TYPES = (
-    ("0+", "TEST"),
+    ("0+", "0+"),
     ("A+", "A+"),
     ("B+", "B+"),
     ("AB+", "AB+"),

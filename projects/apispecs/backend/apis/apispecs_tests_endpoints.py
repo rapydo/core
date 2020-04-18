@@ -7,6 +7,7 @@ from flask_apispec import marshal_with
 from flask_apispec import MethodResource
 
 from restapi.models import Schema
+from restapi.services.detect import detector
 from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
 from restapi import decorators
@@ -21,6 +22,11 @@ from apispecs.models.neo4j import BLOOD_TYPES
 # 3 - Convert some true endpoint... like admin tokens?
 # 4 - convert into interfaces? https://github.com/danohu/py2ng
 #     if used, please remove types from response.py and import from py2ng
+
+
+def get_referall_names():
+    neo4j = detector.get_service_instance('neo4j')
+    return [n.name for n in neo4j.Data.nodes.all()]
 
 
 class InputSchema(Schema):
@@ -43,6 +49,12 @@ class InputSchema(Schema):
     )
     # OneOf
     HGB = fields.Float(required=True, validate=validate.Range(min=0, max=30))
+    referral = fields.Str(
+        required=False,
+        validate=validate.OneOf(
+            choices=get_referall_names()
+        )
+    )
 
 
 class Subnode(Schema):

@@ -35,7 +35,7 @@ export class DataComponent extends BasePaginationComponent<Data> {
 	    this.columns.push({name: 'Date', prop: "date", flexGrow: 1.0});
 	    this.columns.push({name: 'Blood Type', prop: "blood_type", flexGrow: 1.0});
 	    this.columns.push({name: 'Healthy', prop: "healthy", flexGrow: 1.0});
-	    this.columns.push({name: 'HGB', prop: "hgb", flexGrow: 1.0});
+	    this.columns.push({name: 'HGB', prop: "HGB", flexGrow: 1.0});
 	    this.columns.push({name: 'controls', prop: 'controls', cellTemplate: this.controlsCell, headerTemplate: this.emptyHeader, flexGrow: 0.2});
 	}
 

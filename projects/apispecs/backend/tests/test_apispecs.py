@@ -168,7 +168,7 @@ class TestApp(BaseTests):
         assert isinstance(c, list)
         assert len(c) == 1
         assert c[0]['uuid'] == uuid
-        assert c[0]['name'] == "xywz"
+        assert c[0]['name'] == "xyw"
         assert c[0]['age'] == 18
         assert c[0]['date'] == "1970-01-01T00:00:00.000Z"
         assert c[0]['email'] == "user@nomail.org"

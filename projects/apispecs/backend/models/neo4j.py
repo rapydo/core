@@ -8,29 +8,32 @@ VERY IMPORTANT!
 Imports and models have to be defined/used AFTER normal Graphdb connection.
 """
 
-from neomodel import ZeroOrMore, OneOrMore
-
-from neomodel.util import NodeClassRegistry
+from neomodel import ZeroOrMore
 
 from restapi.connectors.neo4j.types import (
     StringProperty,
     IntegerProperty,
     DateProperty,
-    DateTimeProperty,
-    JSONProperty,
-    ArrayProperty,
+    # DateTimeProperty,
     FloatProperty,
     BooleanProperty,
-    AliasProperty,
-    IdentifiedNode,
-    StructuredRel,
     TimestampedNode,
     RelationshipTo,
     RelationshipFrom,
-    # UniqueIdProperty
 )
 
 # from restapi.utilities.logs import log
+
+BLOOD_TYPES = (
+    ("0+", "TEST"),
+    ("A+", "A+"),
+    ("B+", "B+"),
+    ("AB+", "AB+"),
+    ("0-", "0-"),
+    ("A-", "A-"),
+    ("B-", "B-"),
+    ("AB-", "AB-"),
+)
 
 
 class Data(TimestampedNode):
@@ -40,6 +43,7 @@ class Data(TimestampedNode):
     # test_date = DateTimeProperty(required=True)
     test_date = DateProperty(required=True)
     healthy = BooleanProperty(required=False, default=True)
+    blood_type = StringProperty(required=True, choices=BLOOD_TYPES)
     HGB = FloatProperty(required=True)
 
     subnode = RelationshipTo('Subnode', 'HAS_SUBNODE', cardinality=ZeroOrMore)

@@ -13,6 +13,8 @@ from restapi import decorators
 from restapi.utilities.htmlcodes import hcodes
 from restapi.utilities.logs import log
 
+from apispecs.models.neo4j import BLOOD_TYPES
+
 # 1 - Experiments with sqlalchemy
 #     https://github.com/marshmallow-code/marshmallow-sqlalchemy)
 # 2 - raise errors for unknown fields? (also useful for get_schema in PUT)
@@ -32,6 +34,14 @@ class InputSchema(Schema):
         data_key="date",
         format='%Y-%m-%dT%H:%M:%S.000Z')
     healthy = fields.Bool(required=False, default=True)
+    blood_type = fields.Str(
+        required=True,
+        validate=validate.OneOf(
+            choices=[element[0] for element in BLOOD_TYPES],
+            labels=[element[1] for element in BLOOD_TYPES]
+        )
+    )
+    # OneOf
     HGB = fields.Float(required=True, validate=validate.Range(min=0, max=30))
 
 
@@ -99,7 +109,7 @@ class MarshalData(MethodResource, EndpointResource):
 
         return self.response(data)
 
-    @use_kwargs(InputSchema)
+    @use_kwargs(InputSchema())
     @decorators.catch_errors()
     def post(self, **kwargs):
 

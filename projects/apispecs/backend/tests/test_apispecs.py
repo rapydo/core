@@ -73,6 +73,7 @@ class TestApp(BaseTests):
         assert "age" in c
         assert "date" in c
         assert "email" in c
+        assert "blood_type" in c
         assert "HGB" in c
         # This is optional
         assert "healthy" not in c
@@ -80,6 +81,7 @@ class TestApp(BaseTests):
         assert c["age"][0] == "Missing data for required field."
         assert c["date"][0] == "Missing data for required field."
         assert c["email"][0] == "Missing data for required field."
+        assert c["blood_type"][0] == "Missing data for required field."
         assert c["HGB"][0] == "Missing data for required field."
 
         # Trying to create an entity, but input is still wrong
@@ -90,6 +92,7 @@ class TestApp(BaseTests):
                 "age": "a",
                 "date": "y",
                 "email": "w",
+                "blood_type": "C+",
                 "HGB": "z"
             }
         )
@@ -99,6 +102,7 @@ class TestApp(BaseTests):
         assert "age" in c
         assert "date" in c
         assert "email" in c
+        assert "blood_type" in c
         assert "HGB" in c
         # This is optional
         assert "healthy" not in c
@@ -106,6 +110,7 @@ class TestApp(BaseTests):
         assert c["age"][0] == "Not a valid integer."
         assert c["date"][0] == "Not a valid date."
         assert c["email"][0] == "Not a valid email address."
+        assert c["blood_type"][0] == "Must be one of: 0+, A+, B+, AB+, 0-, A-, B-, AB-."
         assert c["HGB"][0] == "Not a valid number."
 
         # Trying to create an entity, but some inputs is still wrong
@@ -116,6 +121,7 @@ class TestApp(BaseTests):
                 "age": 9999,
                 "date": "1970-01-01T00:00:00.000Z",
                 "email": "user@nomail.org",
+                "blood_type": "0+",
                 "HGB": "-5"
             }
         )
@@ -125,6 +131,7 @@ class TestApp(BaseTests):
         assert "age" in c
         assert "date" not in c
         assert "email" not in c
+        assert "blood_type" not in c
         assert "HGB" in c
         # This is optional
         assert "healthy" not in c
@@ -139,6 +146,7 @@ class TestApp(BaseTests):
                 "age": 18,
                 "date": "1970-01-01T00:00:00.000Z",
                 "email": "user@nomail.org",
+                "blood_type": "0+",
                 "HGB": "15.3",
             }
         )
@@ -148,6 +156,7 @@ class TestApp(BaseTests):
         assert "age" not in c
         assert "date" not in c
         assert "email" not in c
+        assert "blood_type" not in c
         assert "HGB" not in c
 
         uuid = c
@@ -163,6 +172,7 @@ class TestApp(BaseTests):
         assert c[0]['age'] == 18
         assert c[0]['date'] == "1970-01-01T00:00:00.000Z"
         assert c[0]['email'] == "user@nomail.org"
+        assert c[0]['blood_type'] == "0-"
         assert c[0]['HGB'] == 15.3
         # Healthy defaulted to True
         assert c[0]['healthy']

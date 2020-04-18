@@ -33,6 +33,7 @@ export class DataComponent extends BasePaginationComponent<Data> {
 	    this.columns.push({name: 'Name', prop: "name", flexGrow: 1.0});
 	    this.columns.push({name: 'Age', prop: "age", flexGrow: 1.0});
 	    this.columns.push({name: 'Date', prop: "date", flexGrow: 1.0});
+	    this.columns.push({name: 'Blood Type', prop: "blood_type", flexGrow: 1.0});
 	    this.columns.push({name: 'Healthy', prop: "healthy", flexGrow: 1.0});
 	    this.columns.push({name: 'HGB', prop: "hgb", flexGrow: 1.0});
 	    this.columns.push({name: 'controls', prop: 'controls', cellTemplate: this.controlsCell, headerTemplate: this.emptyHeader, flexGrow: 0.2});
@@ -48,17 +49,24 @@ export class DataComponent extends BasePaginationComponent<Data> {
 
 
 	create() {
-		let data = {'get_schema': true, 'autocomplete': false}
 
-
-		return this.post(this.endpoint, data, this.formModal, false);
+		return this.post(
+			this.endpoint,
+			{'get_schema': true},
+			this.formModal,
+			false
+		);
 	}
 
 	update(row, element) {
 
-		let data = {'get_schema': true, 'autocomplete': false}
-
-		return this.put(row, this.endpoint, data, this.formModal, false);
+		return this.put(
+			row,
+			this.endpoint,
+			{'get_schema': true},
+			this.formModal,
+			false
+		);
 	}
 	submit() {
 		this.send(this.endpoint);

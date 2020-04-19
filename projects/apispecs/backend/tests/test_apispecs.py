@@ -11,16 +11,18 @@ class TestApp(BaseTests):
 
         log.debug("Executing tests from {}", self.__class__.__module__)
 
+        header, _ = self.do_login(client, None, None)
+
         # Starting from an empty list
         endpoint = API_URI + '/data'
-        r = client.get(endpoint)
+        r = client.get(endpoint, headers=header)
         assert r.status_code == hcodes.HTTP_OK_BASIC
         c = self.get_content(r)
         assert isinstance(c, list)
         assert len(c) == 0
 
         # Trying to create an entity, but input is wrong
-        r = client.post(endpoint, data={})
+        r = client.post(endpoint, data={}, headers=header)
         assert r.status_code == hcodes.HTTP_BAD_REQUEST
         c = self.get_content(r)
         assert "name" in c
@@ -48,7 +50,8 @@ class TestApp(BaseTests):
                 "email": "w",
                 "blood_type": "C+",
                 "HGB": "z"
-            }
+            },
+            headers=header
         )
         assert r.status_code == hcodes.HTTP_BAD_REQUEST
         c = self.get_content(r)
@@ -77,7 +80,8 @@ class TestApp(BaseTests):
                 "email": "user@nomail.org",
                 "blood_type": "0+",
                 "HGB": "-5"
-            }
+            },
+            headers=header
         )
         assert r.status_code == hcodes.HTTP_BAD_REQUEST
         c = self.get_content(r)
@@ -93,7 +97,7 @@ class TestApp(BaseTests):
         assert c["HGB"][0] == "Must be greater than or equal to 0 and less than or equal to 30."
 
         # Creating an entity and retrieving the corresponding uuid
-        r = client.post(
+        r = client.posts(
             endpoint,
             data={
                 "name": "xyw",
@@ -102,7 +106,8 @@ class TestApp(BaseTests):
                 "email": "user@nomail.org",
                 "blood_type": "0+",
                 "HGB": "15.3",
-            }
+            },
+            headers=header
         )
         assert r.status_code == hcodes.HTTP_OK_BASIC
         c = self.get_content(r)
@@ -116,7 +121,7 @@ class TestApp(BaseTests):
         uuid = c
 
         # Verify the newly created entity
-        r = client.get(endpoint)
+        r = client.get(endpoint, headers=header)
         assert r.status_code == hcodes.HTTP_OK_BASIC
         c = self.get_content(r)
         assert isinstance(c, list)
@@ -132,7 +137,7 @@ class TestApp(BaseTests):
         assert c[0]['healthy']
 
         # Trying to modify a non existing entity
-        r = client.put(endpoint + "/xyz")
+        r = client.put(endpoint + "/xyz", headers=header)
         assert r.status_code == hcodes.HTTP_BAD_NOTFOUND
 
         # Modifying an entity, note that email will not change
@@ -141,12 +146,13 @@ class TestApp(BaseTests):
             data={
                 "name": "abc",
                 "email": "nomail@user.org"
-            }
+            },
+            headers=header
         )
         assert r.status_code == hcodes.HTTP_OK_NORESPONSE
 
         # Verify that entity is changed
-        r = client.get(endpoint)
+        r = client.get(endpoint, headers=header)
         assert r.status_code == hcodes.HTTP_OK_BASIC
         c = self.get_content(r)
         assert c[0]['uuid'] == uuid
@@ -156,19 +162,19 @@ class TestApp(BaseTests):
         assert c[0]['email'] == "user@nomail.org"
 
         # cannot delete non existing entities
-        r = client.delete(endpoint + "/xyz")
+        r = client.delete(endpoint + "/xyz", headers=header)
         assert r.status_code == hcodes.HTTP_BAD_NOTFOUND
 
         # entity is now deleted
-        r = client.delete(endpoint + "/" + uuid)
+        r = client.delete(endpoint + "/" + uuid, headers=header)
         assert r.status_code == hcodes.HTTP_OK_NORESPONSE
 
         # cannot delete entity already deleted
-        r = client.delete(endpoint + "/" + uuid)
+        r = client.delete(endpoint + "/" + uuid, headers=header)
         assert r.status_code == hcodes.HTTP_BAD_NOTFOUND
 
         # data list is now empty again
-        r = client.get(endpoint)
+        r = client.get(endpoint, headers=header)
         assert r.status_code == hcodes.HTTP_OK_BASIC
         c = self.get_content(r)
         assert isinstance(c, list)

@@ -97,7 +97,7 @@ class TestApp(BaseTests):
         assert c["HGB"][0] == "Must be greater than or equal to 0 and less than or equal to 30."
 
         # Creating an entity and retrieving the corresponding uuid
-        r = client.posts(
+        r = client.post(
             endpoint,
             data={
                 "name": "xyw",

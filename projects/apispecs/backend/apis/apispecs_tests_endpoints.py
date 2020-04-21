@@ -12,7 +12,6 @@ from restapi.services.detect import detector
 from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
 from restapi import decorators
-# from restapi.utilities.htmlcodes import hcodes
 # from restapi.utilities.logs import log
 
 from apispecs.models.neo4j import BLOOD_TYPES

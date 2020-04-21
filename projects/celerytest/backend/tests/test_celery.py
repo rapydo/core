@@ -2,7 +2,6 @@
 
 # import time
 from restapi.tests import BaseTests, API_URI
-from restapi.utilities.htmlcodes import hcodes
 # from restapi.utilities.logs import log
 
 
@@ -12,11 +11,11 @@ class TestApp(BaseTests):
 
         endpoint = API_URI + '/tests/1'
         r = client.get(endpoint)
-        assert r.status_code == hcodes.HTTP_OK_BASIC
+        assert r.status_code == 200
 
         endpoint = API_URI + '/tests/2'
         r = client.get(endpoint)
-        assert r.status_code == hcodes.HTTP_OK_BASIC
+        assert r.status_code == 200
 
         task_id = self.get_content(r)
         # We expect as return value the task_id and no more

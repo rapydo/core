@@ -3,7 +3,6 @@
 import os
 from restapi.tests import BaseTests, API_URI
 from restapi.services.detect import detector
-from restapi.utilities.htmlcodes import hcodes
 from restapi.utilities.logs import log
 
 
@@ -14,7 +13,7 @@ class TestApp(BaseTests):
         log.debug("Executing tests from {}", self.__class__.__module__)
         endpoint = API_URI + '/tests/1'
         r = client.get(endpoint)
-        assert r.status_code == hcodes.HTTP_OK_BASIC
+        assert r.status_code == 200
 
         irods_ext = detector.connectors_instances.get('irods')
         irods = irods_ext.get_instance()

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from restapi.tests import BaseTests, API_URI
-from restapi.utilities.htmlcodes import hcodes
 from restapi.utilities.logs import log
 
 
@@ -16,14 +15,14 @@ class TestApp(BaseTests):
         # Starting from an empty list
         endpoint = API_URI + '/data'
         r = client.get(endpoint, headers=header)
-        assert r.status_code == hcodes.HTTP_OK_BASIC
+        assert r.status_code == 200
         c = self.get_content(r)
         assert isinstance(c, list)
         assert len(c) == 0
 
         # Trying to create an entity, but input is wrong
         r = client.post(endpoint, data={}, headers=header)
-        assert r.status_code == hcodes.HTTP_BAD_REQUEST
+        assert r.status_code == 400
         c = self.get_content(r)
         assert "name" in c
         assert "age" in c
@@ -53,7 +52,7 @@ class TestApp(BaseTests):
             },
             headers=header
         )
-        assert r.status_code == hcodes.HTTP_BAD_REQUEST
+        assert r.status_code == 400
         c = self.get_content(r)
         assert "name" in c
         assert "age" in c
@@ -83,7 +82,7 @@ class TestApp(BaseTests):
             },
             headers=header
         )
-        assert r.status_code == hcodes.HTTP_BAD_REQUEST
+        assert r.status_code == 400
         c = self.get_content(r)
         assert "name" not in c
         assert "age" in c
@@ -109,7 +108,7 @@ class TestApp(BaseTests):
             },
             headers=header
         )
-        assert r.status_code == hcodes.HTTP_OK_BASIC
+        assert r.status_code == 200
         c = self.get_content(r)
         assert "name" not in c
         assert "age" not in c
@@ -122,7 +121,7 @@ class TestApp(BaseTests):
 
         # Verify the newly created entity
         r = client.get(endpoint, headers=header)
-        assert r.status_code == hcodes.HTTP_OK_BASIC
+        assert r.status_code == 200
         c = self.get_content(r)
         assert isinstance(c, list)
         assert len(c) == 1
@@ -138,7 +137,7 @@ class TestApp(BaseTests):
 
         # Trying to modify a non existing entity
         r = client.put(endpoint + "/xyz", headers=header)
-        assert r.status_code == hcodes.HTTP_BAD_NOTFOUND
+        assert r.status_code == 404
 
         # Modifying an entity, note that email will not change
         r = client.put(
@@ -149,11 +148,11 @@ class TestApp(BaseTests):
             },
             headers=header
         )
-        assert r.status_code == hcodes.HTTP_OK_NORESPONSE
+        assert r.status_code == 204
 
         # Verify that entity is changed
         r = client.get(endpoint, headers=header)
-        assert r.status_code == hcodes.HTTP_OK_BASIC
+        assert r.status_code == 200
         c = self.get_content(r)
         assert c[0]['uuid'] == uuid
         # name is changed
@@ -163,19 +162,19 @@ class TestApp(BaseTests):
 
         # cannot delete non existing entities
         r = client.delete(endpoint + "/xyz", headers=header)
-        assert r.status_code == hcodes.HTTP_BAD_NOTFOUND
+        assert r.status_code == 404
 
         # entity is now deleted
         r = client.delete(endpoint + "/" + uuid, headers=header)
-        assert r.status_code == hcodes.HTTP_OK_NORESPONSE
+        assert r.status_code == 204
 
         # cannot delete entity already deleted
         r = client.delete(endpoint + "/" + uuid, headers=header)
-        assert r.status_code == hcodes.HTTP_BAD_NOTFOUND
+        assert r.status_code == 404
 
         # data list is now empty again
         r = client.get(endpoint, headers=header)
-        assert r.status_code == hcodes.HTTP_OK_BASIC
+        assert r.status_code == 200
         c = self.get_content(r)
         assert isinstance(c, list)
         assert len(c) == 0

@@ -19,9 +19,6 @@ from apispecs.models.neo4j import BLOOD_TYPES
 # 1 - Experiments with sqlalchemy
 #     https://github.com/marshmallow-code/marshmallow-sqlalchemy)
 # 2 - raise errors for unknown fields? (also useful for get_schema in PUT)
-# 3 - Convert some true endpoint... like admin tokens?
-# 4 - convert into interfaces? https://github.com/danohu/py2ng
-#     if used, please remove types from response.py and import from py2ng
 
 
 def get_referall_names():
@@ -127,9 +124,9 @@ class MarshalData(MethodResource, EndpointResource):
 
         return self.response(data)
 
-    @use_kwargs(InputSchema())
     @decorators.catch_errors()
     @decorators.auth.required()
+    @use_kwargs(InputSchema())
     def post(self, **kwargs):
 
         graph = self.get_service_instance('neo4j')
@@ -141,9 +138,9 @@ class MarshalData(MethodResource, EndpointResource):
 
         return d.uuid
 
-    @use_kwargs(InputSchema(strip_required=True, exclude=("email",)))
     @decorators.catch_errors()
     @decorators.auth.required()
+    @use_kwargs(InputSchema(strip_required=True, exclude=("email",)))
     def put(self, uuid, **kwargs):
 
         graph = self.get_service_instance('neo4j')

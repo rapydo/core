@@ -1,0 +1,21 @@
+project: {{ project }}
+# stack: your_custom_stack 
+production: True
+hostname: {{ hostname }}
+
+project_configuration:
+  variables:
+    env:
+      LOG_LEVEL: INFO
+      # SMTP_ADMIN: your@email.org
+
+      AUTH_DEFAULT_USERNAME: {{ 'RANDOM'| username }}@nomail.org
+      AUTH_DEFAULT_PASSWORD: {{ 'RANDOM'| password }}
+      NEO4J_PASSWORD: {{ 'RANDOM'| password }}
+      ALCHEMY_USER: sqluser
+      ALCHEMY_PASSWORD: {{ 'RANDOM'| password }}
+      IRODS_USER: irods
+      IRODS_PASSWORD: {{ 'RANDOM'| password }}
+      RABBITMQ_USER: {{ 'RANDOM'| username }}
+      RABBITMQ_PASSWORD: {{ 'RANDOM'| password }}
+

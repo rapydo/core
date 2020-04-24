@@ -7,7 +7,6 @@ export interface Data {
 }
 
 @Component({
-  selector: 'data',
   templateUrl: './data.component.html'
 })
 export class DataComponent extends BasePaginationComponent<Data> {

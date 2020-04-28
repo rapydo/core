@@ -4,6 +4,7 @@ from restapi.rest.definition import EndpointResource
 from restapi.exceptions import RestApiException
 from restapi import decorators
 from restapi.connectors.celery import CeleryExt
+
 # from restapi.utilities.logs import log
 
 
@@ -13,12 +14,12 @@ class DoTests(EndpointResource):
     GET = {
         '/tests/<test_num>': {
             'summary': 'Do tests',
-            'responses': {'200': {'description': 'a test is executed'}}
+            'responses': {'200': {'description': 'a test is executed'}},
         },
         '/tests/<test_num>/<task_id>': {
             'summary': 'Do tests',
-            'responses': {'200': {'description': 'a test is executed'}}
-        }
+            'responses': {'200': {'description': 'a test is executed'}},
+        },
     }
 
     @staticmethod
@@ -33,9 +34,7 @@ class DoTests(EndpointResource):
 
         rabbit.write_to_queue("test", "celery")
 
-        task = CeleryExt.testme.apply_async(
-            args=[]
-        )
+        task = CeleryExt.testme.apply_async(args=[])
         # task = CeleryExt.testme.apply_async(
         #     args=[], countdown=1
         # )
@@ -52,11 +51,7 @@ class DoTests(EndpointResource):
         if task is None:
             return None
 
-        return {
-            "task_id": task.task_id,
-            "status": task.status,
-            "result": task.result
-        }
+        return {"task_id": task.task_id, "status": task.status, "result": task.result}
 
     @decorators.catch_errors()
     def get(self, test_num, task_id=None):

@@ -10,6 +10,12 @@ services:
     volumes:
       - ${VANILLA_DIR}/data/test:/data
 
+  # rabbit:
+  #   ports:
+  #     - ${RABBITMQ_PORT}:${RABBITMQ_PORT}
+  #     - ${RABBITMQ_MANAGEMENT_PORT}:${RABBITMQ_MANAGEMENT_PORT}
+
+
 # volumes:
 #   -
 

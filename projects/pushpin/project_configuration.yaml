@@ -3,13 +3,14 @@ project:
   title: My Pushpin project
   description: Title of my Pushpin project
   version: "1.0"
-  rapydo: 0.7.2
+  rapydo: 0.7.3
 
 variables:
 
   env:
 
     FRONTEND_FRAMEWORK: angular
+    AUTH_SERVICE: sqlalchemy
 
     ALCHEMY_USER: sqluser
     ALCHEMY_PASSWORD: chooseapasswordwisely

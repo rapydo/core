@@ -1,0 +1,21 @@
+---
+project:
+  title: My Apispecs project
+  description: Title of my apispecs project
+  version: "1.0"
+  rapydo: 0.7.3
+
+variables:
+
+  env:
+    FRONTEND_FRAMEWORK: angular
+    ACTIVATE_NEO4J: 1
+    AUTH_SERVICE: neo4j
+
+  backend:
+    credentials:
+      roles:
+        user: normal_user
+        internal: staff_user
+        admin: admin_root
+        default: normal_user

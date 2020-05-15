@@ -1,0 +1,26 @@
+---
+project:
+  title: My wrapped response project
+  description: Title of my wrapped response project
+  version: "1.0"
+  rapydo: 0.7.3
+
+variables:
+
+  env:
+    FRONTEND_FRAMEWORK: angular
+    AUTH_SERVICE: sqlalchemy
+
+    ACTIVATE_ALCHEMY: 1
+    ACTIVATE_POSTGRES: 1
+    ALCHEMY_USER: sqluser
+    ALCHEMY_PASSWORD: chooseapasswordwisely
+    WRAP_RESPONSE: 1
+
+  backend:
+    credentials:
+      roles:
+        user: normal_user
+        internal: staff_user
+        admin: admin_root
+        default: normal_user

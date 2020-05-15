@@ -5,7 +5,6 @@ import { NotificationService } from '@rapydo/services/notification';
 import { WebSocketsService } from '@rapydo/services/websockets'
 
 @Component({
-  selector: 'data',
   templateUrl: './data.component.html'
 })
 export class DataComponent {
